@@ -1,9 +1,0 @@
-.react-phone-number-input__country-select {
-    max-height: 100px; /* Adjust dropdown height */
-    overflow-y: auto; /* Enable scrolling for long lists */
-    font-size: 14px; /* Adjust text size */
-  }
-  
-  .react-phone-number-input__country-select-item {
-    padding: 10px 10px; /* Adjust padding inside dropdown items */
-  }
