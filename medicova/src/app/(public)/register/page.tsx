@@ -9,10 +9,10 @@ import cover from "@/components/images/login.svg";
 import network from "@/components/images/network.svg";
 import Image from "next/image";
 import Header from "@/components/Header/Header";
-import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
 
-const Login = () => {
-  const handleSubmit = (formData: { email: string; password: string; rememberMe: boolean }) => {
+const Register = () => {
+  const handleSubmit = (formData: { email: string; password: string; }) => {
     console.log("Form Data Submitted:", formData);
     // Add logic to handle the form submission (e.g., API call)
   };
@@ -67,7 +67,7 @@ const Login = () => {
             sx={{
               position: "absolute",
               top: "18%",
-              left: "20%",
+              left: "10%",
               transform: "translate(-50%, -50%)",
               color: "#000",
               background: "rgba(242, 242, 242,0.7)",
@@ -131,10 +131,10 @@ const Login = () => {
         </Box>
 
         {/* Right Section: Login Form */}
-        <LoginForm onSubmit={handleSubmit} />
+        <RegisterForm onSubmit={handleSubmit} />
       </Container>
     </Box>
   );
 };
 
-export default Login;
+export default Register;
