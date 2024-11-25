@@ -98,6 +98,7 @@ const ForgetForm: React.FC<ForgetFormProps> = ({ onSubmit }) => {
             Send
           </Button>
         </Box>
+        
       </form>
     </Box>
   );
