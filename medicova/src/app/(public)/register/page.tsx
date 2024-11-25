@@ -1,22 +1,14 @@
 "use client";
 
-import {
-  Box,
-  Typography,
-  Container,
-} from "@mui/material";
-import cover from "@/components/images/login.svg";
-import network from "@/components/images/network.svg";
-import Image from "next/image";
+import { Box, Typography, Container, AvatarGroup, Avatar } from "@mui/material";
 import Header from "@/components/Header/Header";
 import RegisterForm from "./RegisterForm";
 
 const Register = () => {
-  const handleSubmit = (formData: { email: string; password: string; }) => {
+  const handleSubmit = (formData: { email: string; password: string }) => {
     console.log("Form Data Submitted:", formData);
     // Add logic to handle the form submission (e.g., API call)
   };
-
 
   return (
     <Box
@@ -42,96 +34,169 @@ const Register = () => {
           py: 5,
         }}
       >
+        {/* Right Section: Login Form */}
+        <RegisterForm onSubmit={handleSubmit} />
+        
         {/* Left Section: Photo */}
         <Box
           sx={{
             flex: 1,
-            display: "flex",
-            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            position: "relative", // Enables overlay positioning
-            paddingX: { xs: 2, md: 3 },
+            position: "relative",
+            paddingX: { xs: 1, md: 3 },
+            width: { xs: "100%", sm: "300px" }, // Responsive width
+            height: { xs: "auto", md: "400px" }, // Responsive height
           }}
         >
-          {/* Main Background Image */}
-          <Image
-            src={cover}
-            alt="Login Cover"
-            style={{ objectFit: "cover", width: "100%", height: "100%" }}
-            priority
-          />
+          {/* Title above the boxes */}
 
-          {/* Overlaid Text */}
-          <Typography
+          {/* First Box */}
+          <Box
             sx={{
-              position: "absolute",
-              top: "18%",
-              left: "10%",
-              transform: "translate(-50%, -50%)",
-              color: "#000",
-              background: "rgba(242, 242, 242,0.7)",
-              padding: "10px 20px",
-              borderRadius: "8px",
-              fontSize: { xs: "16px", md: "20px" },
-              fontWeight: "700",
-              textAlign: "center",
-              width: { xs: "90%", sm: "250px" },
-              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+              width: "80%",
+              height: "100%",
+              backgroundColor: "#2EAE7D",
+              padding: "20px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "white",
             }}
-          >
-            Reach more than 100K+
-            <Typography
-              component="span"
-              sx={{
-                display: "block", // Ensures it appears on a new line
-                color: "#03353C",
-                marginTop: "5px", // Optional spacing
-              }}
-            >
-              Healthcare Professional
-            </Typography>
-          </Typography>
+          ></Box>
 
-          {/* Overlaid Text */}
-          <Typography
-            sx={{
-              position: "absolute",
-              bottom: "0%",
-              right: "0",
-              transform: "translate(-10%, -20%)",
-              color: "#000",
-              background: "rgba(242, 242, 242,0.7)",
-              padding: "10px 20px",
-              borderRadius: "8px",
-              fontSize: { xs: "16px", md: "16px" },
-              fontWeight: "600",
-              textAlign: "center",
-              width: { xs: "90%", sm: "250px" },
-              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            “Great platform for the Healthcare Employers to find experienced healthcare Professionals“
-          </Typography>
-
-          {/* Additional Image */}
+          {/* Second Box */}
           <Box
             sx={{
               position: "absolute",
-              top: "0", // Adjust positioning relative to the parent Box
-              left: "10%", // Adjust positioning relative to the parent Box
+              top: "60px",
+              right: "60px",
+              width: "80%",
+              height: "100%",
+              backgroundColor: "#2EAE7D",
+              padding: "20px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "white",
+            }}
+          ></Box>
+
+          {/* Responsive Typography */}
+          <Typography
+            variant="h4"
+            sx={{
+              position: "absolute",
+              top: "10px",
+              left: "50%",
+              transform: "translate(-50%)",
+              color: "#fff",
+              fontWeight: "bold",
+              width: "80%",
+              fontSize: { xs: "1.5rem", md: "2rem" }, // Responsive font size
             }}
           >
-            <Image
-              src={network}
-              alt="Additional Image"
-              style={{ objectFit: "cover", width: "100%", height: "100%" }}
-            />
+            Find new pathways to{" "}
+            <Typography
+              sx={{
+                fontWeight: "700",
+                display: "inline",
+                background: "linear-gradient(180deg, #2EAE7D, #134834)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                fontSize: "inherit",
+              }}
+            >
+              Healthcare Professionals
+            </Typography>
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            sx={{
+              position: "absolute",
+              bottom: "50%",
+              left: "50%",
+              transform: "translate(-50%)",
+              color: "#fff",
+              fontWeight: "light",
+              width: "80%",
+              fontSize: { xs: "0.9rem", md: "1rem" }, // Responsive font size
+              textAlign: "center",
+            }}
+          >
+            “Search for healthcare professionals from more than 300000 CVs. Use
+            35+ robust filters and shortlist candidates faster. Hire top talent
+            faster and smarter. “
+          </Typography>
+          <Box
+            sx={{
+              width: { xs: "70%", md: "50%" },
+              position: "absolute",
+              bottom: "-40px",
+              left: { xs: "50%", md: "160px" }, // Adjust positioning
+              transform: { xs: "translateX(-50%)", md: "none" },
+              height: "45%",
+              backgroundColor: "#fff",
+              padding: "20px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "white",
+            }}
+          ></Box>
+
+          {/* Second Box */}
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: "-10px",
+              left: { xs: "10%", md: "100px" }, // Adjust for smaller screens
+              width: "50%",
+              height: "50%",
+              backgroundColor: "#fff",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "white",
+              padding: "10px",
+            }}
+          >
+            <Typography
+              sx={{
+                color: "#03353C",
+                fontWeight: "700",
+                textAlign: "start",
+                fontSize: { xs: "16px", md: "20px" }, // Responsive font size
+              }}
+            >
+              Trusted by 12,000 organizations, including:
+            </Typography>
+
+            <Typography
+              sx={{
+                color: "#03353C",
+                fontWeight: "light",
+                textAlign: "start",
+                fontSize: { xs: "14px", md: "17px" }, // Responsive font size
+                paddingTop: "10px",
+                width: "80%",
+              }}
+            >
+              Saudi German Hospital ,DAF Hospital Alsalam International Hospital
+            </Typography>
+            <AvatarGroup max={5}>
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+              <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+              <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+              <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg" />
+              <Avatar sx={{ backgroundColor: "#03353C", color: "white" }}>
+                +2
+              </Avatar>
+            </AvatarGroup>
           </Box>
         </Box>
-
-        {/* Right Section: Login Form */}
-        <RegisterForm onSubmit={handleSubmit} />
       </Container>
     </Box>
   );
