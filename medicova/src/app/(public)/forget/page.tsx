@@ -1,10 +1,12 @@
 "use client";
 
-import { Box, Typography, Button, TextField } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import lock from "@/components/images/lock.svg";
 import Image from "next/image";
 import Header from "@/components/Header/Header";
 import ForgetForm from "./ForgetForm";
+import Link from "next/link";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const Forget = () => {
   const handleSubmit = (formData: { email: string }) => {
@@ -47,7 +49,11 @@ const Forget = () => {
         />
 
         {/* Title */}
-        <Typography variant="h5" fontWeight="bold" sx={{ marginBottom: 1 }}>
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          sx={{ marginBottom: 1, color: "#03353C" }}
+        >
           Forgot your password?
         </Typography>
 
@@ -62,6 +68,26 @@ const Forget = () => {
         {/* Email Input */}
 
         <ForgetForm onSubmit={handleSubmit} />
+
+        <Link href="/login" passHref className="opacity-50">
+          <ArrowBackIcon
+            sx={{
+              fontSize: "20px", // Size of the icon
+              color: "#2EAE7D80",
+              marginRight: "8px", // Spacing between icon and text
+            }}
+          />
+          <Typography
+            component="span"
+            sx={{
+              fontSize: "16px",
+              color: "#2EAE7D80",
+              fontWeight: "600",
+            }}
+          >
+            Back to login
+          </Typography>
+        </Link>
       </Box>
     </Box>
   );

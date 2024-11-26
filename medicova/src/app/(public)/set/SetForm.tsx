@@ -1,11 +1,9 @@
+"use client";
+
 import React, { useState } from "react";
 import { Box, TextField, Button, InputLabel } from "@mui/material";
 
-interface ForgetFormProps {
-  onSubmit: (formData: { password: string; confirmePassword: string }) => void;
-}
-
-const SetForm: React.FC<ForgetFormProps> = ({ onSubmit }) => {
+const SetForm: React.FC = () => {
   const [formData, setFormData] = useState({
     password: "",
     confirmePassword: "",
@@ -45,7 +43,7 @@ const SetForm: React.FC<ForgetFormProps> = ({ onSubmit }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      onSubmit(formData); // Trigger parent's onSubmit handler
+      console.log("Form submitted:", formData);
     }
   };
 

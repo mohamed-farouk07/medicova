@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import {
   Box,
@@ -6,27 +8,26 @@ import {
   Typography,
   Divider,
   InputLabel,
-  FormControlLabel,
-  Checkbox,
 } from "@mui/material";
 import Link from "next/link";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
-interface RegisterFormProps {
-  onSubmit: (formData: { email: string; password: string }) => void;
-}
-
-const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
+const RegisterForm: React.FC = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    firstName: "",
+    lastName: "",
+    phone: "",
   });
 
   const [errors, setErrors] = useState({
     email: "",
     password: "",
-    phone: "", // Add phone to the errors state
+    firstName: "",
+    lastName: "",
+    phone: "",
   });
 
   const [phone, setPhone] = useState<string | undefined>(""); // Add phone state
@@ -42,6 +43,21 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
   const validateForm = () => {
     const newErrors: any = {};
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    // Validate First Name
+    if (!formData.firstName) {
+      newErrors.firstName = "First name is required";
+    } else if (formData.firstName.length < 3) {
+      newErrors.firstName = "First name must be at least 3 characters";
+    }
+
+    // Validate Last Name
+    if (!formData.lastName) {
+      newErrors.lastName = "Last name is required";
+    } else if (formData.lastName.length < 3) {
+      newErrors.lastName = "Last name must be at least 3 characters";
+    }
+
     if (!formData.email) {
       newErrors.email = "Email is required";
     } else if (!emailRegex.test(formData.email)) {
@@ -103,7 +119,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
       >
         {activeLink && (
           <>
-            <Link href="/#" passHref>
+            <Link href="/register" passHref>
               <Typography
                 component="a"
                 onClick={() => handleLinkClick("jobSeeker")}
@@ -121,7 +137,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
               </Typography>
             </Link>
 
-            <Link href="/#" passHref>
+            <Link href="/register" passHref>
               <Typography
                 component="a"
                 onClick={() => handleLinkClick("employer")}
@@ -187,6 +203,49 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
       </Box>
 
       <form className="w-full" onSubmit={handleSubmit} noValidate>
+        <Box
+          sx={{
+            display: "flex",
+            gap: 2,
+            mb: 2,
+          }}
+        >
+          {/* First Name */}
+          <Box sx={{ flex: 1 }}>
+            <InputLabel
+              sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}
+            >
+              First Name
+            </InputLabel>
+            <TextField
+              label="Enter first name"
+              fullWidth
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              error={!!errors.firstName}
+              helperText={errors.firstName}
+            />
+          </Box>
+
+          {/* Last Name */}
+          <Box sx={{ flex: 1 }}>
+            <InputLabel
+              sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}
+            >
+              Last Name
+            </InputLabel>
+            <TextField
+              label="Enter last name"
+              fullWidth
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              error={!!errors.lastName}
+              helperText={errors.lastName}
+            />
+          </Box>
+        </Box>
         <Box sx={{ mb: 2 }}>
           <InputLabel
             sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}

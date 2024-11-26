@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import {
   Box,
@@ -11,15 +13,7 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 
-interface LoginFormProps {
-  onSubmit: (formData: {
-    email: string;
-    password: string;
-    rememberMe: boolean;
-  }) => void;
-}
-
-const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
+const LoginForm: React.FC = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -75,6 +69,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
   const handleLinkClick = (link: string) => {
     setActiveLink(link);
   };
+
 
   return (
     <Box

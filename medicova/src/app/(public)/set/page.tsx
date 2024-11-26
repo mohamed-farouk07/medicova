@@ -1,26 +1,18 @@
-"use client";
-
-import { Box, Typography, Button, TextField } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import setPassword from "@/components/images/set-password.svg";
 import Image from "next/image";
 import Header from "@/components/Header/Header";
 import SetForm from "./SetForm";
+import Link from "next/link";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const Set = () => {
-  const handleSubmit = (formData: {
-    password: string;
-    confirmePassword: string;
-  }) => {
-    console.log("Form Data Submitted:", formData);
-    // Add logic to handle the form submission (e.g., API call)
-  };
-
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
-        minHeight: "100vh",
+        minHeight: "150vh",
       }}
     >
       {/* Header */}
@@ -33,12 +25,12 @@ const Set = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          height: "80vh",
-          backgroundColor: "#f8faff", // Background color for the page
+          height: "100vh",
+          backgroundColor: "#f8faff",
           padding: 3,
-          maxWidth: 600, // Adjust the width of the box as needed
-          width: "100%", // Ensures it takes full width until maxWidth is reached
-          margin: "auto", // Centers the box horizontally
+          maxWidth: 600,
+          width: "100%",
+          margin: "auto",
         }}
       >
         {/* Lock Icon */}
@@ -49,7 +41,11 @@ const Set = () => {
         />
 
         {/* Title */}
-        <Typography variant="h5" fontWeight="bold" sx={{ marginBottom: 1 }}>
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          sx={{ marginBottom: 1, color: "#03353C" }}
+        >
           Set a new password
         </Typography>
 
@@ -63,7 +59,27 @@ const Set = () => {
 
         {/* Email Input */}
 
-        <SetForm onSubmit={handleSubmit} />
+        <SetForm />
+
+        <Link href="/login" passHref className="opacity-60">
+          <ArrowBackIcon
+            sx={{
+              fontSize: "20px", // Size of the icon
+              color: "#2EAE7DBF",
+              marginRight: "8px", // Spacing between icon and text
+            }}
+          />
+          <Typography
+            component="span"
+            sx={{
+              fontSize: "16px",
+              color: "#2EAE7DBF",
+              fontWeight: "600",
+            }}
+          >
+            Back to login
+          </Typography>
+        </Link>
       </Box>
     </Box>
   );

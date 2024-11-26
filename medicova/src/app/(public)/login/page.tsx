@@ -1,10 +1,4 @@
-"use client";
-
-import {
-  Box,
-  Typography,
-  Container,
-} from "@mui/material";
+import { Box, Typography, Container } from "@mui/material";
 import cover from "@/components/images/login.svg";
 import network from "@/components/images/network.svg";
 import Image from "next/image";
@@ -12,12 +6,6 @@ import Header from "@/components/Header/Header";
 import LoginForm from "./LoginForm";
 
 const Login = () => {
-  const handleSubmit = (formData: { email: string; password: string; rememberMe: boolean }) => {
-    console.log("Form Data Submitted:", formData);
-    // Add logic to handle the form submission (e.g., API call)
-  };
-
-
   return (
     <Box
       sx={{
@@ -111,7 +99,8 @@ const Login = () => {
               boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
             }}
           >
-            “Great platform for the Healthcare Employers to find experienced healthcare Professionals“
+            “Great platform for the Healthcare Employers to find experienced
+            healthcare Professionals“
           </Typography>
 
           {/* Additional Image */}
@@ -131,7 +120,7 @@ const Login = () => {
         </Box>
 
         {/* Right Section: Login Form */}
-        <LoginForm onSubmit={handleSubmit} />
+        <LoginForm />
       </Container>
     </Box>
   );

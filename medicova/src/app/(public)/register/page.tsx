@@ -5,11 +5,6 @@ import Header from "@/components/Header/Header";
 import RegisterForm from "./RegisterForm";
 
 const Register = () => {
-  const handleSubmit = (formData: { email: string; password: string }) => {
-    console.log("Form Data Submitted:", formData);
-    // Add logic to handle the form submission (e.g., API call)
-  };
-
   return (
     <Box
       sx={{
@@ -34,9 +29,9 @@ const Register = () => {
           py: 5,
         }}
       >
-        {/* Right Section: Login Form */}
-        <RegisterForm onSubmit={handleSubmit} />
-        
+        {/* Right Section: Register Form */}
+        <RegisterForm />
+
         {/* Left Section: Photo */}
         <Box
           sx={{
