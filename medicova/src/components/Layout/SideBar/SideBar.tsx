@@ -1,12 +1,14 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
 import {
   Box,
-  Drawer,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Collapse,
   Divider,
   Typography,
 } from "@mui/material";
@@ -14,6 +16,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import BusinessIcon from "@mui/icons-material/Business";
 import WorkIcon from "@mui/icons-material/Work";
 import SearchIcon from "@mui/icons-material/Search";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
 import PaymentIcon from "@mui/icons-material/Payment";
 import ReportIcon from "@mui/icons-material/Assessment";
 import ChatIcon from "@mui/icons-material/Chat";
@@ -21,6 +25,14 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import HelpIcon from "@mui/icons-material/Help";
 
 const SideBar = () => {
+  const [openDashboard, setOpenDashboard] = useState(false);
+  const [openJobs, setOpenJobs] = useState(false);
+  const [openCvSearch, setOpenCvSearch] = useState(false);
+
+  const toggleDashboard = () => setOpenDashboard(!openDashboard);
+  const toggleJobs = () => setOpenJobs(!openJobs);
+  const toggleCvSearch = () => setOpenCvSearch(!openCvSearch);
+
   return (
     <Box
       sx={{
@@ -32,42 +44,105 @@ const SideBar = () => {
       }}
     >
       <Box sx={{ padding: "16px" }}>
-        {/* Main Menu */}
         <List>
+          {/* Dashboard */}
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={toggleDashboard}>
               <ListItemIcon>
                 <DashboardIcon sx={{ color: "#515B6F" }} />
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
+              {openDashboard ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
           </ListItem>
+          <Collapse in={openDashboard} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItem disablePadding>
+                <ListItemButton component={Link} href="/dashboard/overview" sx={{ pl: 4 }}>
+                  <ListItemText primary="Overview" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton component={Link} href="/dashboard/analytics" sx={{ pl: 4 }}>
+                  <ListItemText primary="Analytics" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton component={Link} href="/dashboard/reports" sx={{ pl: 4 }}>
+                  <ListItemText primary="Reports" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Collapse>
+
+          {/* Company Profile */}
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton component={Link} href="/company-profile">
               <ListItemIcon>
                 <BusinessIcon sx={{ color: "#515B6F" }} />
               </ListItemIcon>
-              <ListItemText primary="Company profile" />
+              <ListItemText primary="Company Profile" />
             </ListItemButton>
           </ListItem>
+
+          {/* My Jobs */}
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={toggleJobs}>
               <ListItemIcon>
                 <WorkIcon sx={{ color: "#515B6F" }} />
               </ListItemIcon>
               <ListItemText primary="My Jobs" />
+              {openJobs ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
           </ListItem>
+          <Collapse in={openJobs} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItem disablePadding>
+                <ListItemButton component={Link} href="/jobs/posted" sx={{ pl: 4 }}>
+                  <ListItemText primary="Posted Jobs" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton component={Link} href="/jobs/applications" sx={{ pl: 4 }}>
+                  <ListItemText primary="Applications" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton component={Link} href="/jobs/analytics" sx={{ pl: 4 }}>
+                  <ListItemText primary="Job Analytics" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Collapse>
+
+          {/* CV Search */}
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={toggleCvSearch}>
               <ListItemIcon>
                 <SearchIcon sx={{ color: "#515B6F" }} />
               </ListItemIcon>
               <ListItemText primary="CV Search" />
+              {openCvSearch ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
           </ListItem>
+          <Collapse in={openCvSearch} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItem disablePadding>
+                <ListItemButton component={Link} href="/cv-search/candidates" sx={{ pl: 4 }}>
+                  <ListItemText primary="Search Candidates" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton component={Link} href="/cv-search/saved" sx={{ pl: 4 }}>
+                  <ListItemText primary="Saved Searches" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Collapse>
+
+          {/* Other Menu Items */}
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton component={Link} href="/billing">
               <ListItemIcon>
                 <PaymentIcon sx={{ color: "#515B6F" }} />
               </ListItemIcon>
@@ -75,7 +150,7 @@ const SideBar = () => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton component={Link} href="/reports">
               <ListItemIcon>
                 <ReportIcon sx={{ color: "#515B6F" }} />
               </ListItemIcon>
@@ -83,7 +158,7 @@ const SideBar = () => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton component={Link} href="/chat">
               <ListItemIcon>
                 <ChatIcon sx={{ color: "#515B6F" }} />
               </ListItemIcon>
@@ -104,7 +179,7 @@ const SideBar = () => {
         </Typography>
         <List>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton component={Link} href="/settings">
               <ListItemIcon>
                 <SettingsIcon sx={{ color: "#515B6F" }} />
               </ListItemIcon>
@@ -112,7 +187,7 @@ const SideBar = () => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton component={Link} href="/help">
               <ListItemIcon>
                 <HelpIcon sx={{ color: "#515B6F" }} />
               </ListItemIcon>
