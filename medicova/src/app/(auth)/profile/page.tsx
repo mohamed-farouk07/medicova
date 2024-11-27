@@ -25,14 +25,12 @@ import ShareIcon from "@mui/icons-material/Share";
 
 const ProfilePage = () => {
   return (
-    <Box
-      sx={{ backgroundColor: "#f9f9f9", minHeight: "100vh" }}
-    >
+    <Box sx={{ backgroundColor: "#f9f9f9", minHeight: "100vh" }}>
       {/* Header Section */}
       <Box
         sx={{
           display: "flex",
-          alignItems: "center", 
+          alignItems: "center", // Vertically center all child elements
           justifyContent: "space-between",
           backgroundColor: "#fff",
           padding: "30px",
@@ -144,121 +142,142 @@ const ProfilePage = () => {
       </Box>
 
       <Grid container spacing={3}>
-        {/* Left Section */}
-        <Grid item xs={12} md={4}>
-          <Card sx={{ padding: "16px" }}>
-            <Typography variant="h6" sx={{ marginBottom: 2 }}>
-              About Company
-            </Typography>
-            <Typography variant="body2" sx={{ color: "gray" }}>
-              A healthcare company refers to any business or organization that
-              provides products or services related to the maintenance,
-              improvement, or management of health.
-            </Typography>
-          </Card>
-        </Grid>
-
-        {/* Center Section */}
-        <Grid item xs={12} md={6}>
-          <Card>
-            <CardContent>
+        {/* Left + Center Sections */}
+        <Grid container item xs={12} md={10} spacing={3}>
+          {/* Left Section */}
+          <Grid item xs={12}>
+            <Card sx={{ padding: "16px" }}>
               <Typography variant="h6" sx={{ marginBottom: 2 }}>
-                Company Main Information
+                About Company :
               </Typography>
+              <Typography variant="body2" sx={{ color: "gray" }}>
+                A healthcare company refers to any business or organization that
+                provides products or services related to the maintenance,
+                improvement, or management of health.
+              </Typography>
+            </Card>
+          </Grid>
 
-              <Box sx={{ marginBottom: 2 }}>
-                <FormControl fullWidth>
-                  <InputLabel>Company Sector</InputLabel>
-                  <Select defaultValue="">
-                    <MenuItem value="Healthcare">Healthcare</MenuItem>
-                    <MenuItem value="Technology">Technology</MenuItem>
-                    <MenuItem value="Finance">Finance</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
+          {/* Center Section */}
+          <Grid item xs={12}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" sx={{ marginBottom: 2 }}>
+                  Company Main Information
+                </Typography>
 
-              <Box sx={{ marginBottom: 2 }}>
-                <FormControl fullWidth>
-                  <InputLabel>Company Type</InputLabel>
-                  <Select defaultValue="">
-                    <MenuItem value="Hospital">Hospital</MenuItem>
-                    <MenuItem value="Clinic">Clinic</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
+                {/* Form Fields */}
+                <Box sx={{ marginBottom: 2 }}>
+                  <FormControl fullWidth>
+                    <InputLabel>Company Sector</InputLabel>
+                    <Select defaultValue="">
+                      <MenuItem value="Healthcare">Healthcare</MenuItem>
+                      <MenuItem value="Technology">Technology</MenuItem>
+                      <MenuItem value="Finance">Finance</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
 
-              <Box sx={{ marginBottom: 2 }}>
-                <FormControl component="fieldset">
-                  <RadioGroup row defaultValue="private">
-                    <FormControlLabel
-                      value="private"
-                      control={<Radio />}
-                      label="Private"
-                    />
-                    <FormControlLabel
-                      value="governmental"
-                      control={<Radio />}
-                      label="Governmental"
-                    />
-                    <FormControlLabel
-                      value="profit"
-                      control={<Radio />}
-                      label="Profit Org"
-                    />
-                    <FormControlLabel
-                      value="non-profit"
-                      control={<Radio />}
-                      label="Non-Profit Org"
-                    />
-                  </RadioGroup>
-                </FormControl>
-              </Box>
+                <Box sx={{ marginBottom: 2 }}>
+                  <FormControl fullWidth>
+                    <InputLabel>Company Type</InputLabel>
+                    <Select defaultValue="">
+                      <MenuItem value="Hospital">Hospital</MenuItem>
+                      <MenuItem value="Clinic">Clinic</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
 
-              <Box sx={{ marginBottom: 2 }}>
-                <TextField fullWidth label="Country" defaultValue="Egypt" />
-              </Box>
+                <Box sx={{ marginBottom: 2 }}>
+                  <FormControl component="fieldset">
+                    <RadioGroup row defaultValue="private">
+                      <FormControlLabel
+                        value="private"
+                        control={<Radio />}
+                        label="Private"
+                      />
+                      <FormControlLabel
+                        value="governmental"
+                        control={<Radio />}
+                        label="Governmental"
+                      />
+                      <FormControlLabel
+                        value="profit"
+                        control={<Radio />}
+                        label="Profit Org"
+                      />
+                      <FormControlLabel
+                        value="non-profit"
+                        control={<Radio />}
+                        label="Non-Profit Org"
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                </Box>
 
-              <Box sx={{ marginBottom: 2 }}>
-                <TextField fullWidth label="City" defaultValue="Cairo" />
-              </Box>
+                <Box sx={{ marginBottom: 2 }}>
+                  <TextField fullWidth label="Country" defaultValue="Egypt" />
+                </Box>
 
-              <Box sx={{ marginBottom: 2 }}>
-                <FormControl fullWidth>
-                  <InputLabel>Company Size</InputLabel>
-                  <Select defaultValue="">
-                    <MenuItem value="1-10">1-10 employees</MenuItem>
-                    <MenuItem value="11-50">11-50 employees</MenuItem>
-                    <MenuItem value="51-200">51-200 employees</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
+                <Box sx={{ marginBottom: 2 }}>
+                  <TextField fullWidth label="City" defaultValue="Cairo" />
+                </Box>
 
-              <Box sx={{ marginBottom: 2 }}>
-                <TextField fullWidth label="Email" defaultValue="" />
-              </Box>
+                <Box sx={{ marginBottom: 2 }}>
+                  <FormControl fullWidth>
+                    <InputLabel>Company Size</InputLabel>
+                    <Select defaultValue="">
+                      <MenuItem value="1-10">1-10 employees</MenuItem>
+                      <MenuItem value="11-50">11-50 employees</MenuItem>
+                      <MenuItem value="51-200">51-200 employees</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
 
-              <Box sx={{ marginBottom: 2 }}>
-                <TextField fullWidth label="Year Founded" defaultValue="2016" />
-              </Box>
+                <Box sx={{ marginBottom: 2 }}>
+                  <TextField fullWidth label="Email" defaultValue="" />
+                </Box>
 
-              <Box sx={{ marginBottom: 2 }}>
-                <TextField
-                  fullWidth
-                  label="Company Phone Number"
-                  defaultValue="+20"
-                />
-              </Box>
+                <Box sx={{ marginBottom: 2 }}>
+                  <TextField
+                    fullWidth
+                    label="Year Founded"
+                    defaultValue="2016"
+                  />
+                </Box>
 
-              <Button
-                variant="contained"
-                color="success"
-                fullWidth
-                sx={{ marginTop: 2 }}
-              >
-                Save
-              </Button>
-            </CardContent>
-          </Card>
+                <Box sx={{ marginBottom: 2 }}>
+                  <TextField
+                    fullWidth
+                    label="Company Phone Number"
+                    defaultValue="+20"
+                  />
+                </Box>
+
+                {/* Centered Save Button */}
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: 4,
+                  }}
+                >
+                  <Button
+                    sx={{
+                      width: "204.16px",
+                      height: "46px",
+                      background: "linear-gradient(180deg, #2EAE7D, #134834)",
+                      color: "#fff",
+                      textTransform: "capitalize",
+                      fontWeight: "600",
+                    }}
+                  >
+                    Save
+                  </Button>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
 
         {/* Right Section */}
