@@ -39,11 +39,10 @@ const SideBar = () => {
         width: "240px",
         height: "100%",
         backgroundColor: "#F8F9FB",
-        color: "#515B6F",
-        boxShadow: "2px 0 5px rgba(0, 0, 0, 0.1)",
+        boxShadow: "5px 0 5px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <Box sx={{ padding: "16px" }}>
+      <Box sx={{ padding: "16px", fontSize: "16px",color:"rgba(0, 0, 0, 0.5)" }}>
         <List>
           {/* Dashboard */}
           <ListItem disablePadding>
@@ -58,17 +57,29 @@ const SideBar = () => {
           <Collapse in={openDashboard} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItem disablePadding>
-                <ListItemButton component={Link} href="/dashboard/overview" sx={{ pl: 4 }}>
+                <ListItemButton
+                  component={Link}
+                  href="/dashboard/overview"
+                  sx={{ pl: 4, fontSize: "16px" }}
+                >
                   <ListItemText primary="Overview" />
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
-                <ListItemButton component={Link} href="/dashboard/analytics" sx={{ pl: 4 }}>
+                <ListItemButton
+                  component={Link}
+                  href="/dashboard/analytics"
+                  sx={{ pl: 4 }}
+                >
                   <ListItemText primary="Analytics" />
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
-                <ListItemButton component={Link} href="/dashboard/reports" sx={{ pl: 4 }}>
+                <ListItemButton
+                  component={Link}
+                  href="/dashboard/reports"
+                  sx={{ pl: 4 }}
+                >
                   <ListItemText primary="Reports" />
                 </ListItemButton>
               </ListItem>
@@ -98,17 +109,29 @@ const SideBar = () => {
           <Collapse in={openJobs} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItem disablePadding>
-                <ListItemButton component={Link} href="/jobs/posted" sx={{ pl: 4 }}>
+                <ListItemButton
+                  component={Link}
+                  href="/jobs/posted"
+                  sx={{ pl: 4 }}
+                >
                   <ListItemText primary="Posted Jobs" />
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
-                <ListItemButton component={Link} href="/jobs/applications" sx={{ pl: 4 }}>
+                <ListItemButton
+                  component={Link}
+                  href="/jobs/applications"
+                  sx={{ pl: 4 }}
+                >
                   <ListItemText primary="Applications" />
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
-                <ListItemButton component={Link} href="/jobs/analytics" sx={{ pl: 4 }}>
+                <ListItemButton
+                  component={Link}
+                  href="/jobs/analytics"
+                  sx={{ pl: 4 }}
+                >
                   <ListItemText primary="Job Analytics" />
                 </ListItemButton>
               </ListItem>
@@ -128,12 +151,20 @@ const SideBar = () => {
           <Collapse in={openCvSearch} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItem disablePadding>
-                <ListItemButton component={Link} href="/cv-search/candidates" sx={{ pl: 4 }}>
+                <ListItemButton
+                  component={Link}
+                  href="/cv-search/candidates"
+                  sx={{ pl: 4 }}
+                >
                   <ListItemText primary="Search Candidates" />
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
-                <ListItemButton component={Link} href="/cv-search/saved" sx={{ pl: 4 }}>
+                <ListItemButton
+                  component={Link}
+                  href="/cv-search/saved"
+                  sx={{ pl: 4 }}
+                >
                   <ListItemText primary="Saved Searches" />
                 </ListItemButton>
               </ListItem>
