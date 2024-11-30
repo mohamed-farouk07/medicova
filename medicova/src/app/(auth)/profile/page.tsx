@@ -21,7 +21,12 @@ import {
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import EditIcon from "@mui/icons-material/Edit";
+import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import ShareIcon from "@mui/icons-material/Share";
+import PlaceIcon from "@mui/icons-material/Place";
+import GroupsIcon from "@mui/icons-material/Groups";
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
+import PendingActionsIcon from "@mui/icons-material/PendingActions";
 
 const ProfilePage = () => {
   return (
@@ -41,11 +46,11 @@ const ProfilePage = () => {
       >
         <Box sx={{ position: "relative" }}>
           <Avatar
-            src="/path/to/logo.png" // Replace with the actual logo path
+            src="/path/to/logo.png"
             sx={{
               width: 100,
               height: 100,
-              borderRadius: "1px", // Square avatar
+              borderRadius: "1px",
             }}
           />
           {/* Edit Icon */}
@@ -53,18 +58,22 @@ const ProfilePage = () => {
             size="small"
             sx={{
               position: "absolute",
-              bottom: -10,
-              right: 0,
+              bottom: -12,
+              right: 5,
               backgroundColor: "#fff",
               width: 25,
               height: 25,
+              padding: "0",
               boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
               "&:hover": {
                 backgroundColor: "#f0f0f0",
               },
             }}
           >
-            <EditIcon fontSize="small" />
+            <ChangeCircleIcon
+              sx={{ color: "rgba(46, 174, 125, 1)" }}
+              fontSize="large"
+            />
           </IconButton>
         </Box>
         {/* Avatar and Text Section */}
@@ -84,6 +93,7 @@ const ProfilePage = () => {
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
+              alignItems: "center",
               color: "rgba(0, 0, 0, 0.8)",
             }}
           >
@@ -101,15 +111,29 @@ const ProfilePage = () => {
                 justifyContent: "center",
               }}
             >
-              <Typography variant="body2" sx={{ fontWeight: "bold" }}>
-                Hospital
-              </Typography>
-              <Typography variant="body2" sx={{ fontWeight: "bold" }}>
-                Egypt, Cairo
-              </Typography>
-              <Typography variant="body2" sx={{ fontWeight: "bold" }}>
-                11-50 employees
-              </Typography>
+              {/* Hospital */}
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <LocalHospitalIcon sx={{ color: "rgba(46, 174, 125, 1)" }} />
+                <Typography variant="body2" sx={{ fontWeight: "bold" }}>
+                  Hospital
+                </Typography>
+              </Box>
+
+              {/* Location */}
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <PlaceIcon sx={{ color: "rgba(46, 174, 125, 1)" }} />
+                <Typography variant="body2" sx={{ fontWeight: "bold" }}>
+                  Egypt, Cairo
+                </Typography>
+              </Box>
+
+              {/* Employees */}
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <GroupsIcon sx={{ color: "rgba(46, 174, 125, 1)" }} />
+                <Typography variant="body2" sx={{ fontWeight: "bold" }}>
+                  11-50 employees
+                </Typography>
+              </Box>
             </Box>
           </Box>
         </Box>
@@ -146,46 +170,91 @@ const ProfilePage = () => {
         <Grid container item xs={12} md={10} spacing={3}>
           {/* Left Section */}
           <Grid item xs={12}>
-            <Card sx={{ padding: "16px" }}>
-              <Typography variant="h6" sx={{ marginBottom: 2 }}>
+            <Card sx={{ padding: "16px", textAlign: "center" }}>
+              {/* Title */}
+              <Typography
+                variant="h6"
+                sx={{ marginBottom: 2, textAlign: "left" }}
+              >
                 About Company :
               </Typography>
-              <Typography variant="body2" sx={{ color: "gray" }}>
-                A healthcare company refers to any business or organization that
-                provides products or services related to the maintenance,
-                improvement, or management of health.
-              </Typography>
+
+              {/* Description */}
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "start",
+                  color: "gray",
+                }}
+              >
+                <PendingActionsIcon sx={{ color: "rgba(46, 174, 125, 1)" }} />
+                <Typography variant="body2">
+                  A healthcare company refers to any business or organization
+                  that provides products or services related to the maintenance,
+                  improvement, or management of health.
+                </Typography>
+              </Box>
             </Card>
           </Grid>
-
           {/* Center Section */}
           <Grid item xs={12}>
             <Card>
               <CardContent>
-                <Typography variant="h6" sx={{ marginBottom: 2 }}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    marginBottom: 2,
+                    color: "rgba(24, 93, 67, 1)",
+                    fontWeight: "500",
+                  }}
+                >
                   Company Main Information
                 </Typography>
 
                 {/* Form Fields */}
-                <Box sx={{ marginBottom: 2 }}>
-                  <FormControl fullWidth>
-                    <InputLabel>Company Sector</InputLabel>
-                    <Select defaultValue="">
-                      <MenuItem value="Healthcare">Healthcare</MenuItem>
-                      <MenuItem value="Technology">Technology</MenuItem>
-                      <MenuItem value="Finance">Finance</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: 2,
+                    marginBottom: 2,
+                  }}
+                >
+                  {/* Company Sector Selector */}
+                  <Box sx={{ width: "100%" }}>
+                    <InputLabel
+                      sx={{ marginBottom: 1, fontWeight: 600, color: "#000" }}
+                    >
+                      Company Sector
+                    </InputLabel>
+                    <FormControl fullWidth>
+                      <Select
+                        sx={{ backgroundColor: "rgba(214, 221, 235, 0.5)" }}
+                        defaultValue=""
+                      >
+                        <MenuItem value="Healthcare">Healthcare</MenuItem>
+                        <MenuItem value="Technology">Technology</MenuItem>
+                        <MenuItem value="Finance">Finance</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
 
-                <Box sx={{ marginBottom: 2 }}>
-                  <FormControl fullWidth>
-                    <InputLabel>Company Type</InputLabel>
-                    <Select defaultValue="">
-                      <MenuItem value="Hospital">Hospital</MenuItem>
-                      <MenuItem value="Clinic">Clinic</MenuItem>
-                    </Select>
-                  </FormControl>
+                  {/* Company Type Selector */}
+                  <Box sx={{ width: "100%" }}>
+                    <InputLabel
+                      sx={{ marginBottom: 1, fontWeight: 600, color: "#000" }}
+                    >
+                      Company Type
+                    </InputLabel>
+                    <FormControl fullWidth>
+                      <Select
+                        sx={{ backgroundColor: "rgba(214, 221, 235, 0.5)" }}
+                        defaultValue=""
+                      >
+                        <MenuItem value="Hospital">Hospital</MenuItem>
+                        <MenuItem value="Clinic">Clinic</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
                 </Box>
 
                 <Box sx={{ marginBottom: 2 }}>
