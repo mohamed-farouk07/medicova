@@ -221,7 +221,12 @@ const ProfilePage = () => {
                   {/* Company Sector Selector */}
                   <Box sx={{ width: "100%" }}>
                     <InputLabel
-                      sx={{ marginBottom: 1, fontWeight: 600, color: "#000",fontSize:"14px" }}
+                      sx={{
+                        marginBottom: 1,
+                        fontWeight: 600,
+                        color: "#000",
+                        fontSize: "14px",
+                      }}
                     >
                       Company Sector
                     </InputLabel>
@@ -245,7 +250,12 @@ const ProfilePage = () => {
                   {/* Company Type Selector */}
                   <Box sx={{ width: "100%" }}>
                     <InputLabel
-                      sx={{ marginBottom: 1, fontWeight: 600, color: "#000" }}
+                      sx={{
+                        marginBottom: 1,
+                        fontWeight: 600,
+                        color: "#000",
+                        fontSize: "14px",
+                      }}
                     >
                       Company Type
                     </InputLabel>
@@ -255,6 +265,7 @@ const ProfilePage = () => {
                           backgroundColor: "rgba(214, 221, 235, 0.18)",
                           height: "40px",
                           width: "250px",
+                          fontSize: "14px",
                         }}
                         defaultValue="Hospital"
                       >
