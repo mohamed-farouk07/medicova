@@ -140,7 +140,7 @@ const Header = () => {
                       "&:hover": {
                         color: "#185D43",
                       },
-                      fontSize: { xs: "14px", sm: "16px" },
+                      fontSize: { xs: "14px", sm: "14px" },
                     }}
                   >
                     {page}

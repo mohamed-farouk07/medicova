@@ -47,7 +47,7 @@ const Login = () => {
             src={cover}
             alt="Login Cover"
             style={{ objectFit: "cover", width: "100%", height: "100%" }}
-            priority
+            priority={true}
           />
 
           {/* Overlaid Text */}

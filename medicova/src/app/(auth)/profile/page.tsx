@@ -27,6 +27,11 @@ import PlaceIcon from "@mui/icons-material/Place";
 import GroupsIcon from "@mui/icons-material/Groups";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import PendingActionsIcon from "@mui/icons-material/PendingActions";
+import AddIcon from "@mui/icons-material/Add";
+import LanguageIcon from "@mui/icons-material/Language";
+import Link from "next/link";
+import Image from "next/image";
+import post from "@/components/images/post.svg";
 
 const ProfilePage = () => {
   return (
@@ -167,7 +172,7 @@ const ProfilePage = () => {
 
       <Grid container spacing={3}>
         {/* Left + Center Sections */}
-        <Grid container item xs={12} md={10} spacing={3}>
+        <Grid container item xs={12} md={8} spacing={3}>
           {/* Left Section */}
           <Grid item xs={12}>
             <Card sx={{ padding: "16px", textAlign: "center" }}>
@@ -201,35 +206,34 @@ const ProfilePage = () => {
             <Card>
               <CardContent>
                 <Typography
-                  variant="h6"
                   sx={{
                     marginBottom: 2,
                     color: "rgba(24, 93, 67, 1)",
                     fontWeight: "500",
+                    fontSize: { xs: "20px", md: "20px" },
                   }}
                 >
                   Company Main Information
                 </Typography>
 
-                {/* Form Fields */}
-                <Box
-                  sx={{
-                    display: "flex",
-                    gap: 2,
-                    marginBottom: 2,
-                  }}
-                >
+                {/* Company Sector and Company Type Selectors */}
+                <Box sx={{ display: "flex", gap: 1, marginBottom: 2 }}>
                   {/* Company Sector Selector */}
                   <Box sx={{ width: "100%" }}>
                     <InputLabel
-                      sx={{ marginBottom: 1, fontWeight: 600, color: "#000" }}
+                      sx={{ marginBottom: 1, fontWeight: 600, color: "#000",fontSize:"14px" }}
                     >
                       Company Sector
                     </InputLabel>
                     <FormControl fullWidth>
                       <Select
-                        sx={{ backgroundColor: "rgba(214, 221, 235, 0.5)" }}
-                        defaultValue=""
+                        sx={{
+                          backgroundColor: "rgba(214, 221, 235, 0.18)",
+                          height: "40px",
+                          width: "250px",
+                          fontSize: "14px",
+                        }}
+                        defaultValue="Healthcare"
                       >
                         <MenuItem value="Healthcare">Healthcare</MenuItem>
                         <MenuItem value="Technology">Technology</MenuItem>
@@ -247,8 +251,12 @@ const ProfilePage = () => {
                     </InputLabel>
                     <FormControl fullWidth>
                       <Select
-                        sx={{ backgroundColor: "rgba(214, 221, 235, 0.5)" }}
-                        defaultValue=""
+                        sx={{
+                          backgroundColor: "rgba(214, 221, 235, 0.18)",
+                          height: "40px",
+                          width: "250px",
+                        }}
+                        defaultValue="Hospital"
                       >
                         <MenuItem value="Hospital">Hospital</MenuItem>
                         <MenuItem value="Clinic">Clinic</MenuItem>
@@ -257,41 +265,81 @@ const ProfilePage = () => {
                   </Box>
                 </Box>
 
+                {/* Radio Group Section */}
                 <Box sx={{ marginBottom: 2 }}>
-                  <FormControl component="fieldset">
-                    <RadioGroup row defaultValue="private">
-                      <FormControlLabel
-                        value="private"
-                        control={<Radio />}
-                        label="Private"
-                      />
-                      <FormControlLabel
-                        value="governmental"
-                        control={<Radio />}
-                        label="Governmental"
-                      />
-                      <FormControlLabel
-                        value="profit"
-                        control={<Radio />}
-                        label="Profit Org"
-                      />
-                      <FormControlLabel
-                        value="non-profit"
-                        control={<Radio />}
-                        label="Non-Profit Org"
-                      />
-                    </RadioGroup>
+                  {/* Title for the Radio Group */}
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      marginBottom: 1,
+                      fontWeight: 500,
+                      color: "rgba(24, 93, 67, 1)",
+                    }}
+                  >
+                    Company Ownership Type
+                  </Typography>
+
+                  <FormControl component="fieldset" fullWidth>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                      {/* First Radio Group */}
+                      <RadioGroup row defaultValue="private">
+                        <FormControlLabel
+                          value="private"
+                          control={
+                            <Radio
+                              sx={{ "&.Mui-checked": { color: "#2EAE7D" } }}
+                            />
+                          }
+                          label="Private"
+                        />
+                        <FormControlLabel
+                          value="governmental"
+                          control={
+                            <Radio
+                              sx={{ "&.Mui-checked": { color: "#2EAE7D" } }}
+                            />
+                          }
+                          label="Governmental"
+                        />
+                      </RadioGroup>
+
+                      {/* Typography with "&" */}
+                      <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                        &
+                      </Typography>
+
+                      {/* Second Radio Group */}
+                      <RadioGroup row defaultValue="profit">
+                        <FormControlLabel
+                          value="profit"
+                          control={
+                            <Radio
+                              sx={{ "&.Mui-checked": { color: "#2EAE7D" } }}
+                            />
+                          }
+                          label="Profit Org"
+                        />
+                        <FormControlLabel
+                          value="non-profit"
+                          control={
+                            <Radio
+                              sx={{ "&.Mui-checked": { color: "#2EAE7D" } }}
+                            />
+                          }
+                          label="Non-Profit Org"
+                        />
+                      </RadioGroup>
+                    </Box>
                   </FormControl>
                 </Box>
 
+                {/* Additional Form Fields */}
                 <Box sx={{ marginBottom: 2 }}>
                   <TextField fullWidth label="Country" defaultValue="Egypt" />
                 </Box>
-
                 <Box sx={{ marginBottom: 2 }}>
                   <TextField fullWidth label="City" defaultValue="Cairo" />
                 </Box>
-
                 <Box sx={{ marginBottom: 2 }}>
                   <FormControl fullWidth>
                     <InputLabel>Company Size</InputLabel>
@@ -302,11 +350,9 @@ const ProfilePage = () => {
                     </Select>
                   </FormControl>
                 </Box>
-
                 <Box sx={{ marginBottom: 2 }}>
                   <TextField fullWidth label="Email" defaultValue="" />
                 </Box>
-
                 <Box sx={{ marginBottom: 2 }}>
                   <TextField
                     fullWidth
@@ -314,7 +360,6 @@ const ProfilePage = () => {
                     defaultValue="2016"
                   />
                 </Box>
-
                 <Box sx={{ marginBottom: 2 }}>
                   <TextField
                     fullWidth
@@ -350,33 +395,166 @@ const ProfilePage = () => {
         </Grid>
 
         {/* Right Section */}
-        <Grid item xs={12} md={2}>
+        <Grid item xs={12} md={4}>
           <Card sx={{ padding: "16px", marginBottom: 3 }}>
-            <Typography variant="body1" sx={{ marginBottom: 2 }}>
-              To find better candidates, make your job description detailed, use
-              relevant keywords, and add screening questions to your job post.
-            </Typography>
-            <Button variant="contained" color="primary" fullWidth>
-              Post a job for free
-            </Button>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 2,
+              }}
+            >
+              {/* Centered Image */}
+              <Image
+                src={post}
+                alt="Login Cover"
+                width={50}
+                height={50}
+                priority={true}
+              />
+
+              {/* Typography below the Image */}
+              <Typography
+                variant="body1"
+                sx={{ marginBottom: 2, textAlign: "center", fontWeight: "600" }}
+              >
+                To find better candidates, make your job description detailed,
+                use relevant keywords, and add screening questions to your job
+                post.
+              </Typography>
+            </Box>
+
+            {/* Centered Button */}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: 4,
+              }}
+            >
+              <Button
+                sx={{
+                  width: "204.16px",
+                  height: "46px",
+                  background: "linear-gradient(180deg, #2EAE7D, #134834)",
+                  color: "#fff",
+                  textTransform: "capitalize",
+                  fontWeight: "600",
+                }}
+              >
+                Post a job for free
+              </Button>
+            </Box>
           </Card>
+
           <Card sx={{ padding: "16px" }}>
-            <Typography variant="h6" sx={{ marginBottom: 2 }}>
-              Social Links
-            </Typography>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              <Button
-                startIcon={<InstagramIcon />}
-                sx={{ justifyContent: "flex-start" }}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: 600, color: "rgba(0, 0, 0, 0.8)" }}
               >
-                Instagram
-              </Button>
-              <Button
-                startIcon={<TwitterIcon />}
-                sx={{ justifyContent: "flex-start" }}
-              >
-                Twitter
-              </Button>
+                Social Links
+              </Typography>
+              <Box sx={{ display: "flex", gap: 2 }}>
+                <IconButton
+                  size="small"
+                  sx={{
+                    border: 1,
+                    borderColor: "grey.300",
+                    borderRadius: 0,
+                    color: "rgba(46, 174, 125, 1)",
+                  }}
+                >
+                  <AddIcon />
+                </IconButton>
+                <IconButton
+                  size="small"
+                  sx={{
+                    border: 1,
+                    borderColor: "grey.300",
+                    borderRadius: 0,
+                    color: "rgba(46, 174, 125, 1)",
+                  }}
+                >
+                  <EditIcon />
+                </IconButton>
+              </Box>
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 2,
+                marginTop: 2,
+              }}
+            >
+              {/* Instagram Section */}
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <InstagramIcon sx={{ color: "rgba(241, 9, 234, 1)" }} />
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: "400", color: "rgba(124, 132, 147, 1)" }}
+                >
+                  Instagram
+                </Typography>
+              </Box>
+              <Typography variant="body2" color="textSecondary">
+                <Link
+                  href="https://www.instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  https://www.instagram.com
+                </Link>
+              </Typography>
+
+              {/* Twitter Section */}
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <TwitterIcon sx={{ color: "rgba(91, 146, 250, 1)" }} />
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: "400", color: "rgba(124, 132, 147, 1)" }}
+                >
+                  Twitter
+                </Typography>
+              </Box>
+              <Typography variant="body2" color="textSecondary">
+                <Link
+                  href="https://www.twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  https://www.twitter.com
+                </Link>
+              </Typography>
+
+              {/* website Section */}
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <LanguageIcon sx={{ color: "rgba(46, 174, 125, 1)" }} />
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: "400", color: "rgba(124, 132, 147, 1)" }}
+                >
+                  Web site
+                </Typography>
+              </Box>
+              <Typography variant="body2" color="textSecondary">
+                <Link
+                  href="https://www.twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  www.imetsacademy.com
+                </Link>
+              </Typography>
             </Box>
           </Card>
         </Grid>

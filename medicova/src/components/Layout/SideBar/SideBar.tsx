@@ -42,15 +42,20 @@ const SideBar = () => {
         boxShadow: "5px 0 5px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <Box sx={{ padding: "16px", fontSize: "16px",color:"rgba(0, 0, 0, 0.5)" }}>
+      <Box sx={{ padding: "16px", color: "rgba(0, 0, 0, 0.5)" }}>
         <List>
           {/* Dashboard */}
           <ListItem disablePadding>
             <ListItemButton onClick={toggleDashboard}>
               <ListItemIcon>
-                <DashboardIcon sx={{ color: "#515B6F" }} />
+                <DashboardIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
               </ListItemIcon>
-              <ListItemText primary="Dashboard" />
+              <ListItemText
+                primaryTypographyProps={{
+                  sx: { fontSize: "14px", fontWeight: "bold" },
+                }}
+                primary="Dashboard"
+              />
               {openDashboard ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
           </ListItem>
@@ -90,9 +95,14 @@ const SideBar = () => {
           <ListItem disablePadding>
             <ListItemButton component={Link} href="/company-profile">
               <ListItemIcon>
-                <BusinessIcon sx={{ color: "#515B6F" }} />
+                <BusinessIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
               </ListItemIcon>
-              <ListItemText primary="Company Profile" />
+              <ListItemText
+                primaryTypographyProps={{
+                  sx: { fontSize: "14px", fontWeight: "bold" },
+                }}
+                primary="Company Profile"
+              />
             </ListItemButton>
           </ListItem>
 
@@ -100,9 +110,14 @@ const SideBar = () => {
           <ListItem disablePadding>
             <ListItemButton onClick={toggleJobs}>
               <ListItemIcon>
-                <WorkIcon sx={{ color: "#515B6F" }} />
+                <WorkIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
               </ListItemIcon>
-              <ListItemText primary="My Jobs" />
+              <ListItemText
+                primaryTypographyProps={{
+                  sx: { fontSize: "14px", fontWeight: "bold" },
+                }}
+                primary="My Jobs"
+              />
               {openJobs ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
           </ListItem>
@@ -142,9 +157,14 @@ const SideBar = () => {
           <ListItem disablePadding>
             <ListItemButton onClick={toggleCvSearch}>
               <ListItemIcon>
-                <SearchIcon sx={{ color: "#515B6F" }} />
+                <SearchIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
               </ListItemIcon>
-              <ListItemText primary="CV Search" />
+              <ListItemText
+                primaryTypographyProps={{
+                  sx: { fontSize: "14px", fontWeight: "bold" },
+                }}
+                primary="CV Search"
+              />
               {openCvSearch ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
           </ListItem>
@@ -175,25 +195,40 @@ const SideBar = () => {
           <ListItem disablePadding>
             <ListItemButton component={Link} href="/billing">
               <ListItemIcon>
-                <PaymentIcon sx={{ color: "#515B6F" }} />
+                <PaymentIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
               </ListItemIcon>
-              <ListItemText primary="Billing & Subscription" />
+              <ListItemText
+                primaryTypographyProps={{
+                  sx: { fontSize: "14px", fontWeight: "bold" },
+                }}
+                primary="Billing & Subscription"
+              />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton component={Link} href="/reports">
               <ListItemIcon>
-                <ReportIcon sx={{ color: "#515B6F" }} />
+                <ReportIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
               </ListItemIcon>
-              <ListItemText primary="Report" />
+              <ListItemText
+                primaryTypographyProps={{
+                  sx: { fontSize: "14px", fontWeight: "bold" },
+                }}
+                primary="Report"
+              />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton component={Link} href="/chat">
               <ListItemIcon>
-                <ChatIcon sx={{ color: "#515B6F" }} />
+                <ChatIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
               </ListItemIcon>
-              <ListItemText primary="Chat" />
+              <ListItemText
+                primaryTypographyProps={{
+                  sx: { fontSize: "14px", fontWeight: "bold" },
+                }}
+                primary="Chat"
+              />
             </ListItemButton>
           </ListItem>
         </List>
@@ -212,17 +247,27 @@ const SideBar = () => {
           <ListItem disablePadding>
             <ListItemButton component={Link} href="/settings">
               <ListItemIcon>
-                <SettingsIcon sx={{ color: "#515B6F" }} />
+                <SettingsIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
               </ListItemIcon>
-              <ListItemText primary="Settings" />
+              <ListItemText
+                primaryTypographyProps={{
+                  sx: { fontSize: "14px", fontWeight: "bold" },
+                }}
+                primary="Settings"
+              />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton component={Link} href="/help">
               <ListItemIcon>
-                <HelpIcon sx={{ color: "#515B6F" }} />
+                <HelpIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
               </ListItemIcon>
-              <ListItemText primary="Help Center" />
+              <ListItemText
+                primaryTypographyProps={{
+                  sx: { fontSize: "14px", fontWeight: "bold" },
+                }}
+                primary="Help Center"
+              />
             </ListItemButton>
           </ListItem>
         </List>
