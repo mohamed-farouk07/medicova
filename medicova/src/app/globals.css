@@ -1,24 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap");
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
+/* Apply global font family */
+body,
 html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-html {
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
+* {
+  font-family: "Epilogue", sans-serif !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 14px;
 }
