@@ -237,7 +237,12 @@ const SideBar = () => {
                 <ListItemButton
                   component={Link}
                   href="/cv-search/candidates"
-                  sx={{ pl: 4 }}
+                  sx={{
+                    pl: 4,
+                    "&:hover": {
+                      backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
+                    },
+                  }}
                 >
                   <ListItemText primary="Search Candidates" />
                 </ListItemButton>
@@ -261,7 +266,15 @@ const SideBar = () => {
 
           {/* Other Menu Items */}
           <ListItem disablePadding>
-            <ListItemButton component={Link} href="/billing">
+            <ListItemButton
+              sx={{
+                "&:hover": {
+                  backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
+                },
+              }}
+              component={Link}
+              href="/billing"
+            >
               <ListItemIcon>
                 <PaymentIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
               </ListItemIcon>
@@ -274,7 +287,15 @@ const SideBar = () => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component={Link} href="/reports">
+            <ListItemButton
+              sx={{
+                "&:hover": {
+                  backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
+                },
+              }}
+              component={Link}
+              href="/reports"
+            >
               <ListItemIcon>
                 <ReportIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
               </ListItemIcon>
@@ -287,7 +308,15 @@ const SideBar = () => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component={Link} href="/chat">
+            <ListItemButton
+              sx={{
+                "&:hover": {
+                  backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
+                },
+              }}
+              component={Link}
+              href="/chat"
+            >
               <ListItemIcon>
                 <ChatIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
               </ListItemIcon>
@@ -313,7 +342,15 @@ const SideBar = () => {
         </Typography>
         <List>
           <ListItem disablePadding>
-            <ListItemButton component={Link} href="/setting">
+            <ListItemButton
+              sx={{
+                "&:hover": {
+                  backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
+                },
+              }}
+              component={Link}
+              href="/setting"
+            >
               <ListItemIcon>
                 <SettingsIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
               </ListItemIcon>
@@ -326,7 +363,15 @@ const SideBar = () => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component={Link} href="/help">
+            <ListItemButton
+              sx={{
+                "&:hover": {
+                  backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
+                },
+              }}
+              component={Link}
+              href="/help"
+            >
               <ListItemIcon>
                 <HelpIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
               </ListItemIcon>
