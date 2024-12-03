@@ -167,7 +167,7 @@ const SideBar = () => {
               <ListItem disablePadding>
                 <ListItemButton
                   component={Link}
-                  href="/jobs/posted"
+                  href="/job/posted"
                   sx={{
                     pl: 4,
                     "&:hover": {
