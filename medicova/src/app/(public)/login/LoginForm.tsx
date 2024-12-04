@@ -12,53 +12,30 @@ import {
   Checkbox,
 } from "@mui/material";
 import Link from "next/link";
+import { useForm, Controller } from "react-hook-form";
+
+interface FormData {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+}
 
 const LoginForm: React.FC = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    rememberMe: false,
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormData>({
+    defaultValues: {
+      email: "",
+      password: "",
+      rememberMe: false,
+    },
   });
 
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value ?? checked, // Handle both input types (text and checkbox)
-    });
+  const onSubmit = (data: FormData) => {
+    console.log("Form Submitted:", data);
   };
-
-  const validateForm = () => {
-    const newErrors: any = {};
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if (!formData.email) {
-      newErrors.email = "Email is required";
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Enter a valid email address";
-    }
-
-    if (!formData.password) {
-      newErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (validateForm()) {
-      console.log("Form submitted:", formData);
-    }
-  };
-
   const [activeLink, setActiveLink] = useState<string | null>(null);
 
   useEffect(() => {
@@ -69,7 +46,6 @@ const LoginForm: React.FC = () => {
   const handleLinkClick = (link: string) => {
     setActiveLink(link);
   };
-
 
   return (
     <Box
@@ -177,40 +153,61 @@ const LoginForm: React.FC = () => {
         <Divider sx={{ flex: 1 }} />
       </Box>
 
-      <form className="w-full" onSubmit={handleSubmit} noValidate>
+      <form className="w-full" onSubmit={handleSubmit(onSubmit)} noValidate>
+        {/* Email Field */}
         <Box sx={{ mb: 2 }}>
           <InputLabel
             sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}
           >
             Email Address
           </InputLabel>
-          <TextField
-            label="Enter email address"
-            fullWidth
+          <Controller
             name="email"
-            value={formData.email}
-            onChange={handleChange}
-            error={!!errors.email}
-            helperText={errors.email}
+            control={control}
+            rules={{
+              required: "Email is required",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Invalid email address",
+              },
+            }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Enter email address"
+                fullWidth
+                error={!!errors.email}
+                helperText={errors.email?.message}
+              />
+            )}
           />
         </Box>
+
+        {/* Password Field */}
         <Box sx={{ mb: 2 }}>
           <InputLabel
             sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}
           >
             Password
           </InputLabel>
-          <TextField
-            label="Enter password"
-            type="password"
-            fullWidth
+          <Controller
             name="password"
-            value={formData.password}
-            onChange={handleChange}
-            error={!!errors.password}
-            helperText={errors.password}
+            control={control}
+            rules={{ required: "Password is required" }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Enter password"
+                type="password"
+                fullWidth
+                error={!!errors.password}
+                helperText={errors.password?.message}
+              />
+            )}
           />
         </Box>
+
+        {/* Remember Me Checkbox */}
         <Box
           sx={{
             display: "flex",
@@ -220,24 +217,29 @@ const LoginForm: React.FC = () => {
             mb: 2,
           }}
         >
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="rememberMe"
-                checked={formData.rememberMe}
-                onChange={handleChange}
-                sx={{
-                  "&.Mui-checked": {
-                    color: "#2EAE7D",
-                  },
-                }}
+          <Controller
+            name="rememberMe"
+            control={control}
+            render={({ field }) => (
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    {...field}
+                    checked={field.value}
+                    sx={{
+                      "&.Mui-checked": {
+                        color: "#2EAE7D",
+                      },
+                    }}
+                  />
+                }
+                label={
+                  <Typography sx={{ color: "#515B6F", fontWeight: "400" }}>
+                    Remember me
+                  </Typography>
+                }
               />
-            }
-            label={
-              <Typography sx={{ color: "#515B6F", fontWeight: "400" }}>
-                Remember me
-              </Typography>
-            }
+            )}
           />
           <Link href="/forgot-password" passHref>
             <Typography
@@ -251,6 +253,8 @@ const LoginForm: React.FC = () => {
             </Typography>
           </Link>
         </Box>
+
+        {/* Submit Button */}
         <Button
           sx={{
             background: "linear-gradient(180deg, #2EAE7D, #185D43)",
@@ -265,6 +269,8 @@ const LoginForm: React.FC = () => {
         >
           Login
         </Button>
+
+        {/* Sign Up Link */}
         <Typography
           component="span"
           sx={{

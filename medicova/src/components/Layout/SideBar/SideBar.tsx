@@ -126,7 +126,7 @@ const SideBar = () => {
                 },
               }}
               component={Link}
-              href="/company-profile"
+              href="/profile"
             >
               <ListItemIcon>
                 <BusinessIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
