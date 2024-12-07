@@ -19,7 +19,7 @@ const Set = () => {
             width={270}
             height={240}
             alt="reset password"
-            className="mix-blend-multiply"
+            className="w-1/2 md:w-auto mix-blend-multiply object-contain"
           />
 
           {/* Title */}

@@ -48,75 +48,69 @@ const SetForm: React.FC = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center", // Center horizontally
-        alignItems: "center", // Center vertically
-        height: "100vh", // Full viewport height
-        padding: 3,
-      }}
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="w-full justify-center items-center flex flex-col py-5"
     >
-      <form onSubmit={handleSubmit} noValidate>
-        <Box sx={{ minWidth: 400, width: "100%" }}>
-          <Box sx={{ mb: 2 }}>
-            <InputLabel
-              sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}
-            >
-              Password
-            </InputLabel>
-            <TextField
-              label="Enter password"
-              type="password"
-              fullWidth
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              error={!!errors.password}
-              helperText={errors.password}
-            />
-          </Box>
-          <Box sx={{ mb: 2 }}>
-            <InputLabel
-              sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}
-            >
-              Confirme Password
-            </InputLabel>
-            <TextField
-              label="Enter Confirme password"
-              type="password"
-              fullWidth
-              name="confirmePassword"
-              value={formData.confirmePassword}
-              onChange={handleChange}
-              error={!!errors.confirmePassword}
-              helperText={errors.confirmePassword}
-            />
-          </Box>
-
-          {/* Send Button */}
-          <Button
-            variant="contained"
-            fullWidth
-            sx={{
-              maxWidth: 400,
-              background: "linear-gradient(90deg, #2EAE7D, #185D43)",
-              color: "white",
-              paddingY: 1.5,
-              fontSize: "16px",
-              fontWeight: "bold",
-              textTransform: "none",
-              "&:hover": {
-                background: "linear-gradient(90deg, #185D43,  #2EAE7D)",
-              },
-            }}
-            type="submit"
+      <Box className="w-full md:w-[400px]">
+        <Box sx={{ mb: 2 }}>
+          <InputLabel
+            sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}
           >
-            Send
-          </Button>
+            Password
+          </InputLabel>
+          <TextField
+            label="Enter password"
+            type="password"
+            fullWidth
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            error={!!errors.password}
+            helperText={errors.password}
+          />
         </Box>
-      </form>
-    </Box>
+        <Box sx={{ mb: 2 }}>
+          <InputLabel
+            sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}
+          >
+            Confirme Password
+          </InputLabel>
+          <TextField
+            label="Enter Confirme password"
+            type="password"
+            fullWidth
+            name="confirmePassword"
+            value={formData.confirmePassword}
+            onChange={handleChange}
+            error={!!errors.confirmePassword}
+            helperText={errors.confirmePassword}
+          />
+        </Box>
+
+        {/* Send Button */}
+        <Button
+          variant="contained"
+          fullWidth
+          sx={{
+            maxWidth: 400,
+            background: "linear-gradient(90deg, #2EAE7D, #185D43)",
+            color: "white",
+            paddingY: 1.5,
+            fontSize: "16px",
+            fontWeight: "bold",
+            textTransform: "none",
+            "&:hover": {
+              background: "linear-gradient(90deg, #185D43,  #2EAE7D)",
+            },
+          }}
+          type="submit"
+        >
+          Send
+        </Button>
+      </Box>
+    </form>
   );
 };
 

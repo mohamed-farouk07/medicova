@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  Box,
-  TextField,
-  Button,
-  InputLabel,
-} from "@mui/material";
+import { Box, TextField, Button, InputLabel } from "@mui/material";
 
 interface ForgetFormProps {
   onSubmit: (formData: { email: string }) => void;
@@ -48,58 +43,51 @@ const ForgetForm: React.FC<ForgetFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center", // Center horizontally
-        alignItems: "center", // Center vertically
-        height: "100vh", // Full viewport height
-        padding: 3,
-      }}
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="w-full justify-center items-center flex flex-col py-5"
     >
-      <form  onSubmit={handleSubmit} noValidate>
-        <Box sx={{ minWidth: 400, width: "100%" }}>
-          <Box sx={{ mb: 2 }}>
-            <InputLabel
-              sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}
-            >
-              Email Address
-            </InputLabel>
-            <TextField
-              label="Enter email address"
-              fullWidth
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              error={!!errors.email}
-              helperText={errors.email}
-            />
-          </Box>
-
-          {/* Send Button */}
-          <Button
-            variant="contained"
-            fullWidth
-            sx={{
-              maxWidth: 400,
-              background: "linear-gradient(90deg, #2EAE7D, #185D43)",
-              color: "white",
-              paddingY: 1.5,
-              fontSize: "16px",
-              fontWeight: "bold",
-              textTransform: "none",
-              "&:hover": {
-                background: "linear-gradient(90deg, #2EAE7D, #185D43)",
-              },
-            }}
-            type="submit"
+      <Box className="w-full md:w-[400px]">
+        <Box sx={{ mb: 2 }}>
+          <InputLabel
+            sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}
           >
-            Send
-          </Button>
+            Email Address
+          </InputLabel>
+          <TextField
+            label="Enter email address"
+            fullWidth
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            error={!!errors.email}
+            helperText={errors.email}
+          />
         </Box>
-        
-      </form>
-    </Box>
+
+        {/* Send Button */}
+        <Button
+          variant="contained"
+          fullWidth
+          sx={{
+            maxWidth: 400,
+            background: "linear-gradient(90deg, #2EAE7D, #185D43)",
+            color: "white",
+            paddingY: 1.5,
+            fontSize: "16px",
+            fontWeight: "bold",
+            textTransform: "none",
+            "&:hover": {
+              background: "linear-gradient(90deg, #2EAE7D, #185D43)",
+            },
+          }}
+          type="submit"
+        >
+          Send
+        </Button>
+      </Box>
+    </form>
   );
 };
 

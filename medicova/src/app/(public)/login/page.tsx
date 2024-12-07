@@ -7,18 +7,7 @@ import LoginForm from "./LoginForm";
 
 const Login = () => {
   return (
-    <Box
-      sx={{
-        
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
-        overflow: "hidden",
-      }}
-    >
-      {/* Header */}
-      <Header />
-
+    <Box className="min-h-[calc(100vh-100px)] p-5 w-full flex justify-center items-center flex-col">
       {/* Main Content */}
       <Container
         sx={{
