@@ -5,19 +5,12 @@ import Header from "@/components/Header/Header";
 import SetForm from "./SetForm";
 import Link from "next/link";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import React from "react";
 
 const Set = () => {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "150vh",
-      }}
-    >
-      {/* Header */}
-      <Header />
-
+    <React.Fragment>
+      <div className="absolute inset-0 bg-[url('/images/background.png')]  bg-cover bg-center opacity-20 z-[-1]"></div>
       {/* Main Content */}
       <Box
         sx={{
@@ -35,9 +28,11 @@ const Set = () => {
       >
         {/* Lock Icon */}
         <Image
-          src={setPassword}
-          alt="Lock Icon"
-          style={{ width: "250px", height: "auto", marginBottom: 3 }}
+          src="/images/set-password.jpg"
+          width={270}
+          height={240}
+          alt="set password"
+          className="mix-blend-multiply"
         />
 
         {/* Title */}
@@ -81,7 +76,7 @@ const Set = () => {
           </Typography>
         </Link>
       </Box>
-    </Box>
+    </React.Fragment>
   );
 };
 
