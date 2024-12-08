@@ -36,12 +36,7 @@ const LoginForm: React.FC = () => {
   const onSubmit = (data: FormData) => {
     console.log("Form Submitted:", data);
   };
-  const [activeLink, setActiveLink] = useState<string | null>(null);
-
-  useEffect(() => {
-    // Initialize state post-hydration
-    setActiveLink("employer");
-  }, []);
+  const [activeLink, setActiveLink] = useState("jobSeeker"); // default to jobSeeker
 
   const handleLinkClick = (link: string) => {
     setActiveLink(link);
@@ -68,45 +63,32 @@ const LoginForm: React.FC = () => {
           marginBottom: 3,
         }}
       >
-        {activeLink && (
-          <>
-            <Link href="/#" passHref>
-              <Typography
-                component="a"
-                onClick={() => handleLinkClick("jobSeeker")}
-                sx={{
-                  padding: "10px 20px",
-                  cursor: "pointer",
-                  fontWeight: "600",
-                  color: activeLink === "jobSeeker" ? "#000" : "#6CC6A3",
-                  backgroundColor:
-                    activeLink === "jobSeeker" ? "#E9EBFD" : "transparent",
-                  transition: "all 0.3s ease",
-                }}
-              >
-                Job Seeker
-              </Typography>
-            </Link>
-
-            <Link href="/#" passHref>
-              <Typography
-                component="a"
-                onClick={() => handleLinkClick("employer")}
-                sx={{
-                  padding: "10px 20px",
-                  cursor: "pointer",
-                  fontWeight: "600",
-                  color: activeLink === "employer" ? "#000" : "#6CC6A3",
-                  backgroundColor:
-                    activeLink === "employer" ? "#E9EBFD" : "transparent",
-                  transition: "all 0.3s ease",
-                }}
-              >
-                Employer
-              </Typography>
-            </Link>
-          </>
-        )}
+        <Button
+          onClick={() => handleLinkClick("jobSeeker")}
+          sx={{
+            padding: "10px 20px",
+            color: activeLink === "jobSeeker" ? "#000" : "#6CC6A3",
+            backgroundColor:
+              activeLink === "jobSeeker" ? "#E9EBFD" : "transparent",
+            transition: "all 0.3s ease",
+          }}
+          variant="text"
+        >
+          Job Seeker
+        </Button>
+        <Button
+          onClick={() => handleLinkClick("employer")}
+          sx={{
+            padding: "10px 20px",
+            color: activeLink === "employer" ? "#000" : "#6CC6A3",
+            backgroundColor:
+              activeLink === "employer" ? "#E9EBFD" : "transparent",
+            transition: "all 0.3s ease",
+          }}
+          variant="text"
+        >
+          Employer
+        </Button>
       </Box>
 
       <Typography
@@ -174,7 +156,6 @@ const LoginForm: React.FC = () => {
             render={({ field }) => (
               <TextField
                 {...field}
-                label="Enter email address"
                 fullWidth
                 error={!!errors.email}
                 helperText={errors.email?.message}
@@ -184,7 +165,7 @@ const LoginForm: React.FC = () => {
         </Box>
 
         {/* Password Field */}
-        <Box sx={{ mb: 2 }}>
+        <Box>
           <InputLabel
             sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}
           >
@@ -197,7 +178,6 @@ const LoginForm: React.FC = () => {
             render={({ field }) => (
               <TextField
                 {...field}
-                label="Enter password"
                 type="password"
                 fullWidth
                 error={!!errors.password}
@@ -241,7 +221,7 @@ const LoginForm: React.FC = () => {
               />
             )}
           />
-          <Link href="/forgot-password" passHref>
+          <Link href="/forget" passHref>
             <Typography
               sx={{
                 fontSize: "14px",
@@ -262,6 +242,7 @@ const LoginForm: React.FC = () => {
             fontWeight: "700",
             fontSize: "16px",
             textTransform: "capitalize",
+            mb: 1,
           }}
           type="submit"
           variant="contained"

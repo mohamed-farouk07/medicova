@@ -47,11 +47,7 @@ const ResetForm: React.FC = () => {
   };
 
   return (
-    <Box
-      sx={{
-        padding: 3,
-      }}
-    >
+    <Box className="py-5">
       <form noValidate onSubmit={handleSubmit}>
         <Box className="w-full md:min-w-[400px]">
           <div className="flex space-x-2 justify-center w-full max-w-[400px] my-6">

@@ -2,23 +2,11 @@ import { Box, Typography, Container } from "@mui/material";
 import cover from "@/components/images/login.svg";
 import network from "@/components/images/network.svg";
 import Image from "next/image";
-import Header from "@/components/Header/Header";
 import LoginForm from "./LoginForm";
 
 const Login = () => {
   return (
-    <Box
-      sx={{
-        
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
-        overflow: "hidden",
-      }}
-    >
-      {/* Header */}
-      <Header />
-
+    <Box className="min-h-[calc(100vh-100px)] p-5 w-full flex justify-center items-center flex-col">
       {/* Main Content */}
       <Container
         sx={{

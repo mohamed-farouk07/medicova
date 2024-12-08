@@ -10,6 +10,20 @@ const theme = createTheme({
     fontFamily: "'Epilogue', sans-serif",
     fontSize: 14,
   },
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#2EAE7D", // Focused border color
+          },
+          "&.Mui-error .MuiOutlinedInput-notchedOutline": {
+            borderColor: "red", // Error border color
+          },
+        },
+      },
+    },
+  },
 });
 
 export default function ThemeProviderClient({
