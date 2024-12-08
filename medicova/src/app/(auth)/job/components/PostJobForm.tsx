@@ -22,12 +22,7 @@ import ReviewPublishStep from "./steps/ReviewPublishStep";
 const steps = ["Job Details", "Screening Questions", "Review & Publish"];
 
 const PostJobForm: React.FC = () => {
-  const [activeStep, setActiveStep] = useState<number | null>(null);
-
-  // Initialize the step after the component mounts to ensure it renders client-side
-  useEffect(() => {
-    setActiveStep(0);
-  }, []);
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
     if (activeStep !== null && activeStep < steps.length - 1) {
