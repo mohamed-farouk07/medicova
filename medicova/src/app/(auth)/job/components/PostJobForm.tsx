@@ -12,6 +12,8 @@ import {
   Stepper,
   Step,
   StepLabel,
+  Checkbox,
+  FormControlLabel,
 } from "@mui/material";
 
 const steps = ["Job Details", "Screening Questions", "Review & Publish"];
@@ -21,6 +23,11 @@ const PostJobForm: React.FC = () => {
 
   const [selectedButton, setSelectedButton] = useState<string | null>(null);
 
+  const [count, setCount] = useState(1); // Set initial count to 1
+
+  const increment = () => setCount(count + 1); // Increase count
+  const decrement = () => setCount(count > 1 ? count - 1 : 1);
+
   const handleClick = (label: string) => {
     setSelectedButton(label);
   };
@@ -28,7 +35,7 @@ const PostJobForm: React.FC = () => {
   const focusStyle = {
     "& .MuiOutlinedInput-root": {
       "&.Mui-focused fieldset": {
-        borderColor: "rgba(46, 174, 125, 1)", // Border color on focus
+        borderColor: "rgba(46, 174, 125, 1)",
       },
     },
   };
@@ -465,7 +472,6 @@ const PostJobForm: React.FC = () => {
                   </Select>
                 </FormControl>
               </Box>
-
               {/* Job Location */}
               <Box
                 sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}
@@ -483,23 +489,7 @@ const PostJobForm: React.FC = () => {
                   </Select>
                 </FormControl>
               </Box>
-
               {/* Years of Experience */}
-              <Box
-                sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}
-              >
-                <TextField
-                  label="Years of Experience Min"
-                  type="number"
-                  fullWidth
-                />
-                <TextField
-                  label="Years of Experience Max"
-                  type="number"
-                  fullWidth
-                />
-              </Box>
-
               <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
                 <Box sx={{ flex: 1 }}>
                   <InputLabel sx={{ fontWeight: "bold", mb: 1 }}>
@@ -520,7 +510,7 @@ const PostJobForm: React.FC = () => {
                 </Box>
                 <Box sx={{ flex: 1 }}>
                   <InputLabel sx={{ fontWeight: "bold", mb: 1 }}>
-                  Years of Experience Max *
+                    Years of Experience Max *
                   </InputLabel>
                   <TextField
                     fullWidth
@@ -534,6 +524,98 @@ const PostJobForm: React.FC = () => {
                       },
                     }}
                   />
+                </Box>
+              </Box>
+              {/* Hide Salary Checkbox */}
+              <Box sx={{ width: "100%" }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      sx={{
+                        color: "rgba(46, 174, 125, 1)",
+                        "&.Mui-checked": {
+                          color: "rgba(46, 174, 125, 1)",
+                        },
+                        "& .MuiSvgIcon-root": {
+                          fontSize: 34,
+                        },
+                      }}
+                    />
+                  }
+                  label={
+                    <Typography sx={{ color: "#515B6F", fontWeight: "700" }}>
+                      Hide Salary in job post
+                    </Typography>
+                  }
+                />
+              </Box>
+              {/* Additional Salary Details */}
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: 2,
+                  alignItems: "center",
+                  width: "50%",
+                }}
+              >
+                <Box sx={{ flex: 1 }}>
+                  <InputLabel sx={{ fontWeight: "bold", mb: 1 }}>
+                    Additional Salary Details *
+                  </InputLabel>
+                  <TextField
+                    fullWidth
+                    multiline // Enables textarea
+                    minRows={4}
+                    placeholder="Bonus Commission"
+                    sx={{
+                      backgroundColor: "rgba(214, 221, 235, 0.18)",
+                      ...focusStyle,
+                      "& .MuiInputBase-root": {
+                        height: "auto", // Allow height to adjust based on content
+                      },
+                    }}
+                  />
+                </Box>
+              </Box>
+              {/* Additional Salary Details */}
+              <Box
+                sx={{
+                  gap: 2,
+                  alignItems: "center",
+                  width: "50%",
+                }}
+              >
+                <Typography sx={{ fontWeight: "bold", mb: 1 }}>
+                  Number of Vacancies *
+                </Typography>
+
+                <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      fontSize: "24px", // Make the text inside button bigger
+                      color: "rgba(46, 174, 125, 1)",
+                      borderColor: "rgba(46, 174, 125, 1)",
+                    }}
+                    onClick={decrement}
+                    disabled={count === 1} // Disable the minus button when count is 1
+                  >
+                    -
+                  </Button>
+                  <Typography sx={{ fontSize: "24px", fontWeight: "600" }}>
+                    {count}
+                  </Typography>
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      fontSize: "24px", // Make the text inside button bigger
+                      color: "rgba(46, 174, 125, 1)",
+                      borderColor: "rgba(46, 174, 125, 1)",
+                    }}
+                    onClick={increment}
+                  >
+                    +
+                  </Button>
                 </Box>
               </Box>
             </Box>
