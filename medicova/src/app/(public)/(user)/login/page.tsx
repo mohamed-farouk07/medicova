@@ -2,7 +2,6 @@ import { Box, Typography, Container } from "@mui/material";
 import cover from "@/components/images/login.svg";
 import network from "@/components/images/network.svg";
 import Image from "next/image";
-import Header from "@/components/Header/Header";
 import LoginForm from "./LoginForm";
 
 const Login = () => {

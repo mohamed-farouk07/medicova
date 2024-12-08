@@ -1,17 +1,17 @@
+"use client";
+
 import React, { useState } from "react";
 import { Box, TextField, Button, InputLabel } from "@mui/material";
 
-interface ForgetFormProps {
-  onSubmit: (formData: { email: string }) => void;
-}
-
-const ForgetForm: React.FC<ForgetFormProps> = ({ onSubmit }) => {
+const SetForm: React.FC = () => {
   const [formData, setFormData] = useState({
-    email: "",
+    password: "",
+    confirmePassword: "",
   });
 
   const [errors, setErrors] = useState({
-    email: "",
+    password: "",
+    confirmePassword: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,11 +24,16 @@ const ForgetForm: React.FC<ForgetFormProps> = ({ onSubmit }) => {
 
   const validateForm = () => {
     const newErrors: any = {};
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA0-9]{2,4}$/;
-    if (!formData.email) {
-      newErrors.email = "Email is required";
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Enter a valid email address";
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    } else if (formData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
+    }
+
+    if (!formData.confirmePassword) {
+      newErrors.confirmePassword = "Password is required";
+    } else if (formData.confirmePassword.length < 6) {
+      newErrors.confirmePassword = "Password must be at least 6 characters";
     }
 
     setErrors(newErrors);
@@ -38,7 +43,7 @@ const ForgetForm: React.FC<ForgetFormProps> = ({ onSubmit }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      onSubmit(formData); // Trigger parent's onSubmit handler
+      console.log("Form submitted:", formData);
     }
   };
 
@@ -53,16 +58,34 @@ const ForgetForm: React.FC<ForgetFormProps> = ({ onSubmit }) => {
           <InputLabel
             sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}
           >
-            Email Address
+            Password
           </InputLabel>
           <TextField
-            label="Enter email address"
+            placeholder="Enter password"
+            type="password"
             fullWidth
-            name="email"
-            value={formData.email}
+            name="password"
+            value={formData.password}
             onChange={handleChange}
-            error={!!errors.email}
-            helperText={errors.email}
+            error={!!errors.password}
+            helperText={errors.password}
+          />
+        </Box>
+        <Box sx={{ mb: 2 }}>
+          <InputLabel
+            sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}
+          >
+            Confirme Password
+          </InputLabel>
+          <TextField
+            placeholder="Enter Confirme password"
+            type="password"
+            fullWidth
+            name="confirmePassword"
+            value={formData.confirmePassword}
+            onChange={handleChange}
+            error={!!errors.confirmePassword}
+            helperText={errors.confirmePassword}
           />
         </Box>
 
@@ -79,7 +102,7 @@ const ForgetForm: React.FC<ForgetFormProps> = ({ onSubmit }) => {
             fontWeight: "bold",
             textTransform: "none",
             "&:hover": {
-              background: "linear-gradient(90deg, #2EAE7D, #185D43)",
+              background: "linear-gradient(90deg, #185D43,  #2EAE7D)",
             },
           }}
           type="submit"
@@ -91,4 +114,4 @@ const ForgetForm: React.FC<ForgetFormProps> = ({ onSubmit }) => {
   );
 };
 
-export default ForgetForm;
+export default SetForm;

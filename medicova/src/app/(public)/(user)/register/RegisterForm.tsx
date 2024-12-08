@@ -85,12 +85,7 @@ const RegisterForm: React.FC = () => {
     }
   };
 
-  const [activeLink, setActiveLink] = useState<string | null>(null);
-
-  useEffect(() => {
-    // Initialize state post-hydration
-    setActiveLink("employer");
-  }, []);
+  const [activeLink, setActiveLink] = useState("jobSeeker"); // default to jobSeeker
 
   const handleLinkClick = (link: string) => {
     setActiveLink(link);
@@ -107,6 +102,7 @@ const RegisterForm: React.FC = () => {
         maxWidth: "500px",
         width: "100%",
         mx: "auto",
+        padding: 2,
       }}
     >
       <Box
@@ -117,45 +113,32 @@ const RegisterForm: React.FC = () => {
           marginBottom: 3,
         }}
       >
-        {activeLink && (
-          <>
-            <Link href="/register" passHref>
-              <Typography
-                component="a"
-                onClick={() => handleLinkClick("jobSeeker")}
-                sx={{
-                  padding: "10px 20px",
-                  cursor: "pointer",
-                  fontWeight: "600",
-                  color: activeLink === "jobSeeker" ? "#000" : "#6CC6A3",
-                  backgroundColor:
-                    activeLink === "jobSeeker" ? "#E9EBFD" : "transparent",
-                  transition: "all 0.3s ease",
-                }}
-              >
-                Job Seeker
-              </Typography>
-            </Link>
-
-            <Link href="/register" passHref>
-              <Typography
-                component="a"
-                onClick={() => handleLinkClick("employer")}
-                sx={{
-                  padding: "10px 20px",
-                  cursor: "pointer",
-                  fontWeight: "600",
-                  color: activeLink === "employer" ? "#000" : "#6CC6A3",
-                  backgroundColor:
-                    activeLink === "employer" ? "#E9EBFD" : "transparent",
-                  transition: "all 0.3s ease",
-                }}
-              >
-                Employer
-              </Typography>
-            </Link>
-          </>
-        )}
+        <Button
+          onClick={() => handleLinkClick("jobSeeker")}
+          sx={{
+            padding: "10px 20px",
+            color: activeLink === "jobSeeker" ? "#000" : "#6CC6A3",
+            backgroundColor:
+              activeLink === "jobSeeker" ? "#E9EBFD" : "transparent",
+            transition: "all 0.3s ease",
+          }}
+          variant="text"
+        >
+          Job Seeker
+        </Button>
+        <Button
+          onClick={() => handleLinkClick("employer")}
+          sx={{
+            padding: "10px 20px",
+            color: activeLink === "employer" ? "#000" : "#6CC6A3",
+            backgroundColor:
+              activeLink === "employer" ? "#E9EBFD" : "transparent",
+            transition: "all 0.3s ease",
+          }}
+          variant="text"
+        >
+          Employer
+        </Button>
       </Box>
 
       <Typography
@@ -218,7 +201,7 @@ const RegisterForm: React.FC = () => {
               First Name
             </InputLabel>
             <TextField
-              label="Enter first name"
+              placeholder="Enter first name"
               fullWidth
               name="firstName"
               value={formData.firstName}
@@ -236,7 +219,7 @@ const RegisterForm: React.FC = () => {
               Last Name
             </InputLabel>
             <TextField
-              label="Enter last name"
+              placeholder="Enter last name"
               fullWidth
               name="lastName"
               value={formData.lastName}
@@ -253,7 +236,7 @@ const RegisterForm: React.FC = () => {
             Email Address
           </InputLabel>
           <TextField
-            label="Enter email address"
+            placeholder="Enter email address"
             fullWidth
             name="email"
             value={formData.email}
@@ -269,7 +252,7 @@ const RegisterForm: React.FC = () => {
             Password
           </InputLabel>
           <TextField
-            label="Enter password"
+            placeholder="Enter password"
             type="password"
             fullWidth
             name="password"
