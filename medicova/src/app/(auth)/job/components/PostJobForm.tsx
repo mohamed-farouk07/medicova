@@ -44,7 +44,7 @@ const PostJobForm: React.FC = () => {
   return (
     <Box
       sx={{
-        p: 4,
+        p: { xs: 2, md: 4 },
         margin: "0 auto",
         backgroundColor: "rgba(248, 248, 253, 0.6)",
         borderRadius: "8px",
@@ -111,17 +111,30 @@ const PostJobForm: React.FC = () => {
         {activeStep === 2 && <ReviewPublishStep />}
 
         {/* Navigation Buttons */}
-        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 4 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: { xs: "space-between", md: "flex-end" },
+            fontSize: "14px",
+            gap: 1,
+            mt: 4,
+          }}
+        >
           <Button
             variant="outlined"
             onClick={handleBack}
+            sx={{ backgroundColor: "white", px: { sx: 2, md: 6 } }}
             disabled={activeStep === 0}
           >
             Back
           </Button>
+          <Button className="px-2 md:px-6 text-sm bg-[#FFAE35] text-[#464748] rounded-none hover:bg-[#e19e39]">
+            Save and Publish Later
+          </Button>
           <Button
             variant="contained"
             sx={{
+              px: { sx: 2, md: 6 },
               backgroundColor: "rgba(46, 174, 125, 1)",
               "&:hover": { backgroundColor: "rgba(36, 144, 103, 1)" },
             }}

@@ -13,30 +13,47 @@ import {
   Toolbar,
   MenuItem,
   Menu,
+  Backdrop,
 } from "@mui/material";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "@/components/images/logo.svg";
 import Image from "next/image";
+import SideBar from "@/components/Layout/SideBar/SideBar";
 
 const pages = ["Dashboard", "My Jobs", "CV Search", "Report", "Billing"];
 const Header = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [isMenuOpen, setMenuOpen] = React.useState(false);
+  const toggleMenu = () => setMenuOpen(!isMenuOpen);
   const pathname = usePathname(); // Get the current path
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#fff" }}>
+    <AppBar position="sticky" sx={{ backgroundColor: "#fff" }}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
+          {/* Mobile Menu */}
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="menu"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={toggleMenu}
+            >
+              <MenuIcon sx={{ color: "#000" }} />
+            </IconButton>
+            <Backdrop
+              sx={{
+                color: "#fff",
+                zIndex: 35,
+                mt: "100px",
+              }}
+              open={isMenuOpen}
+              onClick={() => setMenuOpen(false)}
+            >
+              <SideBar isOpen={isMenuOpen} />
+            </Backdrop>
+          </Box>
           {/* Logo */}
           <Box
             sx={{
@@ -50,63 +67,11 @@ const Header = () => {
               src={logo}
               alt="Company Logo"
               style={{
-                height: "110px",
+                height: "100px",
                 width: "150px",
                 marginRight: "8px",
               }}
             />
-          </Box>
-
-          {/* Mobile Menu */}
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="menu"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon sx={{ color: "#000" }} />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: "block", md: "none" } }}
-            >
-              {pages.map((page) => {
-                const href = `/${page.toLowerCase().replace(" ", "-")}`;
-                const isActive = pathname === href;
-                return (
-                  <MenuItem
-                    key={page}
-                    onClick={handleCloseNavMenu}
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      color: isActive ? "#185D43" : "#000",
-                    }}
-                  >
-                    <Link href={href} style={{ textDecoration: "none" }}>
-                      <Typography sx={{ textAlign: "center" }}>
-                        {page}
-                      </Typography>
-                    </Link>
-                  </MenuItem>
-                );
-              })}
-            </Menu>
           </Box>
 
           {/* Desktop Menu */}
@@ -130,9 +95,7 @@ const Header = () => {
                   }}
                 >
                   <Button
-                    onClick={handleCloseNavMenu}
                     sx={{
-                      marginX: { sm: "14px", xs: "0" },
                       fontWeight: 600,
                       color: isActive ? "#185D43" : "#000",
                       textTransform: "capitalize",
@@ -156,7 +119,6 @@ const Header = () => {
               display: "flex",
               alignItems: "center",
               gap: 2,
-              marginTop: { xs: 2, sm: 0 },
             }}
           >
             <Button
@@ -165,6 +127,7 @@ const Header = () => {
                 color: "#fff",
                 background: "linear-gradient(180deg, #2EAE7D, #134834)",
                 border: "none",
+                display: { xs: "none", md: "block" },
                 borderRadius: "0",
                 fontWeight: "bold",
                 fontSize: { xs: "12px", sm: "14px" },
@@ -173,10 +136,17 @@ const Header = () => {
             >
               Add New Post
             </Button>
-            <IconButton sx={{ marginRight: "16px" }}>
+            <IconButton className="relative">
+              <div className="absolute right-3 top-3 h-2 w-2 rounded-full border border-white bg-red-500" />
               <NotificationsNoneIcon sx={{ color: "#515B6F" }} />
             </IconButton>
-            <Avatar alt="User Avatar" src="/path/to/avatar.jpg" />
+            <Avatar
+              sx={{
+                display: { xs: "none", md: "flex" },
+              }}
+              alt="User Avatar"
+              src="/images/company-avatar.jpg"
+            />
           </Box>
         </Toolbar>
       </Container>

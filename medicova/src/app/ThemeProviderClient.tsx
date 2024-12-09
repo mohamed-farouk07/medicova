@@ -62,9 +62,13 @@ const theme = createTheme({
           },
         },
         outlined: {
-          borderWidth: "2px", // Thicker border for outlined buttons
+          borderColor: "#D6DDEB",
+          borderRadius: "0",
+          color: "#2EAE7D",
           "&:hover": {
-            borderColor: "#2EAE7D", // Custom hover border color
+            borderColor: "#2EAE7D",
+            backgroundColor: "#2EAE7D", // Custom hover border color
+            color: "white",
           },
         },
         text: {

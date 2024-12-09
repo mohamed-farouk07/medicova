@@ -4,18 +4,14 @@ import SideBar from "@/components/Layout/SideBar/SideBar";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
+    <div>
       {/* Header */}
       <Header />
-
-      <div style={{ display: "flex", flex: 1 }}>
+      <div style={{ display: "flex" }}>
         {/* Sidebar */}
         <SideBar />
-
         {/* Main Content */}
-        <main style={{ flex: 1, padding: "16px", overflowY: "auto" }}>
-          {children}
-        </main>
+        <main className="flex-1 ml-0 md:ml-14 lg:ml-0 p-2">{children}</main>
       </div>
     </div>
   );

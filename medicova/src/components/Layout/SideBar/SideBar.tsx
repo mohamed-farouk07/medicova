@@ -24,7 +24,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import SettingsIcon from "@mui/icons-material/Settings";
 import HelpIcon from "@mui/icons-material/Help";
 
-const SideBar = () => {
+const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
   const [openDashboard, setOpenDashboard] = useState(false);
   const [openJobs, setOpenJobs] = useState(false);
   const [openCvSearch, setOpenCvSearch] = useState(false);
@@ -33,16 +33,13 @@ const SideBar = () => {
   const toggleJobs = () => setOpenJobs(!openJobs);
   const toggleCvSearch = () => setOpenCvSearch(!openCvSearch);
 
+  const classMobileOpen =
+    "fixed top-[100px] left-0 z-40 h-[calc(100vh-100px)] translate-x-0 bg-[#f7f7fd] overflow-hidden duration-300 w-60 ease-in-out shadow-2xl text-black";
+  const classNormal =
+    "fixed top-[100px] left-0 translate-x-[-100%] md:translate-x-0 z-40 h-[calc(100vh-100px)] bg-[#f7f7fd] overflow-hidden w-14 text-black duration-300 ease-in-out hover:w-60 md:block lg:sticky lg:w-60 shadow-2xl";
   return (
-    <Box
-      sx={{
-        width: "240px",
-        height: "100%",
-        backgroundColor: "#F8F9FB",
-        boxShadow: "5px 0 5px rgba(0, 0, 0, 0.1)",
-      }}
-    >
-      <Box sx={{ padding: "16px", color: "rgba(0, 0, 0, 0.5)" }}>
+    <Box className={isOpen ? classMobileOpen : classNormal}>
+      <Box className="lg:mt-0 w-60 overflow-y-auto max-h-[calc(100vh-100px)] overflow-x-hidden pt-5 scroll-bar-hidden">
         <List>
           {/* Dashboard */}
           <ListItem disablePadding>
@@ -76,7 +73,7 @@ const SideBar = () => {
                   component={Link}
                   href="/dashboard/overview"
                   sx={{
-                    pl: 4,
+                    pl: 7,
                     fontSize: "16px",
                     "&:hover": {
                       backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
@@ -91,7 +88,7 @@ const SideBar = () => {
                   component={Link}
                   href="/dashboard/analytics"
                   sx={{
-                    pl: 4,
+                    pl: 7,
                     "&:hover": {
                       backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
                     },
@@ -105,7 +102,7 @@ const SideBar = () => {
                   component={Link}
                   href="/dashboard/reports"
                   sx={{
-                    pl: 4,
+                    pl: 7,
                     "&:hover": {
                       backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
                     },
@@ -169,7 +166,7 @@ const SideBar = () => {
                   component={Link}
                   href="/job/posted"
                   sx={{
-                    pl: 4,
+                    pl: 7,
                     "&:hover": {
                       backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
                     },
@@ -183,7 +180,7 @@ const SideBar = () => {
                   component={Link}
                   href="/jobs/applications"
                   sx={{
-                    pl: 4,
+                    pl: 7,
                     "&:hover": {
                       backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
                     },
@@ -197,7 +194,7 @@ const SideBar = () => {
                   component={Link}
                   href="/jobs/analytics"
                   sx={{
-                    pl: 4,
+                    pl: 7,
                     "&:hover": {
                       backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
                     },
@@ -238,7 +235,7 @@ const SideBar = () => {
                   component={Link}
                   href="/cv-search/candidates"
                   sx={{
-                    pl: 4,
+                    pl: 7,
                     "&:hover": {
                       backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
                     },
@@ -252,7 +249,7 @@ const SideBar = () => {
                   component={Link}
                   href="/cv-search/saved"
                   sx={{
-                    pl: 4,
+                    pl: 7,
                     "&:hover": {
                       backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
                     },
@@ -336,7 +333,11 @@ const SideBar = () => {
         {/* Settings */}
         <Typography
           variant="caption"
-          sx={{ ml: 2, color: "#9E9E9E", fontWeight: 500 }}
+          sx={{
+            ml: 2,
+            color: "#9E9E9E",
+            fontWeight: 500,
+          }}
         >
           SETTINGS
         </Typography>
