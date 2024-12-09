@@ -71,10 +71,10 @@ const theme = createTheme({
             color: "white",
           },
         },
-        text: {
-          fontSize: "20px",
-          fontWeight: "bold",
-        },
+        // text: {
+        //   fontSize: "20px",
+        //   fontWeight: "bold",
+        // },
       },
     },
   },
