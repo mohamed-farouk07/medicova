@@ -22,41 +22,68 @@ import FormatSizeIcon from "@mui/icons-material/FormatSize";
 import CloseIcon from "@mui/icons-material/Close";
 
 const ScreeningQuestionsStep: React.FC = () => {
-  const [questions, setQuestions] = useState<string[]>([
-    "What is your role as medical director in disaster management?",
-    "What makes you the ideal candidate for this position?",
-  ]);
+  const [questions, setQuestions] = useState<string[]>([]);
   const [newQuestion, setNewQuestion] = useState("");
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [showAlert, setShowAlert] = useState(false);
+
+  // State to track which predefined questions have been added
+  const [addedPredefinedQuestions, setAddedPredefinedQuestions] = useState<{
+    [key: string]: boolean;
+  }>({
+    experience: false,
+    skills: false,
+    availability: false,
+    motivation: false,
+  });
+
+  const predefinedQuestions = {
+    experience: "How much experience do you have?",
+    skills: "What are your key skills relevant to this position?",
+    availability: "Are you available to start immediately?",
+    motivation: "Why are you motivated to work for our company?",
+  };
 
   const handleAddOrEditQuestion = () => {
     if (editingIndex !== null) {
       // Edit existing question
       const updatedQuestions = [...questions];
-      // Prevent saving empty value for default questions
-      if (
-        updatedQuestions[editingIndex].startsWith("What is") &&
-        newQuestion === ""
-      ) {
-        setShowAlert(true); // Show the alert
-        setTimeout(() => setShowAlert(false), 3000); // Hide alert after 3 seconds
-        return;
-      }
+      const originalQuestion = questions[editingIndex]; // Track the original question for comparison
       updatedQuestions[editingIndex] = newQuestion;
+
       setQuestions(updatedQuestions);
+
+      // Check if the edited question was from predefinedQuestions
+      const predefinedKey = Object.keys(predefinedQuestions).find(
+        (key) =>
+          predefinedQuestions[key as keyof typeof predefinedQuestions] ===
+          originalQuestion
+      );
+      if (
+        predefinedKey &&
+        updatedQuestions.indexOf(
+          predefinedQuestions[predefinedKey as keyof typeof predefinedQuestions]
+        ) === -1
+      ) {
+        // If the predefined question is no longer in the list, enable the button
+        setAddedPredefinedQuestions((prev) => ({
+          ...prev,
+          [predefinedKey]: false,
+        }));
+      }
+
       setEditingIndex(null);
+      setNewQuestion("");
     } else {
-      // Prevent adding an empty new question
+      // Add new question
       if (newQuestion.trim() === "") {
-        setShowAlert(true); // Show the alert
-        setTimeout(() => setShowAlert(false), 5000); // Hide alert after 3 seconds
+        setShowAlert(true);
+        setTimeout(() => setShowAlert(false), 5000);
         return;
       }
-      // Add new question
       setQuestions([...questions, newQuestion]);
+      setNewQuestion("");
     }
-    setNewQuestion("");
   };
 
   const handleEdit = (index: number) => {
@@ -65,12 +92,38 @@ const ScreeningQuestionsStep: React.FC = () => {
   };
 
   const handleDelete = (index: number) => {
+    const questionToDelete = questions[index];
     setQuestions(questions.filter((_, i) => i !== index));
+
+    // Check if the deleted question is from predefinedQuestions
+    const predefinedKey = Object.keys(predefinedQuestions).find(
+      (key) =>
+        predefinedQuestions[key as keyof typeof predefinedQuestions] ===
+        questionToDelete
+    );
+    if (predefinedKey) {
+      // Enable the button for the deleted predefined question
+      setAddedPredefinedQuestions((prev) => ({
+        ...prev,
+        [predefinedKey]: false,
+      }));
+    }
+  };
+
+  const handleAddPredefinedQuestion = (
+    key: keyof typeof predefinedQuestions
+  ) => {
+    if (!addedPredefinedQuestions[key]) {
+      setQuestions([...questions, predefinedQuestions[key]]);
+      setAddedPredefinedQuestions((prev) => ({
+        ...prev,
+        [key]: true,
+      }));
+    }
   };
 
   return (
     <Box sx={{ backgroundColor: "rgba(214, 221, 235, 0.18)", padding: "20px" }}>
-      {/* Header */}
       <Typography sx={{ mb: 1, fontWeight: "bold", color: "rgba(0, 0, 0, 1)" }}>
         Screening Questions
       </Typography>
@@ -78,16 +131,13 @@ const ScreeningQuestionsStep: React.FC = () => {
         Add screening questions to get 5 to 10x better results!
       </Typography>
 
-      {/* Alert for empty question */}
       {showAlert && (
         <Alert severity="warning" sx={{ mb: 2 }}>
           You cannot save an empty value for a question!
         </Alert>
       )}
 
-      {/* Question Input */}
       <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
-        {/* Icon and TextField */}
         <Box sx={{ display: "flex", alignItems: "center", flex: 1, gap: 2 }}>
           <Box
             sx={{
@@ -109,8 +159,6 @@ const ScreeningQuestionsStep: React.FC = () => {
             onChange={(e) => setNewQuestion(e.target.value)}
           />
         </Box>
-
-        {/* Buttons */}
         <IconButton
           onClick={handleAddOrEditQuestion}
           sx={{
@@ -126,8 +174,8 @@ const ScreeningQuestionsStep: React.FC = () => {
         {editingIndex !== null && (
           <IconButton
             onClick={() => {
-              setNewQuestion(""); // Clear the input field
-              setEditingIndex(null); // Stop editing
+              setNewQuestion("");
+              setEditingIndex(null);
             }}
             sx={{
               mr: 1,
@@ -142,7 +190,6 @@ const ScreeningQuestionsStep: React.FC = () => {
         )}
       </Box>
 
-      {/* Existing Questions List */}
       <List sx={{ mb: 4 }}>
         {questions.map((question, index) => (
           <ListItem
@@ -197,11 +244,57 @@ const ScreeningQuestionsStep: React.FC = () => {
             </ListItemSecondaryAction>
           </ListItem>
         ))}
+        <Typography
+          sx={{
+            mb: 2,
+            fontWeight: "700",
+            color: "rgba(24, 93, 67, 1)",
+            fontSize: "23px",
+          }}
+        >
+          Ready Questions
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 2,
+          }}
+        >
+          {(
+            Object.keys(predefinedQuestions) as Array<
+              keyof typeof predefinedQuestions
+            >
+          ).map((key) => (
+            <Button
+              key={key}
+              variant="outlined"
+              onClick={() => handleAddPredefinedQuestion(key)}
+              disabled={addedPredefinedQuestions[key]}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "8px",
+                borderColor: "#2EAE7D",
+                color: addedPredefinedQuestions[key] ? "#ccc" : "#2EAE7D",
+                textTransform: "none",
+              }}
+            >
+              {predefinedQuestions[key]}
+            </Button>
+          ))}
+        </Box>
       </List>
 
       {/* Job Options */}
       <Typography
-        sx={{ mb: 2, fontWeight: "700", color: "rgba(24, 93, 67, 1)",fontSize:"23px" }}
+        sx={{
+          mb: 2,
+          fontWeight: "700",
+          color: "rgba(24, 93, 67, 1)",
+          fontSize: "23px",
+        }}
       >
         Job Options
       </Typography>
