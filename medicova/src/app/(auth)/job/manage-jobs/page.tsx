@@ -19,6 +19,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import TuneIcon from "@mui/icons-material/Tune";
 import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Controls from "@/components/UI/Controls";
 
 const ManageJobs: React.FC = () => {
   const [activeTab, setActiveTab] = React.useState(0);
@@ -205,37 +206,8 @@ const ManageJobs: React.FC = () => {
                 }}
               >
                 {/* Switch and Icon Buttons Row */}
-                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                  <IconButton sx={{ color: "#185D43" }}>
-                    <ShareIcon />
-                  </IconButton>
-                  <Switch defaultChecked color="primary" />
-                  <IconButton sx={{ color: "#185D43" }}>
-                    <MoreVertIcon />
-                  </IconButton>
-                </Box>
 
-                {/* Text and Button Row */}
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 1,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      fontWeight: "bold",
-                    }}
-                  >
-                    10 applicants
-                  </Typography>
-                  <Button variant="contained" sx={{ textTransform: "none" }}>
-                    View applicants
-                  </Button>
-                </Box>
+                <Controls />
               </Box>
             </Card>
           </Grid>
