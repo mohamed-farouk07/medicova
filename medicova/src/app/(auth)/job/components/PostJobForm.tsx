@@ -1,25 +1,22 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
   Button,
-  TextField,
-  MenuItem,
-  Select,
-  FormControl,
-  InputLabel,
   Stepper,
   Step,
   StepLabel,
-  Checkbox,
-  FormControlLabel,
 } from "@mui/material";
 import JobDetailsStep from "./steps/JobDetailsStep";
 import ScreeningQuestionsStep from "./steps/ScreeningQuestionsStep";
 import ReviewPublishStep from "./steps/ReviewPublishStep";
 
-const steps = ["Job Details", "Screening Questions", "Review & Publish"];
+const steps = [
+  "Job Details",
+  "Screening Questions(Optional)",
+  "Review & Publish",
+];
 
 const PostJobForm: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
