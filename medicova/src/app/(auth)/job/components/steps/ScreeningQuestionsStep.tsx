@@ -22,10 +22,7 @@ import FormatSizeIcon from "@mui/icons-material/FormatSize";
 import CloseIcon from "@mui/icons-material/Close";
 
 const ScreeningQuestionsStep: React.FC = () => {
-  const [questions, setQuestions] = useState<string[]>([
-    "What is your role as medical director in disaster management?",
-    "What makes you the ideal candidate for this position?",
-  ]);
+  const [questions, setQuestions] = useState<string[]>([]);
   const [newQuestion, setNewQuestion] = useState("");
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [showAlert, setShowAlert] = useState(false);

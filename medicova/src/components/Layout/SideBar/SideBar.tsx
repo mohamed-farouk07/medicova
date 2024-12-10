@@ -161,6 +161,20 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
           </ListItem>
           <Collapse in={openJobs} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
+            <ListItem disablePadding>
+                <ListItemButton
+                  component={Link}
+                  href="/job/manage-jobs"
+                  sx={{
+                    pl: 7,
+                    "&:hover": {
+                      backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
+                    },
+                  }}
+                >
+                  <ListItemText primary="Manage Jobs" />
+                </ListItemButton>
+              </ListItem>
               <ListItem disablePadding>
                 <ListItemButton
                   component={Link}
