@@ -5,14 +5,14 @@ import { ReactNode } from "react";
 
 // Define the custom theme
 const theme = createTheme({
-  // palette: {
-  //   primary: {
-  //     main: "#2EAE7D", // Your primary button color
-  //   },
-  //   secondary: {
-  //     main: "#134834", // Your secondary button color
-  //   },
-  // },
+  palette: {
+    primary: {
+      main: "#50BF73", // Your primary button color
+    },
+    secondary: {
+      main: "#134834", // Your secondary button color
+    },
+  },
   typography: {
     // Apply the font globally to all typography variants
     fontFamily: "'Epilogue', sans-serif",

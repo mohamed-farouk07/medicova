@@ -1,0 +1,18 @@
+import { DevIconGoogle } from "@/components/icons/icons";
+import { Button } from "@mui/material";
+import { signIn } from "next-auth/react";
+
+const GoogleButton = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <Button
+      className="w-full"
+      onClick={() => signIn("google")}
+      variant="outlined"
+    >
+      <DevIconGoogle className="w-6 h-6 m-2" />
+      {children}
+    </Button>
+  );
+};
+
+export default GoogleButton;

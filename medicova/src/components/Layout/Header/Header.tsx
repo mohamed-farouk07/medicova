@@ -11,15 +11,13 @@ import {
   AppBar,
   Container,
   Toolbar,
-  MenuItem,
-  Menu,
   Backdrop,
 } from "@mui/material";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import MenuIcon from "@mui/icons-material/Menu";
 import logo from "@/components/images/logo.svg";
 import Image from "next/image";
 import SideBar from "@/components/Layout/SideBar/SideBar";
+import { HamburgerIcon } from "@/components/icons/icons";
 
 const pages = ["Dashboard", "My Jobs", "CV Search", "Report", "Billing"];
 const Header = () => {
@@ -37,10 +35,12 @@ const Header = () => {
               size="large"
               aria-label="menu"
               aria-controls="menu-appbar"
+              className="group"
               aria-haspopup="true"
+              aria-expanded={isMenuOpen}
               onClick={toggleMenu}
             >
-              <MenuIcon sx={{ color: "#000" }} />
+              <HamburgerIcon />
             </IconButton>
             <Backdrop
               sx={{

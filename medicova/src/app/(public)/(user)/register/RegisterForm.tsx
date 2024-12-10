@@ -12,6 +12,8 @@ import {
 import Link from "next/link";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { NextAuthProvider } from "@/NextAuthProvider";
+import GoogleButton from "../login/googleButton";
 
 const RegisterForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -164,6 +166,9 @@ const RegisterForm: React.FC = () => {
           Medicova
         </Typography>
       </Typography>
+      <NextAuthProvider>
+        <GoogleButton>SignUp with Google</GoogleButton>
+      </NextAuthProvider>
       <Box
         sx={{
           display: "flex",

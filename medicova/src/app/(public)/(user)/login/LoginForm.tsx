@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   TextField,
@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
+import { NextAuthProvider } from "@/NextAuthProvider";
+import GoogleButton from "./googleButton";
 
 interface FormData {
   email: string;
@@ -114,6 +116,17 @@ const LoginForm: React.FC = () => {
           Medicova
         </Typography>
       </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          width: "100%",
+          justifyContent: "center",
+        }}
+      >
+        <NextAuthProvider>
+          <GoogleButton>Login with Google</GoogleButton>
+        </NextAuthProvider>
+      </Box>
       <Box
         sx={{
           display: "flex",
