@@ -149,13 +149,10 @@ const Header = () => {
             }}
           >
             <Button
+              variant="contained"
               sx={{
                 marginRight: "16px",
-                color: "#fff",
-                background: "linear-gradient(180deg, #2EAE7D, #134834)",
-                border: "none",
                 display: { xs: "none", md: "block" },
-                borderRadius: "0",
                 fontWeight: "bold",
                 fontSize: { xs: "12px", sm: "14px" },
                 padding: { xs: "8px 16px", sm: "10px 10px" },
@@ -167,13 +164,16 @@ const Header = () => {
               <div className="absolute right-3 top-3 h-2 w-2 rounded-full border border-white bg-red-500" />
               <NotificationsNoneIcon sx={{ color: "#515B6F" }} />
             </IconButton>
-            <Avatar
-              sx={{
-                display: { xs: "none", md: "flex" },
-              }}
-              alt="User Avatar"
-              src="/images/company-avatar.jpg"
-            />
+            <Link href="/profile" className="hover:scale-105 duration-300">
+              <Avatar
+                sx={{
+                  display: { xs: "none", md: "flex" },
+                  cursor: "pointer",
+                }}
+                alt="User Avatar"
+                src="/images/company-avatar.jpg"
+              />
+            </Link>
           </Box>
         </Toolbar>
       </Container>

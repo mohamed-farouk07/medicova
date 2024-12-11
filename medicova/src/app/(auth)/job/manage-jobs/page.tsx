@@ -20,6 +20,7 @@ import TuneIcon from "@mui/icons-material/Tune";
 import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Controls from "@/components/UI/Controls";
+import Image from "next/image";
 
 const ManageJobs: React.FC = () => {
   const [activeTab, setActiveTab] = React.useState(0);
@@ -189,6 +190,15 @@ const ManageJobs: React.FC = () => {
                     />
                     <Chip
                       sx={{ color: "#185D43" }}
+                      avatar={
+                        <Image
+                          src="/images/flag-egypt.jpg"
+                          alt="egypt flag"
+                          width={20}
+                          height={20}
+                          className="mr-2 object-contain"
+                        />
+                      }
                       label="Egypt"
                       variant="outlined"
                     />

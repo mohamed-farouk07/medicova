@@ -50,20 +50,14 @@ const LoginForm: React.FC = () => {
     if (data.email === user.email) {
       if (data.password === user.password) {
         return true;
-      } else {
-        setError("Password is incorrect");
       }
-    } else {
-      setError("Email is incorrect");
     }
+    setError("Email Address or Password is incorrect");
     return false;
   };
   const onSubmit = (data: FormData) => {
-    if (userType === "employer") {
-      console.log("🚀 ~ onSubmit ~ validateForm(data):", validateForm(data));
-      if (validateForm(data)) {
-        router.push("/profile");
-      }
+    if (validateForm(data)) {
+      router.push("/profile");
     }
     console.log("Form Submitted:", data);
   };
@@ -231,7 +225,7 @@ const LoginForm: React.FC = () => {
             justifyContent: "space-between",
             alignItems: "center",
             width: "100%",
-            mb: 2,
+            mb: 1,
           }}
         >
           <Controller
@@ -270,6 +264,7 @@ const LoginForm: React.FC = () => {
             </Typography>
           </Link>
         </Box>
+        <Typography className=" text-red-500 my-1">{error}</Typography>
 
         {/* Submit Button */}
         <Button

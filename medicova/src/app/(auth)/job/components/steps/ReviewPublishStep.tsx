@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Chip, Typography } from "@mui/material";
 import Image from "next/image";
 import CreateIcon from "@mui/icons-material/Create";
 import ShareIcon from "@mui/icons-material/Share";
@@ -12,6 +12,7 @@ import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
+import ShareMenu from "@/components/UI/ShareMenu";
 
 const ReviewPublishStep: React.FC = () => (
   <Box>
@@ -59,29 +60,35 @@ const ReviewPublishStep: React.FC = () => (
               <p className="inline-block">5 Vaccancies</p>
             </div>
           </div>
-          <div className="flex items-center gap-4 mb-4 flex-wrap">
-            <button className=" border-2 border-[#185D43] text-[#185D43] font-semibold py-2 px-4">
-              Healthcare
-            </button>
-            <button className="bg-[#9BDB9C33] border border-[#185D43] text-black font-semibold py-2 px-4 shadow-lg">
-              Doctors
-            </button>
-            <button className=" border-2 border-[#185D43] text-[#185D43] font-semibold py-2 px-4 text-nowrap">
-              <span>Egypt</span>
-              <Image
-                src="/images/flag-egypt.jpg"
-                alt="egypt flag"
-                width={50}
-                height={20}
-                className="w-auto h-6 inline object-contain "
-              />
-            </button>
+          <div className="flex items-center justify-center md:justify-start gap-4 mb-2 flex-wrap">
+            <Chip
+              sx={{ color: "#185D43" }}
+              label="Healthcare"
+              variant="outlined"
+            />
+            <Chip
+              sx={{ color: "#185D43" }}
+              label="Doctors"
+              variant="outlined"
+            />
+            <Chip
+              sx={{ color: "#185D43" }}
+              avatar={
+                <Image
+                  src="/images/flag-egypt.jpg"
+                  alt="egypt flag"
+                  width={20}
+                  height={20}
+                  className="mr-2 object-contain"
+                />
+              }
+              label="Egypt"
+              variant="outlined"
+            />
           </div>
         </div>
         <div className="flex h-fit">
-          <Button variant="text">
-            <ShareIcon />
-          </Button>
+          <ShareMenu link="https://google.com" className="mx-2" />
           <Button variant="contained" className="px-10">
             Easy Apply
           </Button>

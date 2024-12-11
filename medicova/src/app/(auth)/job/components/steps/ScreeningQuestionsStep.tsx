@@ -63,16 +63,15 @@ const ScreeningQuestionsStep: React.FC = () => {
 
   const formatQuestionText = (text: string) => {
     return text.split(/(\[[^\]]*\])/g).map((part, index) =>
-      part.startsWith("[") && part.endsWith("]")
-        ? (
-            <span key={index} style={{ color: "green" }}>
-              {part}
-            </span>
-          )
-        : part
+      part.startsWith("[") && part.endsWith("]") ? (
+        <span key={index} style={{ color: "green" }}>
+          {part}
+        </span>
+      ) : (
+        part
+      )
     );
   };
-  
 
   const handleAddOrEditQuestion = () => {
     if (editingIndex !== null) {
@@ -329,6 +328,7 @@ const ScreeningQuestionsStep: React.FC = () => {
         sx={{
           display: "flex",
           flexDirection: "row",
+          flexWrap: "wrap",
           gap: 4,
           p: 2,
           justifyContent: "space-between",
@@ -358,7 +358,6 @@ const ScreeningQuestionsStep: React.FC = () => {
           </Typography>
         </Box>
 
-        {/* Other elements aligned to the right */}
         <Box
           sx={{
             display: "flex",
@@ -401,7 +400,6 @@ const ScreeningQuestionsStep: React.FC = () => {
             />
           </RadioGroup>
 
-          {/* Recipient Email section */}
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Typography
               sx={{
