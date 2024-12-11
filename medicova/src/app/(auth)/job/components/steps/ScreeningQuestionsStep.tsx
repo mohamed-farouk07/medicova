@@ -31,41 +31,68 @@ const ScreeningQuestionsStep: React.FC = () => {
   const [addedPredefinedQuestions, setAddedPredefinedQuestions] = useState<{
     [key: string]: boolean;
   }>({
-    experience: false,
-    skills: false,
-    availability: false,
-    motivation: false,
+    workExperience: false,
+    dataFlow: false,
+    Prometric: false,
+    healthLiscence: false,
+    driverLiscence: false,
+    language: false,
+    location: false,
   });
 
-  const predefinedQuestions = {
-    experience: "How much experience do you have?",
-    skills: "What are your key skills relevant to this position?",
-    availability: "Are you available to start immediately?",
-    motivation: "Why are you motivated to work for our company?",
+  const predefinedQuestionLabels: { [key: string]: string } = {
+    workExperience: "Work Experience",
+    dataFlow: "Data Flow Report",
+    prometric: "Prometric Exam",
+    healthLiscence: "Health License",
+    driverLiscence: "Driver License",
+    language: "Language Proficiency",
+    location: "Location Preference",
   };
+
+  const predefinedQuestions = {
+    workExperience:
+      "How many years of [Job Function] experience do you have currently have?",
+    dataFlow: "Do you have a valid data flow Report from [Country]?",
+    prometric: "Have you passed Prometric Exam from [Country]?",
+    healthLiscence: "Do you have a valid Health Liscence from [Country]?",
+    driverLiscence: "Do you have a valid Driver Liscence?",
+    language: "What is your level of proficiency in [Language]?",
+    location: "Are you comfortable communting to this job's [Location]?",
+  };
+
+  const formatQuestionText = (text: string) => {
+    return text.split(/(\[[^\]]*\])/g).map((part, index) =>
+      part.startsWith("[") && part.endsWith("]")
+        ? (
+            <span key={index} style={{ color: "green" }}>
+              {part}
+            </span>
+          )
+        : part
+    );
+  };
+  
 
   const handleAddOrEditQuestion = () => {
     if (editingIndex !== null) {
-      // Edit existing question
       const updatedQuestions = [...questions];
-      const originalQuestion = questions[editingIndex]; // Track the original question for comparison
+      const originalQuestion = questions[editingIndex];
       updatedQuestions[editingIndex] = newQuestion;
-
       setQuestions(updatedQuestions);
 
-      // Check if the edited question was from predefinedQuestions
       const predefinedKey = Object.keys(predefinedQuestions).find(
         (key) =>
           predefinedQuestions[key as keyof typeof predefinedQuestions] ===
           originalQuestion
       );
+
       if (
         predefinedKey &&
-        updatedQuestions.indexOf(
+        !updatedQuestions.includes(
           predefinedQuestions[predefinedKey as keyof typeof predefinedQuestions]
-        ) === -1
+        )
       ) {
-        // If the predefined question is no longer in the list, enable the button
         setAddedPredefinedQuestions((prev) => ({
           ...prev,
           [predefinedKey]: false,
@@ -75,7 +102,6 @@ const ScreeningQuestionsStep: React.FC = () => {
       setEditingIndex(null);
       setNewQuestion("");
     } else {
-      // Add new question
       if (newQuestion.trim() === "") {
         setShowAlert(true);
         setTimeout(() => setShowAlert(false), 5000);
@@ -95,14 +121,12 @@ const ScreeningQuestionsStep: React.FC = () => {
     const questionToDelete = questions[index];
     setQuestions(questions.filter((_, i) => i !== index));
 
-    // Check if the deleted question is from predefinedQuestions
     const predefinedKey = Object.keys(predefinedQuestions).find(
       (key) =>
         predefinedQuestions[key as keyof typeof predefinedQuestions] ===
         questionToDelete
     );
     if (predefinedKey) {
-      // Enable the button for the deleted predefined question
       setAddedPredefinedQuestions((prev) => ({
         ...prev,
         [predefinedKey]: false,
@@ -215,7 +239,7 @@ const ScreeningQuestionsStep: React.FC = () => {
             >
               <FormatSizeIcon sx={{ color: "white" }} />
             </Box>
-            <ListItemText primary={question} />
+            <ListItemText secondary={formatQuestionText(question)} />
             <ListItemSecondaryAction>
               <IconButton
                 onClick={() => handleEdit(index)}
@@ -244,6 +268,7 @@ const ScreeningQuestionsStep: React.FC = () => {
             </ListItemSecondaryAction>
           </ListItem>
         ))}
+
         <Typography
           sx={{
             mb: 2,
@@ -273,15 +298,17 @@ const ScreeningQuestionsStep: React.FC = () => {
               disabled={addedPredefinedQuestions[key]}
               sx={{
                 display: "flex",
-                justifyContent: "space-between",
                 alignItems: "center",
                 padding: "8px",
+                fontWeight: "600",
+                fontSize: "14px",
                 borderColor: "#2EAE7D",
                 color: addedPredefinedQuestions[key] ? "#ccc" : "#2EAE7D",
                 textTransform: "none",
               }}
             >
-              {predefinedQuestions[key]}
+              {predefinedQuestionLabels[key] ||
+                key.charAt(0).toUpperCase() + key.slice(1)}
             </Button>
           ))}
         </Box>
