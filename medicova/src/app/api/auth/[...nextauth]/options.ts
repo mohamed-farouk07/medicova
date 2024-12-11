@@ -6,17 +6,17 @@ const clientId = process.env.GOOGLE_CLIENT_ID as string;
 const clientSecret = process.env.GOOGLE_CLIENT_SECRET as string;
 const secret = process.env.NEXTAUTH_SECRET;
 
-if (!clientId) {
-  throw new Error("clientId environment variable is not set");
-}
+// if (!clientId) {
+//   throw new Error("clientId environment variable is not set");
+// }
 
-if (!clientSecret) {
-  throw new Error("clientSecret environment variable is not set");
-}
+// if (!clientSecret) {
+//   throw new Error("clientSecret environment variable is not set");
+// }
 
-if (!secret) {
-  throw new Error("secret environment variable is not set");
-}
+// if (!secret) {
+//   throw new Error("secret environment variable is not set");
+// }
 
 // session failure
 export const options: AuthOptions = {
