@@ -19,7 +19,31 @@ import Image from "next/image";
 import SideBar from "@/components/Layout/SideBar/SideBar";
 import { HamburgerIcon } from "@/components/icons/icons";
 
-const pages = ["Dashboard", "My Jobs", "CV Search", "Report", "Billing"];
+const links = [
+  {
+    title: "Dashboard",
+    link: "/dashboard",
+  },
+  {
+    title: "My Jobs",
+    link: "/manage-jobs",
+  },
+  {
+    title: "CV Search",
+    link: "/cv-search",
+    disabled: true,
+  },
+  {
+    title: "Report",
+    link: "/report",
+    disabled: true,
+  },
+  {
+    title: "Billing",
+    link: "/billing",
+    disabled: true,
+  },
+];
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
   const toggleMenu = () => setMenuOpen(!isMenuOpen);
@@ -82,12 +106,13 @@ const Header = () => {
               display: { xs: "none", md: "flex" },
             }}
           >
-            {pages.map((page) => {
-              const href = `/${page.toLowerCase().replace(" ", "-")}`;
-              const isActive = pathname === href;
+            {links.map((link) => {
+              const href = `${link.link.toLowerCase().replace(" ", "-")}`;
+              const currentPage = pathname.split("/").pop();
+              const isActive = `/${currentPage}` === href;
               return (
                 <Link
-                  key={page}
+                  key={link.title}
                   href={href}
                   style={{
                     textDecoration: "none",
@@ -95,6 +120,7 @@ const Header = () => {
                   }}
                 >
                   <Button
+                    disabled={link.disabled}
                     sx={{
                       fontWeight: 600,
                       color: isActive ? "#185D43" : "#000",
@@ -103,10 +129,11 @@ const Header = () => {
                       "&:hover": {
                         color: "#185D43",
                       },
+
                       fontSize: { xs: "14px", sm: "14px" },
                     }}
                   >
-                    {page}
+                    {link.title}
                   </Button>
                 </Link>
               );

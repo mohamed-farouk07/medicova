@@ -104,6 +104,7 @@ const RegisterForm: React.FC = () => {
         maxWidth: "500px",
         width: "100%",
         mx: "auto",
+        minWidth: "350px",
         padding: 2,
       }}
     >

@@ -15,6 +15,7 @@ import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
 import { NextAuthProvider } from "@/NextAuthProvider";
 import GoogleButton from "./googleButton";
+import { useRouter } from "next/navigation";
 
 interface FormData {
   email: string;
@@ -22,7 +23,17 @@ interface FormData {
   rememberMe: boolean;
 }
 
+type UserType = "jobSeeker" | "employer";
+
+const user = {
+  email: "admin@medicova.com",
+  password: "123456",
+};
+
 const LoginForm: React.FC = () => {
+  const router = useRouter();
+  const [userType, setUserType] = useState<UserType>("jobSeeker"); // default to jobSeeker
+  const [error, setError] = useState("");
   const {
     handleSubmit,
     control,
@@ -35,13 +46,26 @@ const LoginForm: React.FC = () => {
     },
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("Form Submitted:", data);
+  const validateForm = (data: FormData) => {
+    if (data.email === user.email) {
+      if (data.password === user.password) {
+        return true;
+      } else {
+        setError("Password is incorrect");
+      }
+    } else {
+      setError("Email is incorrect");
+    }
+    return false;
   };
-  const [activeLink, setActiveLink] = useState("jobSeeker"); // default to jobSeeker
-
-  const handleLinkClick = (link: string) => {
-    setActiveLink(link);
+  const onSubmit = (data: FormData) => {
+    if (userType === "employer") {
+      console.log("🚀 ~ onSubmit ~ validateForm(data):", validateForm(data));
+      if (validateForm(data)) {
+        router.push("/profile");
+      }
+    }
+    console.log("Form Submitted:", data);
   };
 
   return (
@@ -66,12 +90,12 @@ const LoginForm: React.FC = () => {
         }}
       >
         <Button
-          onClick={() => handleLinkClick("jobSeeker")}
+          onClick={() => setUserType("jobSeeker")}
           sx={{
             padding: "10px 20px",
-            color: activeLink === "jobSeeker" ? "#000" : "#6CC6A3",
+            color: userType === "jobSeeker" ? "#000" : "#6CC6A3",
             backgroundColor:
-              activeLink === "jobSeeker" ? "#E9EBFD" : "transparent",
+              userType === "jobSeeker" ? "#E9EBFD" : "transparent",
             transition: "all 0.3s ease",
           }}
           variant="text"
@@ -79,12 +103,12 @@ const LoginForm: React.FC = () => {
           Job Seeker
         </Button>
         <Button
-          onClick={() => handleLinkClick("employer")}
+          onClick={() => setUserType("employer")}
           sx={{
             padding: "10px 20px",
-            color: activeLink === "employer" ? "#000" : "#6CC6A3",
+            color: userType === "employer" ? "#000" : "#6CC6A3",
             backgroundColor:
-              activeLink === "employer" ? "#E9EBFD" : "transparent",
+              userType === "employer" ? "#E9EBFD" : "transparent",
             transition: "all 0.3s ease",
           }}
           variant="text"
@@ -274,6 +298,12 @@ const LoginForm: React.FC = () => {
           }}
         >
           Don’t have an account?{" "}
+        </Typography>
+        <Typography
+          component="span"
+          sx={{ fontSize: "14px", color: "#515B6F" }}
+        >
+          {error}{" "}
         </Typography>
         <Link href="/register" passHref>
           <Typography

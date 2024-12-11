@@ -9,9 +9,9 @@ const theme = createTheme({
     primary: {
       main: "#50BF73", // Your primary button color
     },
-    secondary: {
-      main: "#134834", // Your secondary button color
-    },
+    // secondary: {
+    //   main: "#134834", // Your secondary button color
+    // },
   },
   typography: {
     // Apply the font globally to all typography variants
@@ -48,6 +48,10 @@ const theme = createTheme({
           "&:hover": {
             background:
               "linear-gradient(191.67deg, #134834 8.56%, #2EAE7D 91.44%)",
+          },
+          "&:disabled": {
+            opacity: 0.6,
+            color: "white",
           },
         },
         root: {

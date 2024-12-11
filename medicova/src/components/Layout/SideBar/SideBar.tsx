@@ -23,8 +23,14 @@ import ReportIcon from "@mui/icons-material/Assessment";
 import ChatIcon from "@mui/icons-material/Chat";
 import SettingsIcon from "@mui/icons-material/Settings";
 import HelpIcon from "@mui/icons-material/Help";
+import { usePathname } from "next/navigation";
 
 const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
+  const pathname = usePathname();
+  const currentPage = pathname.split("/").pop();
+
+  const isCurrentPage = (page: string) => page === currentPage;
+
   const [openDashboard, setOpenDashboard] = useState(false);
   const [openJobs, setOpenJobs] = useState(false);
   const [openCvSearch, setOpenCvSearch] = useState(false);
@@ -52,7 +58,7 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
               onClick={toggleDashboard}
             >
               <ListItemIcon>
-                <DashboardIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
+                <DashboardIcon sx={{ color: "#7C8493CC", fontSize: "20px" }} />
               </ListItemIcon>
               <ListItemText
                 primaryTypographyProps={{
@@ -71,7 +77,7 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
               <ListItem disablePadding>
                 <ListItemButton
                   component={Link}
-                  href="/dashboard/overview"
+                  href="/dashboard"
                   sx={{
                     pl: 7,
                     fontSize: "16px",
@@ -80,13 +86,21 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
                     },
                   }}
                 >
-                  <ListItemText primary="Overview" />
+                  <ListItemText
+                    primary="Overview"
+                    sx={{
+                      color: isCurrentPage("dashboard")
+                        ? "#2EAE7D"
+                        : "#7C8493CC",
+                    }}
+                  />
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding>
                 <ListItemButton
                   component={Link}
-                  href="/dashboard/analytics"
+                  href="#"
+                  disabled
                   sx={{
                     pl: 7,
                     "&:hover": {
@@ -100,7 +114,8 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
               <ListItem disablePadding>
                 <ListItemButton
                   component={Link}
-                  href="/dashboard/reports"
+                  href="#"
+                  disabled
                   sx={{
                     pl: 7,
                     "&:hover": {
@@ -126,7 +141,7 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
               href="/profile"
             >
               <ListItemIcon>
-                <BusinessIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
+                <BusinessIcon sx={{ color: "#7C8493CC", fontSize: "20px" }} />
               </ListItemIcon>
               <ListItemText
                 primaryTypographyProps={{
@@ -148,7 +163,7 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
               onClick={toggleJobs}
             >
               <ListItemIcon>
-                <WorkIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
+                <WorkIcon sx={{ color: "#7C8493CC", fontSize: "20px" }} />
               </ListItemIcon>
               <ListItemText
                 primaryTypographyProps={{
@@ -161,7 +176,7 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
           </ListItem>
           <Collapse in={openJobs} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-            <ListItem disablePadding>
+              <ListItem disablePadding>
                 <ListItemButton
                   component={Link}
                   href="/job/manage-jobs"
@@ -191,6 +206,7 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
               </ListItem>
               <ListItem disablePadding>
                 <ListItemButton
+                  disabled
                   component={Link}
                   href="/jobs/applications"
                   sx={{
@@ -207,6 +223,7 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
                 <ListItemButton
                   component={Link}
                   href="/jobs/analytics"
+                  disabled
                   sx={{
                     pl: 7,
                     "&:hover": {
@@ -231,7 +248,7 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
               onClick={toggleCvSearch}
             >
               <ListItemIcon>
-                <SearchIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
+                <SearchIcon sx={{ color: "#7C8493CC", fontSize: "20px" }} />
               </ListItemIcon>
               <ListItemText
                 primaryTypographyProps={{
@@ -248,6 +265,7 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
                 <ListItemButton
                   component={Link}
                   href="/cv-search/candidates"
+                  disabled
                   sx={{
                     pl: 7,
                     "&:hover": {
@@ -261,6 +279,7 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
               <ListItem disablePadding>
                 <ListItemButton
                   component={Link}
+                  disabled
                   href="/cv-search/saved"
                   sx={{
                     pl: 7,
@@ -284,10 +303,11 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
                 },
               }}
               component={Link}
+              disabled
               href="/billing"
             >
               <ListItemIcon>
-                <PaymentIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
+                <PaymentIcon sx={{ color: "#7C8493CC", fontSize: "20px" }} />
               </ListItemIcon>
               <ListItemText
                 primaryTypographyProps={{
@@ -305,10 +325,11 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
                 },
               }}
               component={Link}
+              disabled
               href="/reports"
             >
               <ListItemIcon>
-                <ReportIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
+                <ReportIcon sx={{ color: "#7C8493CC", fontSize: "20px" }} />
               </ListItemIcon>
               <ListItemText
                 primaryTypographyProps={{
@@ -326,10 +347,11 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
                 },
               }}
               component={Link}
+              disabled
               href="/chat"
             >
               <ListItemIcon>
-                <ChatIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
+                <ChatIcon sx={{ color: "#7C8493CC", fontSize: "20px" }} />
               </ListItemIcon>
               <ListItemText
                 primaryTypographyProps={{
@@ -367,7 +389,7 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
               href="/setting"
             >
               <ListItemIcon>
-                <SettingsIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
+                <SettingsIcon sx={{ color: "#7C8493CC", fontSize: "20px" }} />
               </ListItemIcon>
               <ListItemText
                 primaryTypographyProps={{
@@ -385,10 +407,11 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
                 },
               }}
               component={Link}
+              disabled
               href="/help"
             >
               <ListItemIcon>
-                <HelpIcon sx={{ color: "#515B6F", fontSize: "20px" }} />
+                <HelpIcon sx={{ color: "#7C8493CC", fontSize: "20px" }} />
               </ListItemIcon>
               <ListItemText
                 primaryTypographyProps={{

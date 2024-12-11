@@ -1,7 +1,7 @@
 "use client";
 import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
 import GroupsIcon from "@mui/icons-material/Groups";
-import { Button, IconButton } from "@mui/material";
+import { Button, Chip, IconButton } from "@mui/material";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
@@ -54,14 +54,14 @@ const page = () => {
           </div>
           {/* search */}
           <div className="bg-white shadow-xl flex flex-col sm:flex-row gap-2 md:gap-8 p-2 justify-between">
-            <div className="flex gap-2">
+            <div className="flex gap-2 sm:w-1/2">
               <SearchIcon fontSize="large" sx={{ color: "#2EAE7D" }} />
               <input
                 className="block appearance-none w-full min-w-52 border-b-2 border-gray-300 py-2 px-3 focus:outline-none focus:border-[#2EAE7D]"
                 placeholder="search by title eg: doctor"
               />
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 sm:w-1/4">
               <PlaceOutlinedIcon fontSize="large" sx={{ color: "#2EAE7D" }} />
               <select className="block w-full  bg-transparent  border-b-2 border-gray-300 py-2 min-w-32 px-3 focus:outline-none focus:border-[#2EAE7D]">
                 <option value="egypt">🇪🇬 Egypt</option>
@@ -69,7 +69,7 @@ const page = () => {
                 <option value="saudi">🇸🇦 Saudi Arabia</option>
               </select>
             </div>
-            <Button variant="contained" className="px-5">
+            <Button variant="contained" className="px-5 text-nowrap sm:w-1/4">
               CV Search
             </Button>
           </div>
@@ -114,7 +114,7 @@ const page = () => {
             <h4 className="text-white text-lg font-bold mb-2">
               Upgrade your Account to Get more applicants
             </h4>
-            <button className="bg-white rounded-xl px-4 py-2 text-black shadow-xl">
+            <button className="bg-white rounded-xl px-4 py-2 text-black shadow-xl hover:bg-black hover:text-white duration-300 transition-colors">
               Upgrade
             </button>
           </div>
@@ -205,22 +205,26 @@ const JobCard: React.FC = () => {
           </div>
         </div>
         <div className="flex items-center justify-center md:justify-start gap-4 mb-2 flex-wrap">
-          <button className=" border-2 border-[#185D43] text-[#185D43] font-semibold py-2 px-4">
-            Healthcare
-          </button>
-          <button className="bg-[#9BDB9C33] border border-[#185D43] text-black font-semibold py-2 px-4 shadow-lg">
-            Doctors
-          </button>
-          <button className=" border-2 border-[#185D43] text-[#185D43] font-semibold py-2 px-4 text-nowrap">
-            <span>Egypt</span>
-            <Image
-              src="/images/flag-egypt.jpg"
-              alt="egypt flag"
-              width={50}
-              height={20}
-              className="w-auto h-6 inline object-contain "
-            />
-          </button>
+          <Chip
+            sx={{ color: "#185D43" }}
+            label="Healthcare"
+            variant="outlined"
+          />
+          <Chip sx={{ color: "#185D43" }} label="Doctors" variant="outlined" />
+          <Chip
+            sx={{ color: "#185D43" }}
+            avatar={
+              <Image
+                src="/images/flag-egypt.jpg"
+                alt="egypt flag"
+                width={20}
+                height={20}
+                className="mr-2"
+              />
+            }
+            label="Egypt"
+            variant="outlined"
+          />
         </div>
       </div>
       <Controls />

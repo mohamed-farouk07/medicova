@@ -1,11 +1,10 @@
+"use client";
 import React, { useState } from "react";
 import { Box, TextField, Button, InputLabel } from "@mui/material";
+import { useRouter } from "next/navigation";
 
-interface ForgetFormProps {
-  onSubmit: (formData: { email: string }) => void;
-}
-
-const ForgetForm: React.FC<ForgetFormProps> = ({ onSubmit }) => {
+const ForgetForm: React.FC = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
   });
@@ -38,7 +37,8 @@ const ForgetForm: React.FC<ForgetFormProps> = ({ onSubmit }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      onSubmit(formData); // Trigger parent's onSubmit handler
+      console.log("Form submitted:", formData);
+      router.push("/reset");
     }
   };
 
@@ -49,7 +49,7 @@ const ForgetForm: React.FC<ForgetFormProps> = ({ onSubmit }) => {
       className="w-full justify-center items-center flex flex-col py-5"
     >
       <Box className="w-full md:w-[400px]">
-        <Box sx={{ mb: 2 }}>
+        <Box sx={{ mb: !!errors.email ? 1 : 2 }}>
           <InputLabel
             sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}
           >
@@ -72,15 +72,10 @@ const ForgetForm: React.FC<ForgetFormProps> = ({ onSubmit }) => {
           fullWidth
           sx={{
             maxWidth: 400,
-            background: "linear-gradient(90deg, #2EAE7D, #185D43)",
-            color: "white",
+
             paddingY: 1.5,
             fontSize: "16px",
             fontWeight: "bold",
-            textTransform: "none",
-            "&:hover": {
-              background: "linear-gradient(90deg, #2EAE7D, #185D43)",
-            },
           }}
           type="submit"
         >

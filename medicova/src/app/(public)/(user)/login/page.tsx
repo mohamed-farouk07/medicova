@@ -6,31 +6,19 @@ import LoginForm from "./LoginForm";
 
 const Login = () => {
   return (
-    <Box className="min-h-[calc(100vh-100px)] p-5 w-full flex justify-center items-center flex-col">
+    <Box className="min-h-[calc(100vh-100px)] px-5 w-full flex justify-center items-center flex-col">
       {/* Main Content */}
       <Container
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "row" },
           flex: 1,
           alignItems: "center",
           justifyContent: "space-between",
           gap: 2,
-          py: 5,
         }}
       >
         {/* Left Section: Photo */}
-        <Box
-          sx={{
-            flex: 1,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "relative", // Enables overlay positioning
-            paddingX: { xs: 2, md: 3 },
-          }}
-        >
+        <Box className="hidden md:flex flex-col justify-center items-center relative flex-1 px-2">
           {/* Main Background Image */}
           <Image
             src={cover}

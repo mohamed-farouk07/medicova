@@ -10,32 +10,28 @@ const Set = () => {
     <React.Fragment>
       <div className="absolute inset-0 bg-[url('/images/background.png')]  bg-cover bg-center opacity-20 z-[-1]"></div>
       {/* Main Content */}
-      <Box className="min-h-[calc(100vh-100px)] p-5 w-full flex justify-center items-center flex-col">
-        <Box className="w-full flex justify-center items-center flex-col bg-[#f8faff]/80 p-10 max-w-[600px] shadow-xl">
+      <Box className="min-h-[calc(100vh-100px)] w-full flex justify-center items-center flex-col">
+        <Box className="w-full flex justify-center items-center flex-col bg-[#f8faff]/80 max-w-[600px] shadow-xl">
           {/* Lock Icon */}
           <Image
             src="/images/set-password.jpg"
-            width={270}
-            height={240}
+            width={200}
+            height={170}
             alt="set password"
-            className="w-3/4 md:w-auto mix-blend-multiply object-contain"
+            className="mt-5 mix-blend-multiply object-contain"
           />
 
           {/* Title */}
-          <Typography
-            variant="h4"
-            fontWeight="bold"
-            sx={{ marginBottom: 1, color: "#03353C" }}
-          >
+          <Typography variant="h4" fontWeight="bold" sx={{ color: "#03353C" }}>
             Set a new password
           </Typography>
 
           {/* Subtitle */}
           <Typography
             variant="body1"
-            sx={{ color: "#00000080", marginBottom: 1, textAlign: "center" }}
+            sx={{ color: "#00000080", textAlign: "center" }}
           >
-            Must be at least 8 characts.
+            Must be at least 8 character.
           </Typography>
 
           {/* Email Input */}
@@ -45,7 +41,7 @@ const Set = () => {
           <Link
             href="/login"
             passHref
-            className="text-[#93D3BD] flex items-center gap-2"
+            className="text-[#93D3BD] flex items-center gap-2 mb-4"
           >
             <ArrowBackIcon
               sx={{
