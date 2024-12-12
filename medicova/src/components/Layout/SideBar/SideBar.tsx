@@ -16,8 +16,8 @@ const SideBar = ({ isOpen, close }: SideBarProps) => {
     <Box className={isOpen ? classMobileOpen : classNormal}>
       <Box className="lg:mt-0 w-60 overflow-y-auto max-h-[calc(100vh-100px)] overflow-x-hidden pt-5 scroll-bar-hidden">
         <List>
-          {sideBarLinks.map((link) => (
-            <ItemSelector key={link.title} link={link} onClick={close} />
+          {sideBarLinks.map((link, index) => (
+            <ItemSelector key={index} link={link} onClick={close} />
           ))}
         </List>
       </Box>

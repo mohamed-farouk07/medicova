@@ -68,12 +68,12 @@ const Header = () => {
               <HamburgerIcon />
             </IconButton>
 
+            {/* Mobile menu backdrop */}
             <div
               onClick={close}
               aria-hidden="true"
               className={`${isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"} fixed inset-0 top-[100px] h-screen w-screen bg-black/30 backdrop-blur-sm duration-700 md:hidden`}
             />
-
             <SideBar isOpen={isMenuOpen} close={close} />
           </Box>
           {/* Logo */}

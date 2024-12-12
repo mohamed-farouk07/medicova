@@ -52,8 +52,8 @@ const CollapseIem: React.FC<LinkType & { onClick?: () => void }> = ({
         <List component="div" disablePadding>
           {links &&
             links.length > 0 &&
-            links.map((link) => (
-              <ListItem key={link.title} disablePadding>
+            links.map((link, index) => (
+              <ListItem key={index} disablePadding>
                 <ListItemButton
                   component={Link}
                   disabled={!link.url}

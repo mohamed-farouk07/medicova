@@ -5,7 +5,6 @@ import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import PlaceIcon from "@mui/icons-material/Place";
 import GroupsIcon from "@mui/icons-material/Groups";
 import EditIcon from "@mui/icons-material/Edit";
-import ShareIcon from "@mui/icons-material/Share";
 import ShareMenu from "@/components/UI/ShareMenu";
 
 const HeaderSection: React.FC = () => {
@@ -13,8 +12,10 @@ const HeaderSection: React.FC = () => {
     <Box
       sx={{
         display: "flex",
+        flexWrap: "wrap",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: { xs: "center", md: "space-between" },
+        gap: 2,
         backgroundColor: "#fff",
         padding: "30px",
         borderRadius: "8px",
@@ -24,7 +25,7 @@ const HeaderSection: React.FC = () => {
     >
       <Box sx={{ position: "relative" }}>
         <Avatar
-          src="/path/to/logo.png"
+          src="/images/logo.png"
           sx={{
             width: 100,
             height: 100,
@@ -79,6 +80,7 @@ const HeaderSection: React.FC = () => {
           <Box
             sx={{
               display: "flex",
+              flexWrap: "wrap",
               gap: 3,
               alignItems: "center",
               justifyContent: "center",
