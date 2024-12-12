@@ -26,7 +26,7 @@ const links = [
   },
   {
     title: "My Jobs",
-    link: "/manage-jobs",
+    link: "/job/manage-jobs",
   },
   {
     title: "CV Search",
@@ -113,6 +113,8 @@ const Header = () => {
                   key={link.title}
                   href={href}
                   style={{
+                    pointerEvents: link.disabled ? "none" : "auto",
+                    cursor: link.disabled ? "none" : "pointer",
                     textDecoration: "none",
                     textTransform: "capitalize",
                   }}
