@@ -52,7 +52,7 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
             <ListItemButton
               sx={{
                 "&:hover": {
-                  backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
+                  backgroundColor: "rgba(222, 240, 235, 1)",
                 },
               }}
               onClick={toggleDashboard}
@@ -264,12 +264,11 @@ const SideBar = ({ isOpen }: { isOpen?: boolean }) => {
               <ListItem disablePadding>
                 <ListItemButton
                   component={Link}
-                  href="/cv-search/candidates"
-                  disabled
+                  href="/cv/candidates"
                   sx={{
                     pl: 7,
                     "&:hover": {
-                      backgroundColor: "rgba(222, 240, 235, 1)", // Background color on hover
+                      backgroundColor: "rgba(222, 240, 235, 1)",
                     },
                   }}
                 >
