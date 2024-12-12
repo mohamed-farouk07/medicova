@@ -74,6 +74,9 @@ const PostJobForm: React.FC = () => {
           "& .MuiStepIcon-root": {
             color: "rgba(0, 0, 0, 0.5)",
           },
+          "& .MuiStepIcon-text": {
+            fill: "rgba(255, 255, 255, 1)", // Example: White text
+          },
           "& .MuiStepIcon-root.Mui-active": {
             color: "rgba(24, 93, 67, 1)",
           },

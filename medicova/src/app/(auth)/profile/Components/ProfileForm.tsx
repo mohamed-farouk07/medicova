@@ -443,11 +443,11 @@ const ProfileForm: React.FC = () => {
               }}
             >
               <Button
+                variant="contained"
                 sx={{
                   width: "204.16px",
                   height: "46px",
-                  background: "linear-gradient(180deg, #2EAE7D, #134834)",
-                  color: "#fff",
+                  borderRadius: "3px",
                   textTransform: "capitalize",
                   fontWeight: "600",
                 }}

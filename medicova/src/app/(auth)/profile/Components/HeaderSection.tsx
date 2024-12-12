@@ -6,6 +6,7 @@ import PlaceIcon from "@mui/icons-material/Place";
 import GroupsIcon from "@mui/icons-material/Groups";
 import EditIcon from "@mui/icons-material/Edit";
 import ShareIcon from "@mui/icons-material/Share";
+import ShareMenu from "@/components/UI/ShareMenu";
 
 const HeaderSection: React.FC = () => {
   return (
@@ -46,7 +47,10 @@ const HeaderSection: React.FC = () => {
             },
           }}
         >
-          <ChangeCircleIcon sx={{ color: "rgba(46, 174, 125, 1)" }} fontSize="large" />
+          <ChangeCircleIcon
+            sx={{ color: "rgba(46, 174, 125, 1)" }}
+            fontSize="large"
+          />
         </IconButton>
       </Box>
       <Box
@@ -104,26 +108,25 @@ const HeaderSection: React.FC = () => {
       <Box sx={{ display: "flex", gap: 2 }}>
         <IconButton
           size="small"
+          color="primary"
           sx={{
             border: 1,
             borderColor: "grey.300",
             borderRadius: 0,
-            color: "rgba(46, 174, 125, 1)",
           }}
         >
           <EditIcon />
         </IconButton>
-        <IconButton
+        <ShareMenu
+          link="https://medicova.com"
           size="small"
+          color="primary"
           sx={{
             border: 1,
             borderColor: "grey.300",
             borderRadius: 0,
-            color: "rgba(46, 174, 125, 1)",
           }}
-        >
-          <ShareIcon />
-        </IconButton>
+        />
       </Box>
     </Box>
   );

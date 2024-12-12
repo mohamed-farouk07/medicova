@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { IconButton, Menu, MenuItem, Snackbar } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
@@ -8,7 +9,9 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
-const ShareMenu: React.FC<{ link: string }> = ({ link }) => {
+const ShareMenu: React.FC<
+  { link: string } & React.ComponentProps<typeof IconButton>
+> = ({ link, ...props }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [showCopyAlert, setShowCopyAlert] = useState(false);
   const open = Boolean(anchorEl);
@@ -50,10 +53,11 @@ const ShareMenu: React.FC<{ link: string }> = ({ link }) => {
     <div>
       <IconButton
         onClick={handleClick}
-        className="text-gray-600 hover:text-gray-800"
         aria-controls={open ? "share-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
+        color="primary"
+        {...props}
       >
         <ShareIcon />
       </IconButton>

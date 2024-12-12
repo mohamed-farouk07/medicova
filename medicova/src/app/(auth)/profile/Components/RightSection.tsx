@@ -49,12 +49,12 @@ const RightSection: React.FC = () => {
           }}
         >
           <Button
+            variant="contained"
             sx={{
               width: "204.16px",
               height: "46px",
-              background: "linear-gradient(180deg, #2EAE7D, #134834)",
-              color: "#fff",
               textTransform: "capitalize",
+              borderRadius: "3px",
               fontWeight: "600",
             }}
           >

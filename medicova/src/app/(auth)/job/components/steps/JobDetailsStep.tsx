@@ -48,7 +48,7 @@ const JobDetailsStep: React.FC = () => {
           placeholder="Enter Job Title"
           sx={{
             backgroundColor: "rgba(214, 221, 235, 0.18)",
-            width: "50%",
+            width: { xs: "100%", sm: "50%" },
             ...focusStyle,
             "& .MuiInputBase-root": {
               height: 40, // Adjust the height here
@@ -58,9 +58,15 @@ const JobDetailsStep: React.FC = () => {
       </Box>
 
       {/* Industry */}
-      <Box sx={{ width: "50%" }}>
+      <Box sx={{ width: { xs: "100%", sm: "80%", md: "50%" } }}>
         <Typography sx={{ mb: 1, fontWeight: "bold" }}>Industry *</Typography>
-        <Box sx={{ display: "flex", gap: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: { xs: "wrap", md: "nowrap" },
+            gap: 2,
+          }}
+        >
           {["Healthcare", "Pharmaceutical", "Education"].map((label) => (
             <Button
               key={label}
@@ -93,7 +99,13 @@ const JobDetailsStep: React.FC = () => {
       </Box>
 
       {/* Dropdowns */}
-      <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+          gap: 2,
+        }}
+      >
         <Box sx={{ width: "100%" }}>
           <InputLabel
             sx={{
@@ -192,11 +204,11 @@ const JobDetailsStep: React.FC = () => {
       </Box>
 
       {/* Type of Employment */}
-      <Box sx={{ width: "50%" }}>
+      <Box sx={{ width: { xs: "100%", md: "50%" } }}>
         <Typography sx={{ mb: 1, fontWeight: "bold" }}>
           Type of Employment *
         </Typography>
-        <Box sx={{ display: "flex", gap: 2 }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
           {["Full Time", "Part Time", "Freelance", "Volunteer"].map((label) => (
             <Button
               key={label}
@@ -220,6 +232,7 @@ const JobDetailsStep: React.FC = () => {
                 "&:hover": {
                   borderColor: "rgba(46, 174, 125, 1)", // Maintain hover border color
                 },
+                whiteSpace: "nowrap", // Add this
               }}
             >
               {label}
@@ -227,17 +240,17 @@ const JobDetailsStep: React.FC = () => {
           ))}
         </Box>
       </Box>
-
       {/* Work Place */}
-      <Box sx={{ width: "50%" }}>
+      <Box sx={{ width: { xs: "100%", md: "50%" } }}>
         <Typography sx={{ mb: 1, fontWeight: "bold" }}>Work Place *</Typography>
-        <Box sx={{ display: "flex", gap: 2 }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
           {["Onsite", "Remote", "Hybird"].map((label) => (
             <Button
               key={label}
               variant="outlined"
               onClick={() => handleClick(label)}
               sx={{
+                whiteSpace: "nowrap", // Add this
                 textTransform: "capitalize",
                 flex: 1,
                 borderColor:
@@ -264,15 +277,16 @@ const JobDetailsStep: React.FC = () => {
       </Box>
 
       {/* Gender */}
-      <Box sx={{ width: "50%" }}>
+      <Box sx={{ width: { xs: "100%", md: "50%" } }}>
         <Typography sx={{ mb: 1, fontWeight: "bold" }}>Work Place *</Typography>
-        <Box sx={{ display: "flex", gap: 2 }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
           {["Male", "Female"].map((label) => (
             <Button
               key={label}
               variant="outlined"
               onClick={() => handleClick(label)}
               sx={{
+                whiteSpace: "nowrap",
                 textTransform: "capitalize",
                 flex: 1,
                 borderColor:
@@ -297,9 +311,12 @@ const JobDetailsStep: React.FC = () => {
           ))}
         </Box>
       </Box>
+      {/* //////////////////////// */}
 
       {/* Age */}
-      <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+      <Box
+        sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}
+      >
         <Box sx={{ flex: 1 }}>
           <InputLabel sx={{ fontWeight: "bold", mb: 1 }}>Age Min *</InputLabel>
           <TextField
@@ -365,7 +382,13 @@ const JobDetailsStep: React.FC = () => {
         </FormControl>
       </Box>
       {/* Job Location */}
-      <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+          gap: 2,
+        }}
+      >
         <FormControl fullWidth>
           <InputLabel>Job Location *</InputLabel>
           <Select>
@@ -380,7 +403,9 @@ const JobDetailsStep: React.FC = () => {
         </FormControl>
       </Box>
       {/* Years of Experience */}
-      <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+      <Box
+        sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}
+      >
         <Box sx={{ flex: 1 }}>
           <InputLabel sx={{ fontWeight: "bold", mb: 1 }}>
             Years of Experience Min *
@@ -445,7 +470,7 @@ const JobDetailsStep: React.FC = () => {
           display: "flex",
           gap: 2,
           alignItems: "center",
-          width: "50%",
+          width: { xs: "100%", md: "50%" },
         }}
       >
         <Box sx={{ flex: 1 }}>
@@ -472,7 +497,7 @@ const JobDetailsStep: React.FC = () => {
         sx={{
           gap: 2,
           alignItems: "center",
-          width: "50%",
+          width: { xs: "100%", md: "50%" },
         }}
       >
         <Typography sx={{ fontWeight: "bold", mb: 1 }}>
@@ -508,6 +533,7 @@ const JobDetailsStep: React.FC = () => {
           </Button>
         </Box>
       </Box>
+      {/* //////////////////////// */}
     </Box>
   );
 };

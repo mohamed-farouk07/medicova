@@ -2,16 +2,18 @@
 
 import React, { useState } from "react";
 import { Box, TextField, Button, InputLabel } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 const SetForm: React.FC = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     password: "",
-    confirmePassword: "",
+    confirmPassword: "",
   });
 
   const [errors, setErrors] = useState({
     password: "",
-    confirmePassword: "",
+    confirmPassword: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,12 +32,11 @@ const SetForm: React.FC = () => {
       newErrors.password = "Password must be at least 6 characters";
     }
 
-    if (!formData.confirmePassword) {
-      newErrors.confirmePassword = "Password is required";
-    } else if (formData.confirmePassword.length < 6) {
-      newErrors.confirmePassword = "Password must be at least 6 characters";
+    if (!formData.confirmPassword) {
+      newErrors.confirmPassword = "Password is required";
+    } else if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = "Password does not match";
     }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -44,6 +45,7 @@ const SetForm: React.FC = () => {
     e.preventDefault();
     if (validateForm()) {
       console.log("Form submitted:", formData);
+      router.push("/login");
     }
   };
 
@@ -78,14 +80,14 @@ const SetForm: React.FC = () => {
             Confirme Password
           </InputLabel>
           <TextField
-            placeholder="Enter Confirme password"
+            placeholder="Enter Confirm password"
             type="password"
             fullWidth
-            name="confirmePassword"
-            value={formData.confirmePassword}
+            name="confirmPassword"
+            value={formData.confirmPassword}
             onChange={handleChange}
-            error={!!errors.confirmePassword}
-            helperText={errors.confirmePassword}
+            error={!!errors.confirmPassword}
+            helperText={errors.confirmPassword}
           />
         </Box>
 
@@ -95,19 +97,13 @@ const SetForm: React.FC = () => {
           fullWidth
           sx={{
             maxWidth: 400,
-            background: "linear-gradient(90deg, #2EAE7D, #185D43)",
-            color: "white",
             paddingY: 1.5,
             fontSize: "16px",
             fontWeight: "bold",
-            textTransform: "none",
-            "&:hover": {
-              background: "linear-gradient(90deg, #185D43,  #2EAE7D)",
-            },
           }}
           type="submit"
         >
-          Send
+          Set
         </Button>
       </Box>
     </form>

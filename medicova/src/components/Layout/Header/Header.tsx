@@ -19,7 +19,31 @@ import Image from "next/image";
 import SideBar from "@/components/Layout/SideBar/SideBar";
 import { HamburgerIcon } from "@/components/icons/icons";
 
-const pages = ["Dashboard", "My Jobs", "CV Search", "Report", "Billing"];
+const links = [
+  {
+    title: "Dashboard",
+    link: "/dashboard",
+  },
+  {
+    title: "My Jobs",
+    link: "/manage-jobs",
+  },
+  {
+    title: "CV Search",
+    link: "/cv-search",
+    disabled: true,
+  },
+  {
+    title: "Report",
+    link: "/report",
+    disabled: true,
+  },
+  {
+    title: "Billing",
+    link: "/billing",
+    disabled: true,
+  },
+];
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
   const toggleMenu = () => setMenuOpen(!isMenuOpen);
@@ -82,12 +106,13 @@ const Header = () => {
               display: { xs: "none", md: "flex" },
             }}
           >
-            {pages.map((page) => {
-              const href = `/${page.toLowerCase().replace(" ", "-")}`;
-              const isActive = pathname === href;
+            {links.map((link) => {
+              const href = `${link.link.toLowerCase().replace(" ", "-")}`;
+              const currentPage = pathname.split("/").pop();
+              const isActive = `/${currentPage}` === href;
               return (
                 <Link
-                  key={page}
+                  key={link.title}
                   href={href}
                   style={{
                     textDecoration: "none",
@@ -95,6 +120,7 @@ const Header = () => {
                   }}
                 >
                   <Button
+                    disabled={link.disabled}
                     sx={{
                       fontWeight: 600,
                       color: isActive ? "#185D43" : "#000",
@@ -103,10 +129,11 @@ const Header = () => {
                       "&:hover": {
                         color: "#185D43",
                       },
+
                       fontSize: { xs: "14px", sm: "14px" },
                     }}
                   >
-                    {page}
+                    {link.title}
                   </Button>
                 </Link>
               );
@@ -122,13 +149,10 @@ const Header = () => {
             }}
           >
             <Button
+              variant="contained"
               sx={{
                 marginRight: "16px",
-                color: "#fff",
-                background: "linear-gradient(180deg, #2EAE7D, #134834)",
-                border: "none",
                 display: { xs: "none", md: "block" },
-                borderRadius: "0",
                 fontWeight: "bold",
                 fontSize: { xs: "12px", sm: "14px" },
                 padding: { xs: "8px 16px", sm: "10px 10px" },
@@ -140,13 +164,16 @@ const Header = () => {
               <div className="absolute right-3 top-3 h-2 w-2 rounded-full border border-white bg-red-500" />
               <NotificationsNoneIcon sx={{ color: "#515B6F" }} />
             </IconButton>
-            <Avatar
-              sx={{
-                display: { xs: "none", md: "flex" },
-              }}
-              alt="User Avatar"
-              src="/images/company-avatar.jpg"
-            />
+            <Link href="/profile" className="hover:scale-105 duration-300">
+              <Avatar
+                sx={{
+                  display: { xs: "none", md: "flex" },
+                  cursor: "pointer",
+                }}
+                alt="User Avatar"
+                src="/images/company-avatar.jpg"
+              />
+            </Link>
           </Box>
         </Toolbar>
       </Container>

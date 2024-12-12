@@ -24,23 +24,19 @@ const users = [
 
 const Register = () => {
   return (
-    <Container
-      sx={{
-        display: "flex",
-        flexDirection: { xs: "column", md: "row" },
-        justifyContent: "space-between",
-        gap: 5,
-      }}
-    >
+    <Container className="flex justify-between gap-5">
       {/* Right Section: Register Form */}
       <RegisterForm />
       <Box
         sx={{
           backgroundColor: "#2EAE7D",
+          display: { xs: "none", md: "flex" },
+          flexDirection: "column",
+          justifyContent: "space-between",
           flex: 1,
           minHeight: 500,
+          margin: 2,
           position: "relative",
-          width: { xs: "100%", md: "50%" },
         }}
       >
         <div className="mt-8 ml-12">
