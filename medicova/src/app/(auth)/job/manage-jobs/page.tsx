@@ -1,26 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
-  Typography,
   TextField,
   Button,
   IconButton,
-  Card,
-  CardContent,
   Grid,
   Tabs,
   Tab,
-  Switch,
-  Chip,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import EditIcon from "@mui/icons-material/Edit";
 import TuneIcon from "@mui/icons-material/Tune";
-import ShareIcon from "@mui/icons-material/Share";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Controls from "@/components/UI/Controls";
-import Image from "next/image";
+import JobCard from "@/components/UI/job-card";
 
 const ManageJobs: React.FC = () => {
   const [activeTab, setActiveTab] = React.useState(0);
@@ -117,110 +108,7 @@ const ManageJobs: React.FC = () => {
       {/* Job Listings */}
       <Grid container spacing={2}>
         {Array.from({ length: 4 }).map((_, index) => (
-          <Grid item xs={12} key={index}>
-            <Card
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "10px 20px",
-              }}
-            >
-              {/* Main Content Area */}
-              <Box sx={{ display: "flex", gap: 2, alignItems: "flex-start" }}>
-                {/* Image Section */}
-                <Box sx={{ textAlign: "center" }}>
-                  <Box
-                    component="img"
-                    src="https://via.placeholder.com/100"
-                    alt="Consultant"
-                    sx={{ width: 100, height: 100, borderRadius: 2 }}
-                  />
-                  <Typography
-                    variant="body2"
-                    sx={{ marginTop: 1, color: "#00000080" }}
-                  >
-                    since 6 days
-                  </Typography>
-                </Box>
-
-                {/* Info Section */}
-                <Box>
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                    <Typography variant="h6">Consultant Cardiology</Typography>
-                    <IconButton size="small" aria-label="edit">
-                      <EditIcon sx={{ fontSize: 18, color: "#185D43" }} />
-                    </IconButton>
-                  </Box>
-                  <Typography variant="body2" color="textSecondary">
-                    Full Time
-                    <span
-                      style={{
-                        color: "#FFAE35",
-                        margin: "0 4px",
-                      }}
-                    >
-                      •
-                    </span>
-                    Onsite
-                    <span style={{ color: "#FFAE35", margin: "0 4px" }}>•</span>
-                    Master’s Degree
-                    <span style={{ color: "#FFAE35", margin: "0 4px" }}>•</span>
-                    Cardio-vascular
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Male and Female
-                    <span style={{ color: "#FFAE35", margin: "0 4px" }}>•</span>
-                    Consultant
-                    <span style={{ color: "#FFAE35", margin: "0 4px" }}>•</span>
-                    6 Days ago
-                    <span style={{ color: "#FFAE35", margin: "0 4px" }}>•</span>
-                    20000 EGP
-                  </Typography>
-                  <Box sx={{ display: "flex", gap: 1, mt: 1 }}>
-                    <Chip
-                      sx={{ color: "#185D43" }}
-                      label="Healthcare"
-                      variant="outlined"
-                    />
-                    <Chip
-                      sx={{ color: "#185D43" }}
-                      label="Doctors"
-                      variant="outlined"
-                    />
-                    <Chip
-                      sx={{ color: "#185D43" }}
-                      avatar={
-                        <Image
-                          src="/images/flag-egypt.jpg"
-                          alt="egypt flag"
-                          width={20}
-                          height={20}
-                          className="mr-2 object-contain"
-                        />
-                      }
-                      label="Egypt"
-                      variant="outlined"
-                    />
-                  </Box>
-                </Box>
-              </Box>
-              {/* Actions Section */}
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  gap: 2,
-                  mb: 2,
-                }}
-              >
-                {/* Switch and Icon Buttons Row */}
-
-                <Controls />
-              </Box>
-            </Card>
-          </Grid>
+          <JobCard key={index} />
         ))}
       </Grid>
     </Box>

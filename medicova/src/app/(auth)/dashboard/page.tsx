@@ -1,15 +1,13 @@
 "use client";
 import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
 import GroupsIcon from "@mui/icons-material/Groups";
-import { Button, Chip, IconButton } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import { Ellipse5, GridIcon } from "@/components/icons/icons";
-import CreateIcon from "@mui/icons-material/Create";
-import PaidIcon from "@mui/icons-material/Paid";
 import EastIcon from "@mui/icons-material/East";
-import Controls from "@/components/UI/Controls";
+import JobCard from "@/components/UI/job-card";
 const page = () => {
   return (
     <div>
@@ -74,26 +72,24 @@ const page = () => {
             </Button>
           </div>
           {/* recent jobs */}
-          <h2 className="mx-3 text-3xl font-semibold mt-10">
+          <h2 className="mx-3 text-3xl font-semibold mt-10 mb-5">
             Recent{" "}
             <span className="text-3xl font-semibold mt-5 text-[#2EAE7D]">
               Jobs
             </span>
           </h2>
 
-          <div className="bg-[#F7F7FD] p-3 mt-5 ">
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <div className="flex w-full justify-center">
+          <Grid container spacing={2}>
+            {Array.from({ length: 4 }).map((_, index) => (
+              <JobCard key={index} />
+            ))}
+            <Box className="flex w-full justify-center">
               <Button variant="text" className=" mt-5 my-2 text-xl">
                 All Jobs
                 <EastIcon className="inline-block mx-2" />
               </Button>
-            </div>
-          </div>
+            </Box>
+          </Grid>
         </div>
         <div className="max-w-[250px] hidden lg:block ">
           <div className="w-full p-4 flex flex-col gap-2 bg-[#F7F7FD]">
@@ -148,89 +144,6 @@ const page = () => {
 };
 
 export default page;
-
-const JobCard: React.FC = () => {
-  return (
-    <div className="flex p-4 py-6 gap-3   flex-wrap md:flex-nowrap justify-center md:justify-start  bg-white mb-5">
-      <div className=" gap-3 text-center h-fit min-w-[100px]">
-        <Image
-          src="/images/logo.png"
-          alt="logo"
-          width={100}
-          height={100}
-          className="border"
-        />
-        <p className="text-black/50 text-sm my-2">since 9 days</p>
-      </div>
-      <div>
-        <div className="flex items-center justify-center md:justify-start gap-4">
-          <h4 className="text-2xl font-bold">Consultant Cardiology</h4>
-          <IconButton className=" w-10 text-[#6A727A] h-10  hover:text-[#185D43] ">
-            <CreateIcon className=" m-2" />
-          </IconButton>
-        </div>
-        <div className="flex items-center justify-center md:justify-start  my-2 text-black/50 flex-wrap">
-          <div className="mr-3">
-            <span className="inline-block w-2 h-2 bg-yellow-500 rounded-full ring-1 ring-yellow-500  mr-3"></span>
-            <p className="inline-block">Full Time</p>
-          </div>
-          <div className="mr-3">
-            <span className="inline-block w-2 h-2 bg-yellow-500 rounded-full ring-1 ring-yellow-500  mr-3"></span>
-            <p className="inline-block">Onsite</p>
-          </div>
-          <div className="mr-3">
-            <span className="inline-block w-2 h-2 bg-yellow-500 rounded-full ring-1 ring-yellow-500  mr-3"></span>
-            <p className="inline-block">Master’s Degree</p>
-          </div>
-          <div className="mr-3">
-            <span className="inline-block w-2 h-2 bg-yellow-500 rounded-full ring-1 ring-yellow-500  mr-3"></span>
-            <p className="inline-block">Cardio-vascular</p>
-          </div>
-          <div className="mr-3">
-            <span className="inline-block w-2 h-2 bg-yellow-500 rounded-full ring-1 ring-yellow-500  mr-3"></span>
-            <p className="inline-block">Male and Female</p>
-          </div>
-          <div className="mr-3">
-            <span className="inline-block w-2 h-2 bg-yellow-500 rounded-full ring-1 ring-yellow-500  mr-3"></span>
-            <p className="inline-block">Consultant</p>
-          </div>
-          <div className="mr-3">
-            <span className="inline-block w-2 h-2 bg-yellow-500 rounded-full ring-1 ring-yellow-500  mr-3"></span>
-            <p className="inline-block">EX (3-5) Years</p>
-          </div>
-          <div className="mr-3">
-            <PaidIcon className="text-yellow-500 w-4 h-4" />
-
-            <p className="inline-block">12000 SAR</p>
-          </div>
-        </div>
-        <div className="flex items-center justify-center md:justify-start gap-4 mb-2 flex-wrap">
-          <Chip
-            sx={{ color: "#185D43" }}
-            label="Healthcare"
-            variant="outlined"
-          />
-          <Chip sx={{ color: "#185D43" }} label="Doctors" variant="outlined" />
-          <Chip
-            sx={{ color: "#185D43" }}
-            avatar={
-              <Image
-                src="/images/flag-egypt.jpg"
-                alt="egypt flag"
-                width={20}
-                height={20}
-                className="mr-2"
-              />
-            }
-            label="Egypt"
-            variant="outlined"
-          />
-        </div>
-      </div>
-      <Controls />
-    </div>
-  );
-};
 
 const CvCard: React.FC = () => {
   return (
