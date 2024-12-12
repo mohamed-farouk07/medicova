@@ -47,6 +47,7 @@ const links = [
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
   const toggleMenu = () => setMenuOpen(!isMenuOpen);
+  const close = () => setMenuOpen(false);
   const pathname = usePathname(); // Get the current path
 
   return (
@@ -66,17 +67,14 @@ const Header = () => {
             >
               <HamburgerIcon />
             </IconButton>
-            <Backdrop
-              sx={{
-                color: "#fff",
-                zIndex: 35,
-                mt: "100px",
-              }}
-              open={isMenuOpen}
-              onClick={() => setMenuOpen(false)}
-            >
-              <SideBar isOpen={isMenuOpen} />
-            </Backdrop>
+
+            <div
+              onClick={close}
+              aria-hidden="true"
+              className={`${isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"} fixed inset-0 top-[100px] h-screen w-screen bg-black/30 backdrop-blur-sm duration-700 md:hidden`}
+            />
+
+            <SideBar isOpen={isMenuOpen} close={close} />
           </Box>
           {/* Logo */}
           <Box
