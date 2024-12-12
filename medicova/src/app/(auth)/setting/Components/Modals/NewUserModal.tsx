@@ -33,7 +33,7 @@ const NewUserModal: React.FC<NewUserModalProps> = ({ open, onClose }) => {
           transform: "translate(-50%, -50%)",
           maxWidth: "500px",
           width: "90%",
-          maxHeight: "95vh",
+          maxHeight: "90dvh",
           overflowY: "auto",
           backgroundColor: "#fff",
           borderRadius: "8px",
