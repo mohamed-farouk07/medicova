@@ -21,6 +21,7 @@ const RegisterForm: React.FC = () => {
     password: "",
     firstName: "",
     lastName: "",
+    companyName: "",
     phone: "",
   });
 
@@ -29,6 +30,7 @@ const RegisterForm: React.FC = () => {
     password: "",
     firstName: "",
     lastName: "",
+    companyName: "",
     phone: "",
   });
 
@@ -58,6 +60,13 @@ const RegisterForm: React.FC = () => {
       newErrors.lastName = "Last name is required";
     } else if (formData.lastName.length < 3) {
       newErrors.lastName = "Last name must be at least 3 characters";
+    }
+
+    // Validate company Name
+    if (!formData.companyName) {
+      newErrors.companyName = "Company Name is required";
+    } else if (formData.companyName.length < 3) {
+      newErrors.companyName = "Company Name must be at least 3 characters";
     }
 
     if (!formData.email) {
@@ -266,6 +275,22 @@ const RegisterForm: React.FC = () => {
             onChange={handleChange}
             error={!!errors.password}
             helperText={errors.password}
+          />
+        </Box>
+        <Box sx={{ mb: 2 }}>
+          <InputLabel
+            sx={{ color: "#515B6F", fontWeight: "600", fontSize: "16px" }}
+          >
+            Company Name
+          </InputLabel>
+          <TextField
+            placeholder="Enter company name"
+            fullWidth
+            name="text"
+            value={formData.companyName}
+            onChange={handleChange}
+            error={!!errors.companyName}
+            helperText={errors.companyName}
           />
         </Box>
 
