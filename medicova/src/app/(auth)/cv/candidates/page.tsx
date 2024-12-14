@@ -57,29 +57,6 @@ const candidatesPage = () => {
           }}
         />
 
-        {/* Select Dropdown with Icon */}
-        <FormControl
-          variant="outlined"
-          sx={{
-            minWidth: 200,
-          }}
-        >
-          <Select
-            defaultValue="Egypt"
-            startAdornment={
-              <InputAdornment position="start">
-                <LocationOnIcon color="primary" />
-              </InputAdornment>
-            }
-            sx={{
-              borderRadius: "4px",
-            }}
-          >
-            <MenuItem value="Egypt">Egypt</MenuItem>
-            <MenuItem value="Saudi Arabia">Saudi Arabia</MenuItem>
-          </Select>
-        </FormControl>
-
         {/* Search Button */}
         <Button
           variant="contained"

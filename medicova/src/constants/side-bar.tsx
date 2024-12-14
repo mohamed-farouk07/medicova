@@ -72,6 +72,7 @@ export const sideBarLinks: LinkType[] = [
     links: [
       {
         title: "Search Candidates",
+        url: "/cv/candidates",
       },
       {
         title: "Saved Searches",
