@@ -96,7 +96,7 @@ const candidatesPage = () => {
               }}
             >
               <Avatar
-                src="/path-to-avatar.jpg"
+                src="/images/logo.png"
                 alt="Candidate"
                 sx={{ width: 90, height: 90 }}
               />

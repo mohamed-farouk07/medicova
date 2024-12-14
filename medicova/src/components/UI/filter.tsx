@@ -14,85 +14,27 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-
-// const filterSections = {
-//     city: [
-//       { label: "All", count: 100, value: "all" },
-//       { label: "Cairo", count: 50, value: "cairo" },
-//       { label: "Riyadh", count: 30, value: "riyadh" },
-//     ],
-//     nationality: [
-//       { label: "All", count: 200, value: "all" },
-//       { label: "Egyptian", count: 120, value: "egyptian" },
-//       { label: "Saudi Arabian", count: 80, value: "saudi" },
-//     ],
-//     industry: [
-//       { label: "All", count: 300, value: "all" },
-//       { label: "Physicians", count: 150, value: "physicians" },
-//       { label: "Dentists", count: 50, value: "dentists" },
-//       { label: "Physical Therapists", count: 40, value: "physical_therapists" },
-//       { label: "Pharmacists", count: 30, value: "pharmacists" },
-//       { label: "Nurses", count: 30, value: "nurses" },
-//     ],
-//     category: [
-//       { label: "All", count: 200, value: "all" },
-//       { label: "Doctor", count: 100, value: "doctor" },
-//       { label: "Nurse", count: 50, value: "nurse" },
-//       { label: "Pharmaceutical", count: 30, value: "pharmaceutical" },
-//       { label: "Physicalists", count: 10, value: "physicalists" },
-//       { label: "Specialized", count: 10, value: "specialized" },
-//     ],
-//     educationLevel: [
-//       { label: "All", count: 250, value: "all" },
-//       { label: "Institute", count: 50, value: "institute" },
-//       { label: "Bachelor’s Degree", count: 100, value: "bachelor" },
-//       { label: "Doctorate Degree", count: 70, value: "doctorate" },
-//       { label: "Fellowship", count: 30, value: "fellowship" },
-//     ],
-//     yearsOfExperience: [
-//       { label: "All", count: 150, value: "all" },
-//       { label: "1-3", count: 50, value: "1-3" },
-//       { label: "3-5", count: 40, value: "3-5" },
-//       { label: "5-10", count: 30, value: "5-10" },
-//       { label: "+10", count: 30, value: "10+" },
-//     ],
-//     gender: [
-//       { label: "All", count: 300, value: "all" },
-//       { label: "Male", count: 200, value: "male" },
-//       { label: "Female", count: 100, value: "female" },
-//     ],
-//     age: [
-//       { label: "18-25", count: 40, value: "18-25" },
-//       { label: "26-35", count: 50, value: "26-35" },
-//       { label: "36-45", count: 30, value: "36-45" },
-//       { label: "46-60", count: 20, value: "46-60" },
-//       { label: "60+", count: 10, value: "60+" },
-//     ],
-//   };
-
-//   const handleFilterChange = (sectionTitle: string, value: string) => {
-//     console.log(`${sectionTitle} changed to: ${value}`);
-//   };
+import CheckIcon from "@mui/icons-material/Check";
 interface FilterOption {
   label: string;
   count: number;
   value: string;
 }
 
-interface FilterSection {
-  title: string;
-  options: FilterOption[];
-}
-
-interface FilterSectionsProps {
-  sections: Record<string, FilterOption[]>;
+type Props<T extends Record<string, FilterOption[]>, K extends keyof T> = {
+  sections: T; // The object
+  searchKeys: K[]; // A key of the object
   onFilterChange: (sectionKey: string, value: string) => void;
-}
+};
 
-const FilterSections: React.FC<FilterSectionsProps> = ({
+const FilterSections = <
+  T extends Record<string, FilterOption[]>,
+  K extends keyof T
+>({
+  searchKeys,
   sections,
   onFilterChange,
-}) => {
+}: Props<T, K>) => {
   const [searchTerm, setSearchTerm] = useState<Record<string, string>>({
     nationality: "",
   });
@@ -102,13 +44,10 @@ const FilterSections: React.FC<FilterSectionsProps> = ({
   const [expandedSections, setExpandedSections] = useState<
     Record<string, boolean>
   >(
-    Object.keys(sections).reduce(
-      (acc, key) => {
-        acc[key] = true; // All sections open by default
-        return acc;
-      },
-      {} as Record<string, boolean>
-    )
+    Object.keys(sections).reduce((acc, key) => {
+      acc[key] = true; // All sections open by default
+      return acc;
+    }, {} as Record<string, boolean>)
   );
 
   const handleSearchChange = (
@@ -140,7 +79,7 @@ const FilterSections: React.FC<FilterSectionsProps> = ({
     key,
     title: key.charAt(0).toUpperCase() + key.slice(1),
     options:
-      key === "nationality" && searchTerm[key]
+      searchKeys.includes(key as K) && searchTerm[key]
         ? options.filter((option) =>
             option.label.toLowerCase().includes(searchTerm[key].toLowerCase())
           )
@@ -148,8 +87,11 @@ const FilterSections: React.FC<FilterSectionsProps> = ({
   }));
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md">
-      <div className="space-y-6">
+    <div className=" bg-white rounded-lg shadow-md">
+      <div className="flex items-center justify-center bg-[#DEF0EB] py-2">
+        <h5 className="text-3xl font-bold">Filters</h5>
+      </div>
+      <div className="space-y-6 p-4">
         {filteredSections.map((section) => (
           <div key={section.key} className="border-b pb-4 last:border-b-0">
             <Box
@@ -159,7 +101,7 @@ const FilterSections: React.FC<FilterSectionsProps> = ({
             >
               <Typography
                 variant="h6"
-                className="font-medium text-gray-800 mb-3"
+                className="text-[16px] font-bold text-[#25324B] mb-3"
               >
                 {section.title}
               </Typography>
@@ -175,27 +117,7 @@ const FilterSections: React.FC<FilterSectionsProps> = ({
               </IconButton>
             </Box>
 
-            {section.key === "nationality" && (
-              <TextField
-                fullWidth
-                variant="outlined"
-                placeholder="Search nationalities..."
-                value={searchTerm.nationality}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  handleSearchChange("nationality", e)
-                }
-                className="mb-3"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon className="text-gray-400" />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            )}
-
-            <Collapse in={expandedSections[section.key]}>
+            <Collapse className="px-1" in={expandedSections[section.key]}>
               <FormControl component="fieldset">
                 <RadioGroup
                   value={selectedValues[section.key] || ""}
@@ -208,14 +130,69 @@ const FilterSections: React.FC<FilterSectionsProps> = ({
                       <FormControlLabel
                         key={option.value}
                         value={option.value}
-                        control={<Radio />}
+                        control={
+                          <Radio
+                            checkedIcon={
+                              <Box
+                                sx={{
+                                  width: 22,
+                                  height: 22,
+                                  borderRadius: 1,
+                                  backgroundColor: "#2EAE7D", // Checked color
+                                  border: "2px solid #2EAE7D",
+                                }}
+                              >
+                                <CheckIcon
+                                  sx={{
+                                    width: 16,
+                                    height: 16,
+                                    margin: "auto",
+                                    color: "white", // Checked icon color
+                                  }}
+                                />
+                              </Box>
+                            }
+                            icon={
+                              <Box
+                                sx={{
+                                  width: 22,
+                                  height: 22,
+                                  borderRadius: 1,
+                                  backgroundColor: "transparent", // Unchecked color
+                                  border: "2px solid #D6DDEB",
+                                }}
+                              />
+                            }
+                          />
+                        }
                         label={`${option.label} (${option.count})`}
-                        className="text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
+                        className="text-[#515B6F] text-[16px] hover:bg-gray-50 rounded-md transition-colors"
                       />
                     ))}
                   </div>
                 </RadioGroup>
               </FormControl>
+              {searchKeys.includes(section.key as K) && (
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  placeholder="Search..."
+                  value={
+                    searchTerm[section.key as keyof typeof searchTerm] || ""
+                  }
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    handleSearchChange(section.key, e)
+                  }
+                  className="mb-3"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon className="text-gray-400" />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              )}
             </Collapse>
           </div>
         ))}

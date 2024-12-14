@@ -146,7 +146,12 @@ const ScreeningQuestionsStep: React.FC = () => {
   };
 
   return (
-    <Box sx={{ backgroundColor: "rgba(214, 221, 235, 0.18)", padding: "20px" }}>
+    <Box
+      sx={{
+        backgroundColor: "rgba(214, 221, 235, 0.18)",
+        padding: { xs: "10px", md: "20px" },
+      }}
+    >
       <Typography sx={{ mb: 1, fontWeight: "bold", color: "rgba(0, 0, 0, 1)" }}>
         Screening Questions
       </Typography>
@@ -160,8 +165,15 @@ const ScreeningQuestionsStep: React.FC = () => {
         </Alert>
       )}
 
-      <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
-        <Box sx={{ display: "flex", alignItems: "center", flex: 1, gap: 2 }}>
+      <Box sx={{ display: "flex", gap: { xs: 1, md: 2 }, mb: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            flex: 1,
+            gap: { xs: 1, md: 2 },
+          }}
+        >
           <Box
             sx={{
               display: "flex",
@@ -169,6 +181,7 @@ const ScreeningQuestionsStep: React.FC = () => {
               justifyContent: "center",
               width: 30,
               height: 30,
+              minWidth: 30,
               borderRadius: "50%",
               backgroundColor: "rgba(46, 174, 125, 1)",
             }}
@@ -185,7 +198,6 @@ const ScreeningQuestionsStep: React.FC = () => {
         <IconButton
           onClick={handleAddOrEditQuestion}
           sx={{
-            mr: 1,
             border: "1px solid #ddd",
             borderRadius: "4px",
             padding: "5px",
@@ -201,7 +213,6 @@ const ScreeningQuestionsStep: React.FC = () => {
               setEditingIndex(null);
             }}
             sx={{
-              mr: 1,
               border: "1px solid #ddd",
               borderRadius: "4px",
               padding: "5px",
@@ -221,6 +232,7 @@ const ScreeningQuestionsStep: React.FC = () => {
               backgroundColor: "#f5f5f5",
               borderRadius: 1,
               mb: 1,
+              pr: "100px",
               border: "1px solid #ddd",
             }}
           >
@@ -231,6 +243,7 @@ const ScreeningQuestionsStep: React.FC = () => {
                 justifyContent: "center",
                 width: 30,
                 height: 30,
+                minWidth: 30,
                 borderRadius: "50%",
                 backgroundColor: "rgba(46, 174, 125, 1)",
                 mr: 2,
@@ -411,7 +424,7 @@ const ScreeningQuestionsStep: React.FC = () => {
               Recipient Email:
             </Typography>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center" }}>
             <Typography
               sx={{ fontWeight: "bold", color: "rgba(0, 0, 0, 0.8)" }}
             >

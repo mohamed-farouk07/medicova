@@ -4,20 +4,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Box,
-  Typography,
   Button,
   IconButton,
   Avatar,
   AppBar,
   Container,
   Toolbar,
-  Backdrop,
+  Drawer,
+  List,
 } from "@mui/material";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import logo from "@/components/images/logo.svg";
 import Image from "next/image";
-import SideBar from "@/components/Layout/SideBar/SideBar";
 import { HamburgerIcon } from "@/components/icons/icons";
+import ItemSelector from "@/components/UI/menu-item";
+import { employerSideBarLinks } from "@/constants/side-bar";
 
 const links = [
   {
@@ -67,15 +68,23 @@ const Header = () => {
             >
               <HamburgerIcon />
             </IconButton>
-
-            {/* Mobile menu backdrop */}
-            <div
-              onClick={close}
-              aria-hidden="true"
-              className={`${isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"} fixed inset-0 top-[100px] h-screen w-screen bg-black/30 backdrop-blur-sm duration-700 md:hidden`}
-            />
-            <SideBar isOpen={isMenuOpen} close={close} />
           </Box>
+
+          <Drawer
+            anchor="left"
+            open={isMenuOpen}
+            onClose={close} // Handles backdrop clicks automatically
+          >
+            <Box className=" h-full bg-[#f7f7fd] overflow-hidden max-w-[600px] text-[#7C8493CC]">
+              <Box className=" overflow-y-auto py-5 max-h-full scroll-bar-hidden">
+                <List>
+                  {employerSideBarLinks.map((link, index) => (
+                    <ItemSelector key={index} link={link} onClick={close} />
+                  ))}
+                </List>
+              </Box>
+            </Box>
+          </Drawer>
           {/* Logo */}
           <Box
             sx={{
