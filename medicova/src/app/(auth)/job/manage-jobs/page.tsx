@@ -87,6 +87,8 @@ const ManageJobs: React.FC = () => {
             "& .MuiTab-root": {
               textTransform: "none",
               color: "rgba(0, 0, 0, 0.5)",
+              minWidth: "125px", // Increased width for each tab
+              fontSize: "15px", // Increased font size for each tab
             },
             "& .Mui-selected": {
               color: "#185D43!important",

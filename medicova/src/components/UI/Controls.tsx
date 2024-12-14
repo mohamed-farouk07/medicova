@@ -32,7 +32,7 @@ const Controls: React.FC = () => {
       />
       <p className="font-semibold">10 applicants</p>
       <Button variant="contained" className="px-10 text-nowrap">
-        Easy Apply
+        View applicants
       </Button>
     </div>
   );
