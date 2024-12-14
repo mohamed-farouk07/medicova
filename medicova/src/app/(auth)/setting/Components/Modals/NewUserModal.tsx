@@ -31,7 +31,10 @@ const NewUserModal: React.FC<NewUserModalProps> = ({ open, onClose }) => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: "500px",
+          maxWidth: "500px",
+          width: "90%",
+          maxHeight: "90dvh",
+          overflowY: "auto",
           backgroundColor: "#fff",
           borderRadius: "8px",
           boxShadow: 24,
@@ -86,7 +89,13 @@ const NewUserModal: React.FC<NewUserModalProps> = ({ open, onClose }) => {
           </Box>
 
           {/* Input Fields */}
-          <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+              gap: 2,
+            }}
+          >
             {/* Full Name */}
             <Box>
               <InputLabel
@@ -235,6 +244,7 @@ const NewUserModal: React.FC<NewUserModalProps> = ({ open, onClose }) => {
             <Box
               sx={{
                 display: "flex",
+                flexWrap: "wrap",
                 gap: 2,
                 justifyContent: "center",
               }}

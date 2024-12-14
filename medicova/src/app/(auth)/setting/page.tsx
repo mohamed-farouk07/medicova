@@ -30,7 +30,7 @@ const SettingsPage = () => {
   const handleCloseModal = () => setOpenModal(false);
 
   return (
-    <Box sx={{ p: 4 }}>
+    <Box sx={{ p: { xs: 2, md: 4 } }}>
       {/* Page Header */}
       {/* <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
         <Typography variant="h4" sx={{ fontWeight: "bold" }}>
@@ -94,6 +94,7 @@ const SettingsPage = () => {
               <Box
                 sx={{
                   display: "flex",
+                  flexWrap: "wrap",
                   justifyContent: "start",
                   alignItems: "flex-start",
                   gap: 6,
@@ -117,7 +118,14 @@ const SettingsPage = () => {
                 </Box>
 
                 {/* Right Section */}
-                <Box sx={{ maxWidth: "50%" }}>
+                <Box
+                  sx={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    minWidth: "250px",
+                  }}
+                >
                   <Typography
                     variant="h6"
                     sx={{
@@ -143,6 +151,7 @@ const SettingsPage = () => {
                   </InputLabel>
                   <TextField
                     sx={{
+                      maxWidth: "340px",
                       backgroundColor: "rgba(214, 221, 235, 0.18)",
                       "& .MuiOutlinedInput-root": {
                         height: "40px",
@@ -177,6 +186,7 @@ const SettingsPage = () => {
               <Box
                 sx={{
                   display: "flex",
+                  flexWrap: "wrap",
                   justifyContent: "start",
                   alignItems: "flex-start",
                   gap: 9,
@@ -200,7 +210,14 @@ const SettingsPage = () => {
                 </Box>
 
                 {/* Right Section */}
-                <Box sx={{ maxWidth: "50%" }}>
+                <Box
+                  sx={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    minWidth: "250px",
+                  }}
+                >
                   <InputLabel
                     sx={{
                       marginBottom: 1,
@@ -213,6 +230,7 @@ const SettingsPage = () => {
                   </InputLabel>
                   <TextField
                     sx={{
+                      maxWidth: "340px",
                       backgroundColor: "rgba(214, 221, 235, 0.18)",
                       "& .MuiOutlinedInput-root": {
                         height: "40px",
@@ -236,6 +254,7 @@ const SettingsPage = () => {
                   </InputLabel>
                   <TextField
                     sx={{
+                      maxWidth: "340px",
                       backgroundColor: "rgba(214, 221, 235, 0.18)",
                       "& .MuiOutlinedInput-root": {
                         height: "40px",
@@ -274,6 +293,7 @@ const SettingsPage = () => {
             <Box
               sx={{
                 display: "flex",
+                flexWrap: "wrap",
                 justifyContent: "space-between",
                 alignItems: "center",
                 mb: 3, // Add margin below the header for spacing
@@ -332,25 +352,34 @@ const SettingsPage = () => {
                     variant="outlined"
                     sx={{
                       display: "flex",
+                      flexDirection: { xs: "column", sm: "row" },
                       alignItems: "center",
-                      justifyContent: "space-between", // Space between elements
+                      justifyContent: { xs: "center", sm: "space-between" }, // Space between elements
                       p: 2,
                     }}
                   >
                     {/* User Avatar */}
                     <Box
                       component="img"
-                      src="/path-to-avatar.jpg" // Replace with actual avatar image URL
+                      src="/images/logo.png" // Replace with actual avatar image URL
                       alt="User Avatar"
                       sx={{
-                        width: 50,
-                        height: 50,
+                        width: 80,
+                        height: 80,
+                        objectFit: "contain",
                         borderRadius: "50%",
                         mr: 2,
                       }}
                     />
                     {/* User Details */}
-                    <Box sx={{ flex: 1 }}>
+                    <Box
+                      sx={{
+                        flex: 1,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: { xs: "center", sm: "flex-start" },
+                      }}
+                    >
                       <Typography sx={{ fontSize: "20px", fontWeight: "700" }}>
                         Ahmed Mohamed
                       </Typography>
@@ -369,7 +398,9 @@ const SettingsPage = () => {
                     <Box
                       sx={{
                         display: "flex",
-                        justifyContent: "center",
+                        width: "100%",
+                        gap: 2,
+                        justifyContent: { xs: "center", sm: "space-evenly " },
                         alignItems: "center",
                         flex: 3, // Ensures even spacing
                       }}
@@ -386,31 +417,31 @@ const SettingsPage = () => {
                       >
                         Full Control
                       </Button>
+                      <Box>
+                        <Button
+                          sx={{
+                            minWidth: 0,
+                            padding: "2px",
+                            border: "1px solid rgba(214, 221, 235, 1)",
+                            color: "rgba(46, 174, 125, 1)",
+                            mr: 1,
+                          }}
+                        >
+                          <EditIcon />
+                        </Button>
+                        <Button
+                          sx={{
+                            minWidth: 0,
+                            padding: "2px",
+                            border: "1px solid rgba(214, 221, 235, 1)",
+                            color: "rgba(227, 72, 23, 1)",
+                          }}
+                        >
+                          <DeleteIcon />
+                        </Button>
+                      </Box>
                     </Box>
                     {/* Action Icons */}
-                    <Box>
-                      <Button
-                        sx={{
-                          minWidth: 0,
-                          padding: "2px",
-                          border: "1px solid rgba(214, 221, 235, 1)",
-                          color: "rgba(46, 174, 125, 1)",
-                          mr: 1,
-                        }}
-                      >
-                        <EditIcon />
-                      </Button>
-                      <Button
-                        sx={{
-                          minWidth: 0,
-                          padding: "2px",
-                          border: "1px solid rgba(214, 221, 235, 1)",
-                          color: "rgba(227, 72, 23, 1)",
-                        }}
-                      >
-                        <DeleteIcon />
-                      </Button>
-                    </Box>
                   </Card>
                 </Grid>
               ))}

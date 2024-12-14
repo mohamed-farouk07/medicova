@@ -97,7 +97,14 @@ const ProfileForm: React.FC = () => {
           </Typography>
           <form onSubmit={handleSubmit} noValidate>
             {/* Company Sector and Company Type Selectors */}
-            <Box sx={{ display: "flex", gap: 1, marginBottom: 2 }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: { xs: "wrap", md: "nowrap" },
+                gap: 1,
+                marginBottom: 2,
+              }}
+            >
               {/* Company Sector Selector */}
               <Box sx={{ width: "100%" }}>
                 <InputLabel
@@ -115,7 +122,7 @@ const ProfileForm: React.FC = () => {
                     sx={{
                       backgroundColor: "rgba(214, 221, 235, 0.18)",
                       height: "40px",
-                      width: "250px",
+                      width: { xs: "100%", md: "250px" },
                       fontSize: "14px",
                     }}
                     defaultValue="Healthcare"
@@ -144,7 +151,7 @@ const ProfileForm: React.FC = () => {
                     sx={{
                       backgroundColor: "rgba(214, 221, 235, 0.18)",
                       height: "40px",
-                      width: "250px",
+                      width: { xs: "100%", md: "250px" },
                       fontSize: "14px",
                     }}
                     defaultValue="Hospital"
@@ -171,7 +178,14 @@ const ProfileForm: React.FC = () => {
               </Typography>
 
               <FormControl component="fieldset" fullWidth>
-                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                    gap: 2,
+                  }}
+                >
                   {/* First Radio Group */}
                   <RadioGroup row defaultValue="private">
                     <FormControlLabel

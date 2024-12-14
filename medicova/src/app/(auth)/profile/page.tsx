@@ -8,7 +8,7 @@ import ProfileForm from "./Components/ProfileForm";
 
 const ProfilePage = () => {
   return (
-    <Box sx={{ backgroundColor: "#f9f9f9", minHeight: "100vh" }}>
+    <Box sx={{ p: 2 }}>
       {/* Header Section */}
       <HeaderSection />
 
