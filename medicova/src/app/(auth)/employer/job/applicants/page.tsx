@@ -11,6 +11,8 @@ import {
   Pagination,
   FormControlLabel,
   Radio,
+  Stack,
+  IconButton,
 } from "@mui/material";
 import FilterSections from "@/components/UI/filter";
 import { useState } from "react";
@@ -18,8 +20,16 @@ import LockIcon from "@mui/icons-material/Lock";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import StarIcon from "@mui/icons-material/Star";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Controls from "@/components/UI/Controls";
 import CheckIcon from "@mui/icons-material/Check";
+
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
+import SchoolIcon from "@mui/icons-material/School";
+import PersonIcon from "@mui/icons-material/Person";
+import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
+import SelectAllIcon from "@mui/icons-material/SelectAll";
+import DeselectIcon from "@mui/icons-material/Deselect";
 
 type Experience = {
   name: string;
@@ -31,7 +41,7 @@ type Experience = {
 type Education = {
   name: string;
   country: string;
-  speciality: string;
+  specialty: string;
   degree: string;
   startDate: string;
   endDate: string;
@@ -48,7 +58,7 @@ type Doctor = {
   image: string;
   name: string;
   location: string;
-  speciality: string;
+  specialty: string;
   yearsOfExperience: number;
   consultant: boolean;
   field: string;
@@ -63,7 +73,7 @@ const doctors: Doctor[] = [
     image: "https://example.com/image1.jpg",
     name: "Dr. Sarah Johnson",
     location: "New York, USA",
-    speciality: "Cardiology",
+    specialty: "Cardiology",
     yearsOfExperience: 15,
     consultant: true,
     field: "Cardiology",
@@ -90,7 +100,7 @@ const doctors: Doctor[] = [
       {
         name: "Harvard Medical School",
         country: "USA",
-        speciality: "Cardiology",
+        specialty: "Cardiology",
         degree: "Doctor of Medicine (MD)",
         startDate: "2000",
         endDate: "2006",
@@ -102,7 +112,7 @@ const doctors: Doctor[] = [
     image: "https://example.com/image2.jpg",
     name: "Dr. Michael Brown",
     location: "London, UK",
-    speciality: "Cardiology",
+    specialty: "Cardiology",
     yearsOfExperience: 20,
     consultant: true,
     field: "Cardiology",
@@ -129,7 +139,7 @@ const doctors: Doctor[] = [
       {
         name: "University of Oxford",
         country: "UK",
-        speciality: "Cardiology",
+        specialty: "Cardiology",
         degree: "Doctor of Medicine (MD)",
         startDate: "1995",
         endDate: "2003",
@@ -141,7 +151,7 @@ const doctors: Doctor[] = [
     image: "https://example.com/image3.jpg",
     name: "Dr. Aisha Khan",
     location: "Dubai, UAE",
-    speciality: "Cardiology",
+    specialty: "Cardiology",
     yearsOfExperience: 10,
     consultant: true,
     field: "Cardiology",
@@ -162,7 +172,7 @@ const doctors: Doctor[] = [
       {
         name: "Dubai Medical College",
         country: "UAE",
-        speciality: "Cardiology",
+        specialty: "Cardiology",
         degree: "Doctor of Medicine (MD)",
         startDate: "2005",
         endDate: "2012",
@@ -174,7 +184,7 @@ const doctors: Doctor[] = [
     image: "https://example.com/image4.jpg",
     name: "Dr. Ramesh Patel",
     location: "Mumbai, India",
-    speciality: "Cardiology",
+    specialty: "Cardiology",
     yearsOfExperience: 12,
     consultant: true,
     field: "Cardiology",
@@ -195,7 +205,7 @@ const doctors: Doctor[] = [
       {
         name: "All India Institute of Medical Sciences",
         country: "India",
-        speciality: "Cardiology",
+        specialty: "Cardiology",
         degree: "Doctor of Medicine (MD)",
         startDate: "2003",
         endDate: "2010",
@@ -207,7 +217,7 @@ const doctors: Doctor[] = [
     image: "https://example.com/image5.jpg",
     name: "Dr. Emma Wilson",
     location: "Sydney, Australia",
-    speciality: "Cardiology",
+    specialty: "Cardiology",
     yearsOfExperience: 18,
     consultant: true,
     field: "Cardiology",
@@ -228,7 +238,7 @@ const doctors: Doctor[] = [
       {
         name: "University of Sydney",
         country: "Australia",
-        speciality: "Cardiology",
+        specialty: "Cardiology",
         degree: "Doctor of Medicine (MD)",
         startDate: "1995",
         endDate: "2001",
@@ -269,6 +279,14 @@ const ApplicantsPage: React.FC = () => {
     education: "",
     experience: 0,
   });
+  const isAllSelect = selectedApplicants.length === doctors.length;
+  const toggleSelectAll = () => {
+    if (isAllSelect) {
+      setSelectedApplicants([]);
+    } else {
+      setSelectedApplicants(doctors.map((x) => x.id));
+    }
+  };
 
   const handleTabChange = (_event: React.ChangeEvent<{}>, newValue: number) => {
     setSelectedTab(newValue);
@@ -378,9 +396,16 @@ const ApplicantsPage: React.FC = () => {
         </Box>
         <div className="flex justify-between mb-4 items-center">
           <div className="flex gap-5 items-center">
-            <div className="h-fit rounded-md bg-[#DEF0EB]">
-              <ExpandMoreIcon className="w-6 h-6 m-2" />
-            </div>
+            <button
+              onClick={toggleSelectAll}
+              className="h-fit rounded-md bg-[#DEF0EB]"
+            >
+              {isAllSelect ? (
+                <DeselectIcon className="w-6 h-6 m-2" />
+              ) : (
+                <SelectAllIcon className="w-6 h-6 m-2" />
+              )}
+            </button>
             <div className="h-fit rounded-md bg-[#DEF0EB] p-2 px-4">
               <p className="inline-block">Action</p>
               <ExpandMoreIcon className="w-6 h-6 ml-2 inline-block" />
@@ -414,6 +439,19 @@ interface DoctorCardProps extends Doctor {
   setSelectedApplicants: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
+// import StarIcon from "@mui/icons-material/Star";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import MessageIcon from "@mui/icons-material/Message";
+import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
+
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import EmailIcon from "@mui/icons-material/Email";
+
+import DownloadIcon from "@mui/icons-material/Download";
+
+import WorkIcon from "@mui/icons-material/Work";
+
 const DoctorCard: React.FC<DoctorCardProps> = ({
   id,
   name,
@@ -428,7 +466,7 @@ const DoctorCard: React.FC<DoctorCardProps> = ({
     );
   const isSelected = selectedApplicants.includes(id);
   return (
-    <Box className="flex">
+    <Box className="flex mb-4">
       <button
         onClick={toggleSelect}
         className={`${
@@ -438,7 +476,129 @@ const DoctorCard: React.FC<DoctorCardProps> = ({
         {isSelected && <CheckIcon className="text-white w-5 h-5 m-auto" />}
       </button>
 
-      <div className="border w-full h-60">{name}</div>
+      <div className="border w-full rounded-md shadow-md bg-white">
+        <div className="flex flex-col p-5">
+          <div className=" flex gap-5 justify-between w-full">
+            <div className="flex gap-5">
+              <div>
+                <Avatar
+                  src="https://randomuser.me/api/portraits/men/4.jpg"
+                  alt="Candidate"
+                  sx={{ width: 100, height: 100 }}
+                />
+                <p className="text-black/50 text-[12px] max-w-[100px] mt-2 text-center">
+                  applied 6 days ago
+                </p>
+              </div>
+              <div>
+                <Typography
+                  variant="h2"
+                  sx={{ color: "#185D43", fontWeight: "600", fontSize: "22px" }}
+                >
+                  Jake Gyll
+                </Typography>
+                <Stack
+                  direction="row"
+                  sx={{ marginY: "5px", color: "rgba(0, 0, 0, 0.7)" }}
+                  gap={2}
+                >
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <LocationOnIcon color="primary" />
+                    <Typography variant="body1">
+                      Nasr City, Cairo, Egypt
+                    </Typography>
+                  </Box>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <PeopleAltIcon color="primary" />
+                    <Typography variant="body1">56 years old</Typography>
+                  </Box>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <WorkspacePremiumIcon color="primary" />
+                    <Typography variant="body1">10 years Experience</Typography>
+                  </Box>
+                </Stack>
+                <Stack
+                  direction="row"
+                  sx={{ marginY: "5px", color: "rgba(0, 0, 0, 0.7)" }}
+                  gap={2}
+                >
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <SchoolIcon color="primary" />
+                    <Typography variant="body1">Doctorate Degree</Typography>
+                  </Box>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <PersonIcon color="primary" />
+                    <Typography variant="body1">56 years old</Typography>
+                  </Box>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <MedicalServicesIcon color="primary" />
+                    <Typography variant="body1">10 years Experience</Typography>
+                  </Box>
+                </Stack>
+                <div className="flex gap-2 px-4 md:gap-6 justify-between items-center bg-[#F8F8FD]">
+                  <h6 className="font-semibold">Contact Info :</h6>
+                  <div>
+                    <LocalPhoneIcon className="text-[#2EAE7D]" />
+                    <span className="mx-1">201220707190 </span>
+                    <IconButton>
+                      <ContentCopyIcon />
+                    </IconButton>
+                  </div>
+                  <div>
+                    <EmailIcon className="text-[#2EAE7D]" />
+                    <span className="mx-1">ahmedhabib@gmail.com</span>
+                    <IconButton>
+                      <ContentCopyIcon />
+                    </IconButton>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="flex gap-2 justify-between">
+                <button
+                  type="button"
+                  className=" border w-10 text-[#6A727A] h-10 border-[#D6DDEB] hover:text-[#185D43] hover:border-[#185D43]"
+                >
+                  <WhatsAppIcon className=" m-2" />
+                </button>
+                <button
+                  type="button"
+                  className=" border w-10 text-[#6A727A] h-10 border-[#D6DDEB] hover:text-[#185D43] hover:border-[#185D43]"
+                >
+                  <MessageIcon className=" m-2" />
+                </button>
+                <button
+                  type="button"
+                  className=" border w-10 text-[#6A727A] h-10 border-[#D6DDEB] hover:text-[#185D43] hover:border-[#185D43]"
+                >
+                  <StarBorderOutlinedIcon className=" m-2" />
+                </button>
+              </div>
+              <Button
+                variant="outlined"
+                className="w-full"
+                startIcon={<DownloadIcon />}
+              >
+                Download CV
+              </Button>
+            </div>
+          </div>
+          <div className="flex flex-col h-20 p-5 bg-[#F8F8FD]">
+            {/* <div className="flex justify-between items-center">
+              <WorkIcon className="text-[#2EAE7D]" />
+              <p className="font-semibold">Cardiology Consultant</p>
+              <div className="bg-white border px-4 py-2"> EGYPT </div>
+              <p>(2020 - 2024)</p>
+            </div>
+            <div className="flex">
+              <SchoolIcon /> <p>Cardiology Consultant</p>{" "}
+              <div> flag Egypt with border and white bg </div>{" "}
+              <p>(2020 - 2024)</p>{" "}
+            </div> */}
+          </div>
+        </div>
+      </div>
     </Box>
   );
 };
