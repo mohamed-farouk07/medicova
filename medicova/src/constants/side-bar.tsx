@@ -14,7 +14,11 @@ import StarsIcon from "@mui/icons-material/Stars";
 import PsychologyIcon from "@mui/icons-material/Psychology";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import WorkHistoryIcon from "@mui/icons-material/WorkHistory";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
+import PeopleIcon from "@mui/icons-material/People";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import CorporateFareIcon from "@mui/icons-material/CorporateFare";
 import { LinkType } from "@/types/side-bar";
 
 export const icons = {
@@ -34,7 +38,12 @@ export const icons = {
   skill: PsychologyIcon,
   upload: CloudUploadIcon,
   work: WorkHistoryIcon,
+  workOT: WorkOutlineIcon,
   manage: WorkHistoryIcon,
+  PeopleIcon: PeopleIcon,
+  AccountCircleIcon: AccountCircleIcon,
+  ManageAccountsIcon: ManageAccountsIcon,
+  CorporateFareIcon: CorporateFareIcon,
 };
 
 export const employerSideBarLinks: LinkType[] = [
@@ -45,7 +54,7 @@ export const employerSideBarLinks: LinkType[] = [
     links: [
       {
         title: "OverView",
-        url: "/dashboard",
+        url: "/employer/dashboard",
       },
       {
         title: "Analytics",
@@ -57,7 +66,7 @@ export const employerSideBarLinks: LinkType[] = [
   },
   {
     title: "Company Profile",
-    url: "/profile",
+    url: "/employer/profile",
     icon: "profile",
   },
   {
@@ -67,15 +76,15 @@ export const employerSideBarLinks: LinkType[] = [
     links: [
       {
         title: "Manage Jobs",
-        url: "/job/manage-jobs",
+        url: "/employer/job/manage-jobs",
       },
       {
         title: "Posted Jobs",
-        url: "/job/posted",
+        url: "/employer/job/posted",
       },
       {
         title: "Applicants",
-        url: "/job/applicants",
+        url: "/employer/job/applicants",
       },
       {
         title: "Job Analytics",
@@ -83,16 +92,17 @@ export const employerSideBarLinks: LinkType[] = [
     ],
   },
   {
-    title: "CV Search",
+    title: "Search",
     icon: "search",
     kind: "collapse",
     links: [
       {
         title: "Search Candidates",
-        url: "/cv/candidates",
+        url: "/employer/search/",
       },
       {
         title: "Saved Searches",
+        url: "/employer/search/saved-search",
       },
     ],
   },
@@ -118,7 +128,7 @@ export const employerSideBarLinks: LinkType[] = [
   {
     title: "Settings",
     icon: "settings",
-    url: "/setting",
+    url: "/employer/setting",
   },
   {
     title: "Help Center",
@@ -133,39 +143,29 @@ export const jobSeekerSideBarLinks: LinkType[] = [
     url: "/",
   },
   {
-    title: "General info",
-    icon: "info",
-    url: "#",
+    title: "Profile ",
+    icon: "AccountCircleIcon",
+    kind: "collapse",
+    links: [
+      {
+        title: "View Profile",
+        url: "/job-seeker/general-info",
+      },
+      {
+        title: "Personal Info",
+        url: "/job-seeker/profile",
+      },
+    ],
   },
   {
-    title: "Qualification & Education",
-    icon: "school",
-    url: "#",
+    title: "Career References",
+    icon: "ManageAccountsIcon",
+    url: "/job-seeker/career-references",
   },
   {
-    title: "Experience",
-    icon: "star",
-    url: "#",
-  },
-  {
-    title: "Skills",
-    icon: "skill",
-    url: "#",
-  },
-  {
-    title: "Upload CV",
-    icon: "upload",
-    url: "#",
-  },
-  {
-    title: "Career Referance",
-    icon: "work",
-    url: "#",
-  },
-  {
-    title: "Profile Setting",
-    icon: "manage",
-    url: "#",
+    title: "Browse Companies",
+    icon: "CorporateFareIcon",
+    url: "/job-seeker/browse-companies",
   },
   {
     kind: "divider",
@@ -177,7 +177,7 @@ export const jobSeekerSideBarLinks: LinkType[] = [
   {
     title: "Settings",
     icon: "settings",
-    url: "#",
+    url: "/job-seeker/setting",
   },
   {
     title: "Help Center",
