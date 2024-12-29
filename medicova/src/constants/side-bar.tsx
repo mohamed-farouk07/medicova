@@ -19,6 +19,7 @@ import PeopleIcon from "@mui/icons-material/People";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import CorporateFareIcon from "@mui/icons-material/CorporateFare";
+import DescriptionIcon from "@mui/icons-material/Description";
 import { LinkType } from "@/types/side-bar";
 
 export const icons = {
@@ -44,6 +45,7 @@ export const icons = {
   AccountCircleIcon: AccountCircleIcon,
   ManageAccountsIcon: ManageAccountsIcon,
   CorporateFareIcon: CorporateFareIcon,
+  DescriptionIcon: DescriptionIcon,
 };
 
 export const employerSideBarLinks: LinkType[] = [
@@ -109,6 +111,7 @@ export const employerSideBarLinks: LinkType[] = [
   {
     title: "Billing & Subscription",
     icon: "wallet",
+    url: "/employer/subscription-plans",
   },
   {
     title: "Report",
@@ -166,6 +169,11 @@ export const jobSeekerSideBarLinks: LinkType[] = [
     title: "Browse Companies",
     icon: "CorporateFareIcon",
     url: "/job-seeker/browse-companies",
+  },
+  {
+    title: "My Applications",
+    icon: "DescriptionIcon",
+    url: "/job-seeker/my-applications",
   },
   {
     kind: "divider",

@@ -21,7 +21,7 @@ import CustomPagination from "@/components/UI/CustomPagination";
 
 const companiesData = [
   {
-    id: "#", // Unique ID for Stripe Hospital in Cairo
+    id: "#",
     name: "Stripe",
     location: "Cairo, Egypt",
     type: "Hospital",
@@ -32,7 +32,7 @@ const companiesData = [
       "Stripe is a software platform for starting and running internet businesses.",
   },
   {
-    id: "#", // Unique ID for Alpha Pharmacy in Paris
+    id: "#",
     name: "Alpha",
     location: "Paris, France",
     type: "Pharmacy",
@@ -42,7 +42,7 @@ const companiesData = [
     description: "Alpha is a platform for businesses in the healthcare sector.",
   },
   {
-    id: "#", // Another unique ID for another Alpha Pharmacy in Paris
+    id: "#",
     name: "Alpha",
     location: "Paris, France",
     type: "Pharmacy",
@@ -52,7 +52,7 @@ const companiesData = [
     description: "Alpha is a platform for businesses in the healthcare sector.",
   },
   {
-    id: "#", // Unique ID for another Stripe Hospital in Cairo
+    id: "#",
     name: "Stripe",
     location: "Cairo, Egypt",
     type: "Hospital",
@@ -63,7 +63,7 @@ const companiesData = [
       "Stripe is a software platform for starting and running internet businesses.",
   },
   {
-    id: "#", // Unique ID for Coinbase Pharmacy in Paris
+    id: "#",
     name: "Coinbase",
     location: "Paris, France",
     type: "Pharmacy",
@@ -74,7 +74,7 @@ const companiesData = [
       "Coinbase is a platform for buying, selling, and managing cryptocurrency.",
   },
   {
-    id: "#", // Unique ID for Croser Pharmacy in Paris
+    id: "#",
     name: "Croser",
     location: "Paris, France",
     type: "Pharmacy",
@@ -105,7 +105,7 @@ const BrowseCompaniesPage = () => {
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           gap: 2,
-          my: 3,
+          my: 2,
           p: 2,
           borderRadius: "12px",
           border: "1px solid #ddd",
@@ -192,6 +192,10 @@ const BrowseCompaniesPage = () => {
         </Button>
       </Box>
 
+      <Typography variant="body1" sx={{ mb: 2, color: "#515B6F" }}>
+        Popular : Twitter, Microsoft, Apple, Facebook
+      </Typography>
+
       {/* Results Header */}
       <Box>
         {/* Title Section */}
@@ -228,7 +232,7 @@ const BrowseCompaniesPage = () => {
 
       {/* Companies List */}
       <Grid container spacing={3}>
-        {companiesData.map((company, index) => (
+        {paginatedCompanies.map((company, index) => (
           <Grid item xs={12} sm={6} md={4} lg={4} key={index}>
             <Card
               sx={{
@@ -241,8 +245,6 @@ const BrowseCompaniesPage = () => {
               }}
             >
               <CardContent sx={{ flex: 1 }}>
-                {" "}
-                {/* Make content take up available space */}
                 {/* Header with Square Avatar */}
                 <Box
                   sx={{
@@ -284,6 +286,7 @@ const BrowseCompaniesPage = () => {
                     </Typography>
                   </Box>
                 </Box>
+
                 {/* Location and Type in One Row */}
                 <Box
                   sx={{
@@ -306,14 +309,16 @@ const BrowseCompaniesPage = () => {
                     </Typography>
                   </Box>
                 </Box>
+
                 {/* Description */}
                 <Box sx={{ maxWidth: "fit-content", my: 1 }}>
                   <Typography variant="body2" color="text.secondary">
                     {company.description}
                   </Typography>
                 </Box>
+
                 {/* View Full Profile Link */}
-                <Box sx={{ textAlign: "left", mt: 2 }}>
+                <Box sx={{ textAlign: "right", mt: 2 }}>
                   <Link
                     href={`/job-seeker/browse-companies/${company.id}`}
                     style={{
@@ -330,6 +335,7 @@ const BrowseCompaniesPage = () => {
           </Grid>
         ))}
       </Grid>
+      {/* Pagination */}
       <CustomPagination
         itemsPerPage={itemsPerPage}
         setItemsPerPage={setItemsPerPage}

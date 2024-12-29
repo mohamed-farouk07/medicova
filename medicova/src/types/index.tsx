@@ -39,6 +39,28 @@ export interface Doctor {
   education: Education[];
   available: boolean;
 }
+export interface Company {
+  name: string;
+  industry: string;
+  website: string;
+  contact: string;
+}
+
+export interface Job {
+  id: string;
+  title: string;
+  location: string;
+  education: string;
+  specialty: string;
+  features: string[];
+  timeStamps: Date;
+  description: string;
+  requirements: string[];
+  additionalDetails: string;
+  skills: string[];
+  relatedSearch: string[];
+  company: Company;
+}
 
 export interface FilterOption {
   label: string;
@@ -62,4 +84,20 @@ export interface Folder {
 export interface SortFolders {
   key: keyof Folder;
   direction: "asc" | "desc";
+}
+
+export interface Specialty {
+  id: number | string;
+  image: string;
+  title: string;
+  jobsNumber: number;
+  link: string;
+}
+
+export interface CompanyItem {
+  id: string | number;
+  image: string;
+  title: string;
+  description: string;
+  tag: string;
 }
