@@ -224,19 +224,16 @@ export const doctorsBase: Doctor[] = [
 
 export const filterSections = {
   "Residency (Location)": [
-    { label: "All", count: 5, value: "all" },
     { label: "Egypt", count: 3, value: "egypt" },
     { label: "Qatar", count: 2, value: "Qatar" },
   ],
   "Education Level": [
-    { label: "All", count: 250, value: "all" },
     { label: "Technical Institute", count: 50, value: "institute" },
     { label: "Bachelor's Degree", count: 100, value: "bachelor" },
     { label: "Doctorate Degree", count: 70, value: "doctorate" },
     { label: "Fellowship", count: 30, value: "fellowship" },
   ],
   "Years Of Experience": [
-    { label: "All", count: 150, value: "all" },
     { label: "1-3", count: 50, value: "1-3" },
     { label: "3-5", count: 40, value: "3-5" },
     { label: "5-10", count: 30, value: "5-10" },
@@ -245,22 +242,18 @@ export const filterSections = {
 };
 export const searchFilters = {
   "Residency (Location)": [
-    { label: "All", count: 5, value: "all" },
     { label: "Egypt", count: 3, value: "egypt" },
     { label: "Qatar", count: 2, value: "Qatar" },
   ],
   city: [
-    { label: "All", count: 5, value: "all" },
     { label: "cairo", count: 3, value: "cairo" },
     { label: "riyadh", count: 2, value: "riyadh" },
   ],
   nationality: [
-    { label: "All", count: 5, value: "all" },
     { label: "egyptian", count: 3, value: "egyptian" },
     { label: "saudi arabian", count: 2, value: "saudi arabian" },
   ],
   industry: [
-    { label: "All", count: 200, value: "all" },
     { label: "Physicians", count: 10, value: "Physicians" },
     { label: "Dentists", count: 100, value: "Dentists" },
     { label: "Physiotherapists", count: 50, value: "Physiotherapists" },
@@ -268,7 +261,6 @@ export const searchFilters = {
     { label: "Nurses", count: 10, value: "Nurses" },
   ],
   category: [
-    { label: "All", count: 200, value: "all" },
     { label: "Doctor", count: 100, value: "doctor" },
     { label: "Nurse", count: 50, value: "nurse" },
     { label: "Pharmaceutical", count: 30, value: "pharmaceutical" },
@@ -276,7 +268,6 @@ export const searchFilters = {
     { label: "Specialized", count: 10, value: "specialized" },
   ],
   "Education Level": [
-    { label: "All", count: 250, value: "all" },
     { label: "Institute", count: 50, value: "institute" },
     { label: "Bachelor's Degree", count: 100, value: "bachelor" },
     { label: "Master's Degree", count: 100, value: "master" },
@@ -284,19 +275,16 @@ export const searchFilters = {
     { label: "Fellowship", count: 30, value: "fellowship" },
   ],
   "Years Of Experience": [
-    { label: "All", count: 150, value: "all" },
     { label: "1-3", count: 50, value: "1-3" },
     { label: "3-5", count: 40, value: "3-5" },
     { label: "5-10", count: 30, value: "5-10" },
     { label: "+10", count: 30, value: "10+" },
   ],
   gender: [
-    { label: "All", count: 300, value: "all" },
     { label: "Male", count: 200, value: "male" },
     { label: "Female", count: 100, value: "female" },
   ],
   age: [
-    { label: "All", count: 40, value: "all" },
     { label: "18-25", count: 40, value: "18-25" },
     { label: "26-35", count: 50, value: "26-35" },
     { label: "36-45", count: 30, value: "36-45" },
@@ -370,13 +358,11 @@ export const folders: Folder[] = [
 
 export const searchJopFilters = {
   Industry: [
-    { label: "All", count: 37, value: "all" },
     { label: "Pharmacist", count: 3, value: "pharmacist" },
     { label: "HealthCare", count: 5, value: "healthcare" },
     { label: "Administrator", count: 2, value: "administrator" },
   ],
   "Main Specialty": [
-    { label: "All", count: 37, value: "all" },
     { label: "Physicians", count: 3, value: "physicians" },
     { label: "Dentists", count: 5, value: "dentists" },
     { label: "Physiotherapists", count: 2, value: "physiotherapists" },
@@ -384,18 +370,15 @@ export const searchJopFilters = {
     { label: "Nurses", count: 3, value: "nurses" },
   ],
   "Work Time": [
-    { label: "All", count: 37, value: "all" },
     { label: "Full-time", count: 3, value: "full_time" },
     { label: "Part-Time", count: 5, value: "part_time" },
   ],
   "Work Place": [
-    { label: "All", count: 29, value: "all" },
     { label: "Remote", count: 2, value: "remote" },
     { label: "On site", count: 24, value: "on_site" },
     { label: "Hybrid", count: 3, value: "hybrid" },
   ],
   Categories: [
-    { label: "All", count: 60, value: "all" },
     { label: "Medical", count: 24, value: "medical" },
     { label: "Physician/Doctor", count: 3, value: "physician_doctor" },
     { label: "Medical Sonographer", count: 3, value: "medical_sonographer" },
@@ -410,7 +393,6 @@ export const searchJopFilters = {
     { label: "Technology", count: 5, value: "technology" },
   ],
   "Job Level": [
-    { label: "All", count: 85, value: "all" },
     { label: "General", count: 57, value: "general" },
     { label: "Specialist", count: 3, value: "specialist" },
     { label: "Consultant", count: 5, value: "consultant" },
@@ -418,7 +400,6 @@ export const searchJopFilters = {
     { label: "CEO", count: 8, value: "ceo" },
   ],
   "Salary Range": [
-    { label: "All", count: 24, value: "all" },
     { label: "$700 - $1000", count: 4, value: "700_1000" },
     { label: "$100 - $1500", count: 6, value: "100_1500" },
     { label: "$1500 - $2000", count: 10, value: "1500_2000" },
@@ -704,6 +685,144 @@ export const jobs: Job[] = [
       industry: "Healthcare",
       website: "www.riyadhheartinstitute.com",
       contact: "jobs@riyadhheartinstitute.com",
+    },
+  },
+  {
+    id: "7",
+    title: "Cardiothoracic Surgeon",
+    location: "Cairo, Egypt",
+    education: "Master’s Degree in Cardiothoracic Surgery",
+    specialty: "Cardiothoracic Surgery",
+    features: [
+      "Male and Female",
+      "Full time | Onsite",
+      "EX (5+ years)",
+      "Age (35-45)",
+      "Salary (1400 - 1600 SAR)",
+      "Immediate Joining",
+    ],
+    timeStamps: new Date("2024-09-22T00:00:00Z"),
+    description:
+      "We are seeking a cardiothoracic surgeon to join our medical team, providing expert care in cardiothoracic surgical operations, including heart transplants and other cardiovascular procedures.",
+    requirements: [
+      "At least 5 years of experience in cardiothoracic surgery",
+      "Master’s degree in Cardiothoracic Surgery",
+      "Strong background in cardiothoracic surgical techniques",
+      "Ability to work in a high-pressure environment",
+      "Excellent teamwork and communication skills",
+    ],
+    additionalDetails:
+      "This position offers a competitive salary, professional development opportunities, and a collaborative work environment.",
+    skills: [
+      "Cardiothoracic Surgery",
+      "Heart Transplant",
+      "Cardiovascular Surgical Techniques",
+      "Patient Care",
+      "Team Collaboration",
+    ],
+    relatedSearch: [
+      "Cardiothoracic Surgeon Jobs",
+      "Heart Transplant Surgeon Roles",
+      "Cardiothoracic Surgery Jobs Cairo",
+      "Full-time Cardiothoracic Surgeon Jobs",
+    ],
+    company: {
+      name: "Cairo Heart Institute",
+      industry: "Healthcare",
+      website: "www.cairoheartinstitute.com",
+      contact: "info@cairoheartinstitute.com",
+    },
+  },
+  {
+    id: "8",
+    title: "Vascular Surgeon",
+    location: "Jeddah, Saudi Arabia",
+    education: "Master’s Degree in Vascular Surgery",
+    specialty: "Vascular Surgery",
+    features: [
+      "Male and Female",
+      "Full time | Onsite",
+      "EX (5+ years)",
+      "Age (35-45)",
+      "Salary (1300 - 1500 SAR)",
+      "Flexible Start Date",
+    ],
+    timeStamps: new Date("2024-08-22T00:00:00Z"),
+    description:
+      "We are looking for a vascular surgeon to join our team, providing expert care in vascular surgical operations, including vascular reconstruction and endovascular procedures.",
+    requirements: [
+      "At least 5 years of experience in vascular surgery",
+      "Master’s degree in Vascular Surgery",
+      "Strong background in vascular surgical techniques",
+      "Ability to work in a high-pressure environment",
+      "Excellent teamwork and communication skills",
+    ],
+    additionalDetails:
+      "The position offers a competitive salary, professional development opportunities, and a collaborative work environment.",
+    skills: [
+      "Vascular Surgery",
+      "Vascular Reconstruction",
+      "Endovascular Procedures",
+      "Patient Care",
+      "Team Collaboration",
+    ],
+    relatedSearch: [
+      "Vascular Surgeon Jobs",
+      "Vascular Surgery Roles",
+      "Vascular Surgery Jobs Jeddah",
+      "Full-time Vascular Surgeon Jobs",
+    ],
+    company: {
+      name: "Jeddah Vascular Institute",
+      industry: "Healthcare",
+      website: "www.jeddahvascularinstitute.com",
+      contact: "careers@jeddahvascularinstitute.com",
+    },
+  },
+  {
+    id: "9",
+    title: "Interventional Cardiologist",
+    location: "Abu Dhabi, UAE",
+    education: "Master’s Degree in Interventional Cardiology",
+    specialty: "Interventional Cardiology",
+    features: [
+      "Male and Female",
+      "Full time | Onsite",
+      "EX (5+ years)",
+      "Age (35-45)",
+      "Salary (1400 - 1600 SAR)",
+      "Immediate Joining",
+    ],
+    timeStamps: new Date("2024-07-22T00:00:00Z"),
+    description:
+      "We are seeking an interventional cardiologist to join our medical team, providing expert care in interventional cardiology procedures, including angioplasty and stenting.",
+    requirements: [
+      "At least 5 years of experience in interventional cardiology",
+      "Master’s degree in Interventional Cardiology",
+      "Strong background in interventional cardiology procedures",
+      "Ability to work in a high-pressure environment",
+      "Excellent teamwork and communication skills",
+    ],
+    additionalDetails:
+      "This position offers a competitive salary, professional development opportunities, and a collaborative work environment.",
+    skills: [
+      "Interventional Cardiology",
+      "Angioplasty",
+      "Stenting",
+      "Patient Care",
+      "Team Collaboration",
+    ],
+    relatedSearch: [
+      "Interventional Cardiologist Jobs",
+      "Interventional Cardiology Roles",
+      "Interventional Cardiology Jobs Abu Dhabi",
+      "Full-time Interventional Cardiologist Jobs",
+    ],
+    company: {
+      name: "Abu Dhabi Heart Institute",
+      industry: "Healthcare",
+      website: "www.abudhabiheartinstitute.com",
+      contact: "info@abudhabiheartinstitute.com",
     },
   },
 ];

@@ -139,6 +139,7 @@ const ChatPage: React.FC = () => {
             </IconButton>
           </Box>
         </Box>
+
         {/* Chat Messages */}
         <Box sx={{ flexGrow: 1, overflowY: "auto", p: 2 }}>
           <Box sx={{ mb: 2 }}>
@@ -228,7 +229,7 @@ const ChatPage: React.FC = () => {
                 </Box>
               ),
               endAdornment: (
-                <Box sx={{ display: "flex", alignItems: "center", mr: 1 ,gap: 1}}>
+                <Box sx={{ display: "flex", alignItems: "center", mr: 1, gap: 1 }}>
                   <IconButton
                     color="primary"
                     sx={{ color: "#25324B" }}

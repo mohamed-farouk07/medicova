@@ -4,6 +4,22 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap");
 
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary: #2ba149;
+  --primary-100: #ecf7f3;
+  --primary-900: #31b151;
+  --primary-foreground: #ffffff;
+  --light-primary: #82c341;
+  --light-primary-transparent: #82c341e5;
+  --primary-transparent: #2ba149e5;
+  --text-main: #161439;
+  --text-secondary: #6d6c80;
+}
+
 /* Apply global font family */
 body,
 html,
@@ -28,6 +44,23 @@ html,
     scrollbar-width: none;
     /* Firefox */
   }
+  .scroll-bar-minimal::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scroll-bar-minimal::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scroll-bar-minimal::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+  }
+
+  .scroll-bar-minimal::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
 }
 
 @layer base {
@@ -40,4 +73,41 @@ html,
   .font-outline-4 {
     -webkit-text-stroke: 4px #2eae7d;
   }
+}
+
+.prose li {
+  list-style-type: disc; /* Apply bullet style */
+  margin-left: 20px; /* Add padding to align bullets */
+}
+.prose p {
+  margin: 0 5px;
+}
+.prose ul {
+  margin: 0 5px;
+}
+
+.ProseMirror {
+  padding: 10px;
+  /* height: 150px; */
+  min-height: 150px;
+  /* overflow: scroll; */
+  outline: none;
+  border: 1px solid transparent;
+}
+
+.ProseMirror:focus {
+  /* outline: 2px solid var(--primary); */
+  border: 1px solid var(--primary);
+}
+
+.ProseMirror::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.ProseMirror {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }

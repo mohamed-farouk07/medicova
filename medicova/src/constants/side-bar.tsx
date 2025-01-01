@@ -67,9 +67,19 @@ export const employerSideBarLinks: LinkType[] = [
     ],
   },
   {
-    title: "Company Profile",
-    url: "/employer/profile",
+    title: "Profile",
     icon: "profile",
+    kind: "collapse",
+    links: [
+      {
+        title: "View Profile",
+        url: "/employer/profile",
+      },
+      {
+        title: "Company Info",
+        url: "/employer/company-info",
+      },
+    ],
   },
   {
     title: "My Jobs",
@@ -120,6 +130,7 @@ export const employerSideBarLinks: LinkType[] = [
   {
     title: "Chat",
     icon: "chat",
+    url: "/chat",
   },
   {
     kind: "divider",
@@ -174,6 +185,11 @@ export const jobSeekerSideBarLinks: LinkType[] = [
     title: "My Applications",
     icon: "DescriptionIcon",
     url: "/job-seeker/my-applications",
+  },
+  {
+    title: "Chat",
+    icon: "chat",
+    url: "/chat",
   },
   {
     kind: "divider",
